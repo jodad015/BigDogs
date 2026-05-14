@@ -1,0 +1,2 @@
+-- BigDogs seed data for local development
+-- This file runs on `supabase db reset`

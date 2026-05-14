@@ -1,0 +1,43 @@
+{
+  "name": "bigdogs",
+  "private": true,
+  "packageManager": "pnpm@10.33.2",
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=10"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @bigdogs/web dev",
+    "dev:web": "pnpm --filter @bigdogs/web dev",
+    "build": "pnpm --filter @bigdogs/shared build && pnpm --filter @bigdogs/web build",
+    "build:shared": "pnpm --filter @bigdogs/shared build",
+    "build:web": "pnpm --filter @bigdogs/web build",
+    "test": "pnpm --filter @bigdogs/shared test",
+    "test:functions": "deno test --config supabase/functions/deno.json supabase/functions/_shared/__tests__/",
+    "test:e2e": "pnpm --filter @bigdogs/web test:e2e",
+    "test:all": "pnpm test && pnpm test:functions",
+    "lint": "pnpm -r lint",
+    "lint:fix": "pnpm -r lint:fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "pnpm -r typecheck",
+    "db:start": "supabase start",
+    "db:stop": "supabase stop",
+    "db:functions": "supabase functions serve --import-map supabase/functions/import_map.json",
+    "db:reset": "supabase db reset",
+    "db:migration": "supabase migration new",
+    "db:types": "supabase gen types typescript --local > packages/shared/src/types/database.ts",
+    "db:status": "supabase status",
+    "clean": "pnpm -r exec rm -rf dist node_modules && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.2.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.5.0",
+    "prettier": "^3.8.3",
+    "typescript-eslint": "^8.59.1"
+  }
+}

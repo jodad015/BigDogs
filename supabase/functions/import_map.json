@@ -1,0 +1,6 @@
+{
+  "imports": {
+    "@entity/": "../../packages/shared/src/types/entity/",
+    "@transaction/": "../../packages/shared/src/types/transaction/"
+  }
+}

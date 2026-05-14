@@ -1,0 +1,71 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Supabase",
+      "type": "shell",
+      "command": "supabase start",
+      "problemMatcher": [],
+      "presentation": {
+        "group": "dev",
+        "reveal": "always"
+      }
+    },
+    {
+      "label": "Supabase Functions",
+      "type": "shell",
+      "command": "supabase functions serve --import-map supabase/functions/import_map.json",
+      "dependsOn": ["Supabase"],
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": {
+        "group": "dev",
+        "reveal": "always"
+      }
+    },
+    {
+      "label": "Web App",
+      "type": "shell",
+      "command": "pnpm dev:web",
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": {
+        "group": "dev",
+        "reveal": "always"
+      }
+    },
+    {
+      "label": "Start Backend",
+      "dependsOn": ["Supabase Functions"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Start Web",
+      "dependsOn": ["Supabase Functions", "Web App"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Start All",
+      "dependsOn": ["Supabase Functions", "Web App"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Stop All",
+      "type": "shell",
+      "command": "supabase stop",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always"
+      }
+    },
+    {
+      "label": "Restart All",
+      "type": "shell",
+      "command": "supabase stop && supabase start",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always"
+      }
+    }
+  ]
+}
