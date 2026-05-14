@@ -25,6 +25,13 @@ export function createAuthService(client: AppSupabaseClient) {
       return client.auth.signInWithPassword({ email, password });
     },
 
+    async signInWithGoogle(redirectTo?: string) {
+      return client.auth.signInWithOAuth({
+        provider: 'google',
+        options: { redirectTo },
+      });
+    },
+
     async signOut() {
       return client.auth.signOut();
     },

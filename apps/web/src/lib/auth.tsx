@@ -10,6 +10,7 @@ interface AuthContextValue {
   session: Session | null;
   isLoading: boolean;
   signIn: (email: string, password: string) => Promise<{ error: AuthError | null }>;
+  signInWithGoogle: () => Promise<{ error: AuthError | null }>;
   signOut: () => Promise<{ error: AuthError | null }>;
 }
 
@@ -49,13 +50,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return { error };
   };
 
+  const signInWithGoogle = async () => {
+    const { error } = await authService.signInWithGoogle(window.location.origin);
+    return { error };
+  };
+
   const signOut = async () => {
     const { error } = await authService.signOut();
     return { error };
   };
 
   return (
-    <AuthContext.Provider value={{ user, session, isLoading, signIn, signOut }}>
+    <AuthContext.Provider value={{ user, session, isLoading, signIn, signInWithGoogle, signOut }}>
       {children}
     </AuthContext.Provider>
   );
