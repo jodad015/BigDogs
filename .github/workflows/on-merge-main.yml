@@ -59,6 +59,8 @@ jobs:
           node-version: 22
           cache: pnpm
 
+      - run: pnpm install --frozen-lockfile
+
       - uses: supabase/setup-cli@v1
         with:
           version: latest
