@@ -3,6 +3,11 @@ import { useAuth } from '@/lib/auth';
 
 const enableEmailAuth = import.meta.env.VITE_ENABLE_EMAIL_AUTH === 'true';
 
+const DEMO_ACCOUNTS = [
+  { email: 'alice@bigdogs.app', password: 'password', label: 'Alice' },
+  { email: 'bob@bigdogs.app', password: 'password', label: 'Bob' },
+];
+
 export default function LoginPage() {
   const { signIn, signInWithGoogle } = useAuth();
   const [email, setEmail] = useState('');
@@ -63,43 +68,64 @@ export default function LoginPage() {
         )}
 
         {enableEmailAuth && (
-          <form onSubmit={handleEmailSignIn} className="space-y-4">
-            <div>
-              <label htmlFor="email" className="mb-1 block text-sm font-medium">
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full rounded-md border border-border bg-input px-3 py-2 text-sm"
-                required
-              />
-            </div>
+          <>
+            <form onSubmit={handleEmailSignIn} className="space-y-4">
+              <div>
+                <label htmlFor="email" className="mb-1 block text-sm font-medium">
+                  Email
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full rounded-md border border-border bg-input px-3 py-2 text-sm"
+                  required
+                />
+              </div>
 
-            <div>
-              <label htmlFor="password" className="mb-1 block text-sm font-medium">
-                Password
-              </label>
-              <input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full rounded-md border border-border bg-input px-3 py-2 text-sm"
-                required
-              />
-            </div>
+              <div>
+                <label htmlFor="password" className="mb-1 block text-sm font-medium">
+                  Password
+                </label>
+                <input
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full rounded-md border border-border bg-input px-3 py-2 text-sm"
+                  required
+                />
+              </div>
 
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground disabled:opacity-50"
-            >
-              {isLoading ? 'Signing in...' : 'Sign In'}
-            </button>
-          </form>
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="w-full rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground disabled:opacity-50"
+              >
+                {isLoading ? 'Signing in...' : 'Sign In'}
+              </button>
+            </form>
+
+            <div className="mt-6 border-t border-border pt-4">
+              <p className="mb-3 text-center text-xs text-muted-foreground">Demo Accounts</p>
+              <div className="flex gap-2">
+                {DEMO_ACCOUNTS.map((account) => (
+                  <button
+                    key={account.email}
+                    onClick={() => {
+                      setEmail(account.email);
+                      setPassword(account.password);
+                      setError('');
+                    }}
+                    className="flex-1 rounded-md border border-border bg-card px-3 py-2 text-sm text-foreground hover:bg-muted"
+                  >
+                    {account.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </>
         )}
 
         {error && <p className="mt-4 text-center text-sm text-destructive">{error}</p>}
