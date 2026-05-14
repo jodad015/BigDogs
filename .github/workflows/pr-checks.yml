@@ -1,0 +1,115 @@
+name: PR Checks
+
+on:
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Type Check
+        run: pnpm typecheck
+
+      - name: Build Shared
+        run: pnpm build:shared
+
+      - name: Unit Tests (Shared)
+        run: pnpm test
+
+      - name: Build Web
+        run: pnpm build:web
+
+  e2e:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Start Supabase
+        run: supabase start
+
+      - name: Build Shared
+        run: pnpm build:shared
+
+      - name: Install Playwright
+        run: pnpm --filter @bigdogs/web exec playwright install --with-deps chromium
+
+      - name: Run E2E Tests
+        run: pnpm test:e2e
+        env:
+          VITE_SUPABASE_URL: http://127.0.0.1:54621
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY_LOCAL }}
+
+      - name: Upload Playwright Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: apps/web/playwright-report/
+          retention-days: 14
+
+      - name: Stop Supabase
+        if: always()
+        run: supabase stop
+
+  integration:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Start Supabase
+        run: supabase start
+
+      - name: Run DB Reset
+        run: supabase db reset
+
+      - name: Run Edge Function Tests
+        run: deno test --config supabase/functions/deno.json supabase/functions/_shared/__tests__/
+
+      - name: Stop Supabase
+        if: always()
+        run: supabase stop
