@@ -5,7 +5,7 @@
 | Environment | Branch    | Supabase         | Web Hosting | Trigger               |
 |-------------|-----------|------------------|-------------|-----------------------|
 | **Local**   | any       | Docker (546xx)   | Vite (5173) | Manual (`pnpm dev`)   |
-| **Production** | `main` | Supabase Cloud   | TBD         | Merge to `main`       |
+| **Production** | `main` | Supabase Cloud   | Cloudflare Pages | Merge to `main`  |
 
 ## Branch Strategy
 
@@ -43,33 +43,18 @@ In **Authentication > Providers**, enable:
 
 ---
 
-## Step 2: Choose Web Hosting
-
-The deploy workflow has three options commented out. Pick one:
-
-### Option A: Cloudflare Pages (Recommended)
+## Step 2: Set Up Cloudflare Pages
 
 1. Create a Cloudflare account at [dash.cloudflare.com](https://dash.cloudflare.com)
 2. Go to **Workers & Pages > Create > Pages**
-3. Create project `bigdogs` (direct upload, not Git integration — CI handles deploy)
+3. Create project named `bigdogs` (choose "Direct Upload", not Git — CI handles deploys)
 4. Get credentials:
-   - **API Token** (create at Account > API Tokens with "Edit Cloudflare Pages" permission) → `CLOUDFLARE_API_TOKEN`
-   - **Account ID** (from the dashboard URL or Overview page) → `CLOUDFLARE_ACCOUNT_ID`
-5. Uncomment "Option A" in `.github/workflows/on-merge-main.yml`
-
-### Option B: GitHub Pages
-
-1. Go to repo **Settings > Pages**
-2. Set source to "GitHub Actions"
-3. Add `pages: write` and `id-token: write` to the workflow permissions
-4. Uncomment "Option B" in `.github/workflows/on-merge-main.yml`
-
-### Option C: Vercel
-
-1. Create project at [vercel.com](https://vercel.com)
-2. Get credentials:
-   - `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`
-3. Uncomment "Option C" in `.github/workflows/on-merge-main.yml`
+   - **API Token** — go to Account > API Tokens > Create Token
+     - Use the "Edit Cloudflare Pages" template
+     - → `CLOUDFLARE_API_TOKEN`
+   - **Account ID** — visible on the dashboard Overview page or in the URL
+     - → `CLOUDFLARE_ACCOUNT_ID`
+5. (Optional) Set up a custom domain under the Pages project settings
 
 ---
 
@@ -87,20 +72,12 @@ Go to repo **Settings > Secrets and variables > Actions** and add:
 | `PROD_SUPABASE_DB_PASSWORD` | Supabase dashboard        | Database password              |
 | `SUPABASE_ACCESS_TOKEN`     | Supabase account settings | CLI access token               |
 
-### Hosting Secrets (depends on choice)
+### Cloudflare Secrets
 
-**Cloudflare Pages:**
-| Secret                  | Source              |
-|-------------------------|---------------------|
-| `CLOUDFLARE_API_TOKEN`  | Cloudflare dashboard|
-| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare dashboard|
-
-**Vercel:**
-| Secret              | Source           |
-|---------------------|------------------|
-| `VERCEL_TOKEN`      | Vercel dashboard |
-| `VERCEL_ORG_ID`     | Vercel dashboard |
-| `VERCEL_PROJECT_ID` | Vercel dashboard |
+| Secret                  | Source              | Description                    |
+|-------------------------|---------------------|--------------------------------|
+| `CLOUDFLARE_API_TOKEN`  | Cloudflare dashboard| API token with Pages edit perm |
+| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare dashboard| Account identifier             |
 
 ---
 
@@ -159,8 +136,8 @@ supabase functions deploy entity-load --import-map supabase/functions/import_map
 
 ## What You Need To Do
 
-- [ ] Create Supabase cloud project and note credentials
-- [ ] Choose a web hosting provider and set it up
-- [ ] Add all required GitHub secrets to the repo
-- [ ] Uncomment the chosen hosting option in the deploy workflow
+- [x] Create Supabase cloud project and note credentials
+- [ ] Create Cloudflare Pages project named `bigdogs`
+- [ ] Create Cloudflare API token with Pages edit permission
+- [ ] Add all 7 GitHub secrets to the repo (5 Supabase + 2 Cloudflare)
 - [ ] Test the pipeline with a PR → merge cycle
