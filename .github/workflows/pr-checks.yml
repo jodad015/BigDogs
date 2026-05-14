@@ -20,14 +20,14 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      - name: Build Shared
+        run: pnpm build:shared
+
       - name: Lint
         run: pnpm lint
 
       - name: Type Check
         run: pnpm typecheck
-
-      - name: Build Shared
-        run: pnpm build:shared
 
       - name: Unit Tests (Shared)
         run: pnpm test
