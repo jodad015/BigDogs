@@ -1,0 +1,1972 @@
+{
+  "version": "2.11",
+  "children": [
+    {
+      "type": "frame",
+      "id": "DTic0",
+      "x": 1400,
+      "y": 0,
+      "name": "Component/Nav Bar",
+      "reusable": true,
+      "width": 390,
+      "height": 82,
+      "fill": "#12122a",
+      "stroke": {
+        "align": "inside",
+        "thickness": {
+          "top": 1
+        },
+        "fill": "#2a2a4a"
+      },
+      "padding": [
+        12,
+        0,
+        24,
+        0
+      ],
+      "justifyContent": "space_around",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "b0dy1",
+          "name": "Tab Home",
+          "layout": "vertical",
+          "gap": 4,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "M0gwg",
+              "name": "Icon",
+              "width": 22,
+              "height": 22,
+              "iconFontName": "house",
+              "iconFontFamily": "lucide",
+              "fill": "#E63946"
+            },
+            {
+              "type": "text",
+              "id": "gvDbg",
+              "name": "Label",
+              "fill": "#E63946",
+              "content": "HOME",
+              "fontFamily": "Inter",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "letterSpacing": 0.5
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "V0n6Ar",
+          "name": "Tab Weigh In",
+          "layout": "vertical",
+          "gap": 4,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "qHYbZ",
+              "name": "Icon",
+              "width": 22,
+              "height": 22,
+              "iconFontName": "scale",
+              "iconFontFamily": "lucide",
+              "fill": "#666666"
+            },
+            {
+              "type": "text",
+              "id": "ib6kj",
+              "name": "Label",
+              "fill": "#666666",
+              "content": "WEIGH IN",
+              "fontFamily": "Inter",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "letterSpacing": 0.5
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "P1ynrD",
+          "name": "Tab Board",
+          "layout": "vertical",
+          "gap": 4,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "S3FXzG",
+              "name": "Icon",
+              "width": 22,
+              "height": 22,
+              "iconFontName": "trophy",
+              "iconFontFamily": "lucide",
+              "fill": "#444444"
+            },
+            {
+              "type": "text",
+              "id": "CnYJZ",
+              "name": "Label",
+              "fill": "#444444",
+              "content": "BOARD",
+              "fontFamily": "Inter",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "letterSpacing": 0.5
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "c13K9A",
+          "name": "Tab Profile",
+          "layout": "vertical",
+          "gap": 4,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "PlbYu",
+              "name": "Icon",
+              "width": 22,
+              "height": 22,
+              "iconFontName": "user",
+              "iconFontFamily": "lucide",
+              "fill": "#666666"
+            },
+            {
+              "type": "text",
+              "id": "H4ibI",
+              "name": "Label",
+              "fill": "#666666",
+              "content": "PROFILE",
+              "fontFamily": "Inter",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "letterSpacing": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "F3chGD",
+      "x": 1400,
+      "y": 120,
+      "name": "Component/Stat Card",
+      "reusable": true,
+      "width": 160,
+      "fill": "#252547",
+      "cornerRadius": 10,
+      "layout": "vertical",
+      "gap": 4,
+      "padding": 16,
+      "children": [
+        {
+          "type": "text",
+          "id": "Gj0tV",
+          "name": "Label",
+          "fill": "#888888",
+          "content": "LABEL",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "500",
+          "letterSpacing": 0.5
+        },
+        {
+          "type": "text",
+          "id": "uz0Xu",
+          "name": "Value",
+          "fill": "#FFFFFF",
+          "content": "0.0",
+          "fontFamily": "Inter",
+          "fontSize": 22,
+          "fontWeight": "800"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "LKqCo",
+      "x": 1400,
+      "y": 240,
+      "name": "Component/Desktop Header",
+      "reusable": true,
+      "width": 1440,
+      "height": 64,
+      "fill": "#12122a",
+      "stroke": {
+        "align": "inside",
+        "thickness": {
+          "bottom": 1
+        },
+        "fill": "#2a2a4a"
+      },
+      "padding": [
+        0,
+        40
+      ],
+      "justifyContent": "space_between",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "i0zeMo",
+          "name": "Logo Area",
+          "gap": 10,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "Doo4m",
+              "name": "Logo",
+              "width": 28,
+              "height": 20,
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "./images/generated-1778811730448.png",
+                "mode": "fill"
+              }
+            },
+            {
+              "type": "text",
+              "id": "gT0Dp",
+              "name": "Logo Text",
+              "fill": "#FFFFFF",
+              "content": "BIGDOGS",
+              "fontFamily": "Inter",
+              "fontSize": 15,
+              "fontWeight": "800",
+              "letterSpacing": 3
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "W8fHJ",
+          "name": "Nav Links",
+          "gap": 32,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "OuXmf",
+              "name": "Nav Home",
+              "fill": "#E63946",
+              "content": "Home",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "YQC5c",
+              "name": "Nav Weigh In",
+              "fill": "#888888",
+              "content": "Weigh In",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "500"
+            },
+            {
+              "type": "text",
+              "id": "d1IsQw",
+              "name": "Nav Board",
+              "fill": "#444444",
+              "content": "Board",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "500"
+            },
+            {
+              "type": "text",
+              "id": "YDe3h",
+              "name": "Nav Profile",
+              "fill": "#888888",
+              "content": "Profile",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "500"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "w9VGJl",
+          "name": "Date",
+          "fill": "#888888",
+          "content": "May 14, 2026",
+          "fontFamily": "Inter",
+          "fontSize": 13
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "sqKEb",
+      "x": 0,
+      "y": 0,
+      "name": "SCR-TREND / Populated (2+ weeks)",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "#1a1a2e",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "lweSV",
+          "name": "Header",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 12,
+          "padding": [
+            44,
+            20,
+            16,
+            20
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "uBsni",
+              "fill": "#FFFFFF",
+              "content": "Your Trend",
+              "fontFamily": "Inter",
+              "fontSize": 20,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "bFwg3",
+              "name": "Range Pills",
+              "fill": "#252547",
+              "cornerRadius": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "W19HD",
+                  "name": "pill1",
+                  "width": 64,
+                  "height": 32,
+                  "fill": "#E63946",
+                  "cornerRadius": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Q6LiO",
+                      "fill": "#FFFFFF",
+                      "content": "2W",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "NSg36",
+                  "name": "pill2",
+                  "width": 64,
+                  "height": 32,
+                  "cornerRadius": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Y4e1v",
+                      "fill": "#888888",
+                      "content": "1M",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Ao6g1",
+                  "name": "pill3",
+                  "width": 64,
+                  "height": 32,
+                  "cornerRadius": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "kcMYG",
+                      "fill": "#888888",
+                      "content": "ALL",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "vu88V",
+          "name": "Content",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "padding": [
+            0,
+            16,
+            16,
+            16
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "pMJn5",
+              "name": "Chart Area",
+              "width": "fill_container",
+              "height": 300,
+              "fill": "#1f1f3d",
+              "cornerRadius": 12,
+              "layout": "none",
+              "children": [
+                {
+                  "type": "path",
+                  "id": "WT6Ad",
+                  "x": 20,
+                  "y": 20,
+                  "name": "Grid Lines",
+                  "geometry": "M0 0l320 0m-320 55l320 0m-320 55l320 0m-320 55l320 0m-320 55l320 0",
+                  "viewBox": [
+                    0,
+                    0,
+                    320,
+                    220
+                  ],
+                  "fill": "#00000000",
+                  "width": 320,
+                  "height": 220,
+                  "stroke": {
+                    "align": "center",
+                    "thickness": 1,
+                    "fill": "#2a2a4a"
+                  }
+                },
+                {
+                  "type": "path",
+                  "id": "Z30W0",
+                  "x": 20,
+                  "y": 20,
+                  "name": "Daily Weights",
+                  "geometry": "M0 170l23-10 23 15 23-20 23-7 23-8 23 12 23-17 23-10 23 5 23-12 23-8 23 5 23-15 21-5",
+                  "viewBox": [
+                    0,
+                    0,
+                    320,
+                    220
+                  ],
+                  "fill": "#00000000",
+                  "width": 320,
+                  "height": 220,
+                  "stroke": {
+                    "align": "center",
+                    "thickness": 1.5,
+                    "fill": "#FFFFFF30"
+                  }
+                },
+                {
+                  "type": "path",
+                  "id": "b2Asnf",
+                  "x": 20,
+                  "y": 20,
+                  "name": "Trend Line",
+                  "geometry": "M0 165c50-10 100-20 160-33 60-12 110-24 160-35",
+                  "viewBox": [
+                    0,
+                    0,
+                    320,
+                    220
+                  ],
+                  "fill": "#00000000",
+                  "width": 320,
+                  "height": 220,
+                  "stroke": {
+                    "align": "center",
+                    "thickness": 2.5,
+                    "fill": "#E63946"
+                  }
+                },
+                {
+                  "type": "path",
+                  "id": "lQcHx",
+                  "x": 20,
+                  "y": 20,
+                  "name": "Target Line",
+                  "geometry": "M0 55l320 0",
+                  "viewBox": [
+                    0,
+                    0,
+                    320,
+                    220
+                  ],
+                  "fill": "#00000000",
+                  "width": 320,
+                  "height": 220,
+                  "stroke": {
+                    "align": "center",
+                    "thickness": 1,
+                    "fill": "#22C55E50"
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "IXAVB",
+                  "x": 250,
+                  "y": 58,
+                  "fill": "#22C55E80",
+                  "content": "Goal: 175 lb",
+                  "fontFamily": "Inter",
+                  "fontSize": 10,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "Mjf87",
+                  "x": 344,
+                  "y": 16,
+                  "fill": "#666666",
+                  "content": "190",
+                  "fontFamily": "Inter",
+                  "fontSize": 9
+                },
+                {
+                  "type": "text",
+                  "id": "KyVbd",
+                  "x": 344,
+                  "y": 71,
+                  "fill": "#666666",
+                  "content": "185",
+                  "fontFamily": "Inter",
+                  "fontSize": 9
+                },
+                {
+                  "type": "text",
+                  "id": "vKWuu",
+                  "x": 344,
+                  "y": 126,
+                  "fill": "#666666",
+                  "content": "180",
+                  "fontFamily": "Inter",
+                  "fontSize": 9
+                },
+                {
+                  "type": "text",
+                  "id": "UaCw4",
+                  "x": 20,
+                  "y": 248,
+                  "fill": "#666666",
+                  "content": "5/1",
+                  "fontFamily": "Inter",
+                  "fontSize": 9
+                },
+                {
+                  "type": "text",
+                  "id": "QTs0C",
+                  "x": 135,
+                  "y": 248,
+                  "fill": "#666666",
+                  "content": "5/7",
+                  "fontFamily": "Inter",
+                  "fontSize": 9
+                },
+                {
+                  "type": "text",
+                  "id": "B6eNy",
+                  "x": 250,
+                  "y": 248,
+                  "fill": "#666666",
+                  "content": "5/14",
+                  "fontFamily": "Inter",
+                  "fontSize": 9
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "v9c8p",
+              "name": "Stats Panel",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "V56yFH",
+                  "name": "statsRow1",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "children": [
+                    {
+                      "id": "ib0i6",
+                      "type": "ref",
+                      "ref": "F3chGD",
+                      "width": "fill_container",
+                      "name": "st1",
+                      "descendants": {
+                        "Gj0tV": {
+                          "content": "CURRENT TREND"
+                        },
+                        "uz0Xu": {
+                          "content": "183.2 lb"
+                        }
+                      }
+                    },
+                    {
+                      "id": "njJQg",
+                      "type": "ref",
+                      "ref": "F3chGD",
+                      "width": "fill_container",
+                      "name": "st2",
+                      "descendants": {
+                        "Gj0tV": {
+                          "content": "THIS WEEK"
+                        },
+                        "uz0Xu": {
+                          "content": "↓ 1.3 lb",
+                          "fill": "#22C55E"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "S8ktNG",
+                  "name": "statsRow2",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "children": [
+                    {
+                      "id": "P0CqD",
+                      "type": "ref",
+                      "ref": "F3chGD",
+                      "width": "fill_container",
+                      "name": "st3",
+                      "descendants": {
+                        "Gj0tV": {
+                          "content": "TOTAL CHANGE"
+                        },
+                        "uz0Xu": {
+                          "content": "↓ 11.8 lb",
+                          "fill": "#22C55E"
+                        }
+                      }
+                    },
+                    {
+                      "id": "MWCuH",
+                      "type": "ref",
+                      "ref": "F3chGD",
+                      "width": "fill_container",
+                      "name": "st4",
+                      "descendants": {
+                        "Gj0tV": {
+                          "content": "DAYS TRACKED"
+                        },
+                        "uz0Xu": {
+                          "content": "34"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "NfVg1",
+          "type": "ref",
+          "ref": "DTic0",
+          "width": "fill_container",
+          "name": "nav1"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "iwhjq",
+      "x": 440,
+      "y": 0,
+      "name": "SCR-TREND / Early (< 7 days)",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "#1a1a2e",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "VCDD1",
+          "name": "Header",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 12,
+          "padding": [
+            44,
+            20,
+            16,
+            20
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "uWRlT",
+              "fill": "#FFFFFF",
+              "content": "Your Trend",
+              "fontFamily": "Inter",
+              "fontSize": 20,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "EwOZA",
+              "name": "Range Pills",
+              "fill": "#252547",
+              "cornerRadius": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "wKYwm",
+                  "name": "p2a",
+                  "width": 64,
+                  "height": 32,
+                  "fill": "#E63946",
+                  "cornerRadius": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "B3R6k",
+                      "fill": "#FFFFFF",
+                      "content": "2W",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "vLXkr",
+                  "name": "p2b",
+                  "width": 64,
+                  "height": 32,
+                  "cornerRadius": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "vuCQi",
+                      "fill": "#888888",
+                      "content": "1M",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "gJ2sA",
+                  "name": "p2c",
+                  "width": 64,
+                  "height": 32,
+                  "cornerRadius": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "X3kpZq",
+                      "fill": "#888888",
+                      "content": "ALL",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "rWNiS",
+          "name": "Content",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "padding": [
+            0,
+            16,
+            16,
+            16
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "CvctF",
+              "name": "Chart Area",
+              "width": "fill_container",
+              "height": 300,
+              "fill": "#1f1f3d",
+              "cornerRadius": 12,
+              "layout": "none",
+              "children": [
+                {
+                  "type": "path",
+                  "id": "G15ea",
+                  "x": 20,
+                  "y": 20,
+                  "name": "Grid Lines",
+                  "geometry": "M0 0l320 0m-320 55l320 0m-320 55l320 0m-320 55l320 0m-320 55l320 0",
+                  "viewBox": [
+                    0,
+                    0,
+                    320,
+                    220
+                  ],
+                  "fill": "#00000000",
+                  "width": 320,
+                  "height": 220,
+                  "stroke": {
+                    "align": "center",
+                    "thickness": 1,
+                    "fill": "#2a2a4a"
+                  }
+                },
+                {
+                  "type": "path",
+                  "id": "vrG4i",
+                  "x": 20,
+                  "y": 20,
+                  "name": "Daily Weights",
+                  "geometry": "M60 160l80-10 80 5 80-10",
+                  "viewBox": [
+                    0,
+                    0,
+                    320,
+                    220
+                  ],
+                  "fill": "#00000000",
+                  "width": 320,
+                  "height": 220,
+                  "stroke": {
+                    "align": "center",
+                    "thickness": 1.5,
+                    "fill": "#FFFFFF30"
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "pzLac",
+                  "x": 72,
+                  "y": 248,
+                  "fill": "#666666",
+                  "content": "5/11",
+                  "fontFamily": "Inter",
+                  "fontSize": 9
+                },
+                {
+                  "type": "text",
+                  "id": "hNaeF",
+                  "x": 220,
+                  "y": 248,
+                  "fill": "#666666",
+                  "content": "5/13",
+                  "fontFamily": "Inter",
+                  "fontSize": 9
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "DGC7Z",
+              "name": "Stats Panel",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "L8319",
+                  "name": "sr2a",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "children": [
+                    {
+                      "id": "ox5kX",
+                      "type": "ref",
+                      "ref": "F3chGD",
+                      "width": "fill_container",
+                      "name": "sta",
+                      "descendants": {
+                        "Gj0tV": {
+                          "content": "CURRENT TREND"
+                        },
+                        "uz0Xu": {
+                          "content": "Building...",
+                          "fill": "#888888",
+                          "fontSize": 16
+                        }
+                      }
+                    },
+                    {
+                      "id": "eKKlw",
+                      "type": "ref",
+                      "ref": "F3chGD",
+                      "width": "fill_container",
+                      "name": "stb",
+                      "descendants": {
+                        "Gj0tV": {
+                          "content": "THIS WEEK"
+                        },
+                        "uz0Xu": {
+                          "content": "—",
+                          "fill": "#666666"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "eIJt5",
+                  "name": "sr2b",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "children": [
+                    {
+                      "id": "FXNgy",
+                      "type": "ref",
+                      "ref": "F3chGD",
+                      "width": "fill_container",
+                      "name": "stc",
+                      "descendants": {
+                        "Gj0tV": {
+                          "content": "TOTAL CHANGE"
+                        },
+                        "uz0Xu": {
+                          "content": "↓ 1.0 lb",
+                          "fill": "#22C55E"
+                        }
+                      }
+                    },
+                    {
+                      "id": "P5WhMa",
+                      "type": "ref",
+                      "ref": "F3chGD",
+                      "width": "fill_container",
+                      "name": "std",
+                      "descendants": {
+                        "Gj0tV": {
+                          "content": "DAYS TRACKED"
+                        },
+                        "uz0Xu": {
+                          "content": "3"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "SG9Yo",
+              "fill": "#888888",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Keep logging daily — your trend line starts after 5 days",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 13
+            }
+          ]
+        },
+        {
+          "id": "E1z9Nz",
+          "type": "ref",
+          "ref": "DTic0",
+          "width": "fill_container",
+          "name": "nav2"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "sw8tZ",
+      "x": 880,
+      "y": 0,
+      "name": "SCR-TREND / Empty (No Data)",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "#1a1a2e",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "a7HNe",
+          "name": "Header",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 12,
+          "padding": [
+            44,
+            20,
+            16,
+            20
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "d4K3n",
+              "fill": "#FFFFFF",
+              "content": "Your Trend",
+              "fontFamily": "Inter",
+              "fontSize": 20,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "j35ceK",
+              "name": "Range Pills",
+              "opacity": 0.5,
+              "fill": "#252547",
+              "cornerRadius": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "gxsRh",
+                  "name": "p3a",
+                  "width": 64,
+                  "height": 32,
+                  "cornerRadius": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "m21SH",
+                      "fill": "#888888",
+                      "content": "2W",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ZyoxZ",
+                  "name": "p3b",
+                  "width": 64,
+                  "height": 32,
+                  "cornerRadius": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "K80JV",
+                      "fill": "#888888",
+                      "content": "1M",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "cAeyq",
+                  "name": "p3c",
+                  "width": 64,
+                  "height": 32,
+                  "cornerRadius": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "LVRco",
+                      "fill": "#888888",
+                      "content": "ALL",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "vtpIK",
+          "name": "Empty State",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "U9Aeb",
+              "width": 64,
+              "height": 64,
+              "iconFontName": "chart-line",
+              "iconFontFamily": "lucide",
+              "fill": "#444444"
+            },
+            {
+              "type": "text",
+              "id": "NCG2J",
+              "fill": "#FFFFFF",
+              "content": "No data yet",
+              "fontFamily": "Inter",
+              "fontSize": 20,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "I9VYe",
+              "fill": "#888888",
+              "textGrowth": "fixed-width",
+              "width": 280,
+              "content": "Log your first weigh-in to start seeing your trend.",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 14
+            },
+            {
+              "type": "frame",
+              "id": "XHAe8",
+              "name": "logBtn",
+              "width": 280,
+              "height": 52,
+              "fill": "#E63946",
+              "cornerRadius": 12,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "d41pA",
+                  "fill": "#FFFFFF",
+                  "content": "Log Weight",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "VVnB4",
+          "type": "ref",
+          "ref": "DTic0",
+          "width": "fill_container",
+          "name": "nav3"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "ZX9AZ",
+      "x": 0,
+      "y": 924,
+      "name": "SCR-TREND / Populated — Desktop",
+      "clip": true,
+      "width": 1440,
+      "height": 900,
+      "fill": "#1a1a2e",
+      "layout": "vertical",
+      "children": [
+        {
+          "id": "JdpVg",
+          "type": "ref",
+          "ref": "LKqCo",
+          "width": "fill_container",
+          "name": "dh1"
+        },
+        {
+          "type": "frame",
+          "id": "R73l2",
+          "name": "Body",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            32,
+            0
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "yoZGo",
+              "name": "Content",
+              "width": 720,
+              "layout": "vertical",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "m4QmOz",
+                  "name": "titleRow",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "F8TJz",
+                      "fill": "#FFFFFF",
+                      "content": "Your Trend",
+                      "fontFamily": "Inter",
+                      "fontSize": 22,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "q1wmn7",
+                      "name": "dpills",
+                      "fill": "#252547",
+                      "cornerRadius": 8,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "Jtd9Q",
+                          "name": "dp1",
+                          "width": 72,
+                          "height": 34,
+                          "fill": "#E63946",
+                          "cornerRadius": 8,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "a2hGGC",
+                              "fill": "#FFFFFF",
+                              "content": "2W",
+                              "fontFamily": "Inter",
+                              "fontSize": 13,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "k8hSy",
+                          "name": "dp2",
+                          "width": 72,
+                          "height": 34,
+                          "cornerRadius": 8,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "ULiK2",
+                              "fill": "#888888",
+                              "content": "1M",
+                              "fontFamily": "Inter",
+                              "fontSize": 13,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "VVF8d",
+                          "name": "dp3",
+                          "width": 72,
+                          "height": 34,
+                          "cornerRadius": 8,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "nwOZP",
+                              "fill": "#888888",
+                              "content": "ALL",
+                              "fontFamily": "Inter",
+                              "fontSize": 13,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "xKrIg",
+                  "name": "Chart Area",
+                  "width": "fill_container",
+                  "height": 380,
+                  "fill": "#1f1f3d",
+                  "cornerRadius": 12,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "path",
+                      "id": "B65rk9",
+                      "x": 30,
+                      "y": 24,
+                      "name": "Grid Lines",
+                      "geometry": "M0 0l660 0m-660 75l660 0m-660 75l660 0m-660 75l660 0m-660 75l660 0",
+                      "viewBox": [
+                        0,
+                        0,
+                        660,
+                        300
+                      ],
+                      "fill": "#00000000",
+                      "width": 660,
+                      "height": 300,
+                      "stroke": {
+                        "align": "center",
+                        "thickness": 1,
+                        "fill": "#2a2a4a"
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "id": "a3YqL",
+                      "x": 30,
+                      "y": 24,
+                      "name": "Daily Weights",
+                      "geometry": "M0 230l47-12 47 22 47-30 47-10 47-10 47 15 47-20 47-15 47 8 47-18 47-10 47 5 47-17 49-8",
+                      "viewBox": [
+                        0,
+                        0,
+                        660,
+                        300
+                      ],
+                      "fill": "#00000000",
+                      "width": 660,
+                      "height": 300,
+                      "stroke": {
+                        "align": "center",
+                        "thickness": 1.5,
+                        "fill": "#FFFFFF30"
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "id": "qNw9e",
+                      "x": 30,
+                      "y": 24,
+                      "name": "Trend Line",
+                      "geometry": "M0 225c100-15 200-30 330-47 130-18 230-33 330-46",
+                      "viewBox": [
+                        0,
+                        0,
+                        660,
+                        300
+                      ],
+                      "fill": "#00000000",
+                      "width": 660,
+                      "height": 300,
+                      "stroke": {
+                        "align": "center",
+                        "thickness": 2.5,
+                        "fill": "#E63946"
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "id": "fJ4zH",
+                      "x": 30,
+                      "y": 24,
+                      "name": "Target",
+                      "geometry": "M0 75l660 0",
+                      "viewBox": [
+                        0,
+                        0,
+                        660,
+                        300
+                      ],
+                      "fill": "#00000000",
+                      "width": 660,
+                      "height": 300,
+                      "stroke": {
+                        "align": "center",
+                        "thickness": 1,
+                        "fill": "#22C55E50"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "id": "x58QTn",
+                      "x": 610,
+                      "y": 88,
+                      "fill": "#22C55E80",
+                      "content": "Goal: 175 lb",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "text",
+                      "id": "WH5RO",
+                      "x": 694,
+                      "y": 20,
+                      "fill": "#666666",
+                      "content": "190",
+                      "fontFamily": "Inter",
+                      "fontSize": 10
+                    },
+                    {
+                      "type": "text",
+                      "id": "UqMRu",
+                      "x": 694,
+                      "y": 95,
+                      "fill": "#666666",
+                      "content": "185",
+                      "fontFamily": "Inter",
+                      "fontSize": 10
+                    },
+                    {
+                      "type": "text",
+                      "id": "N7WEN",
+                      "x": 694,
+                      "y": 170,
+                      "fill": "#666666",
+                      "content": "180",
+                      "fontFamily": "Inter",
+                      "fontSize": 10
+                    },
+                    {
+                      "type": "text",
+                      "id": "rscKR",
+                      "x": 30,
+                      "y": 336,
+                      "fill": "#666666",
+                      "content": "5/1",
+                      "fontFamily": "Inter",
+                      "fontSize": 10
+                    },
+                    {
+                      "type": "text",
+                      "id": "oYKR5",
+                      "x": 300,
+                      "y": 336,
+                      "fill": "#666666",
+                      "content": "5/7",
+                      "fontFamily": "Inter",
+                      "fontSize": 10
+                    },
+                    {
+                      "type": "text",
+                      "id": "wGYnv",
+                      "x": 580,
+                      "y": 336,
+                      "fill": "#666666",
+                      "content": "5/14",
+                      "fontFamily": "Inter",
+                      "fontSize": 10
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f3GU9",
+                  "name": "Stats Panel",
+                  "width": "fill_container",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "id": "Dnpis",
+                      "type": "ref",
+                      "ref": "F3chGD",
+                      "width": "fill_container",
+                      "name": "st1",
+                      "descendants": {
+                        "Gj0tV": {
+                          "content": "CURRENT TREND"
+                        },
+                        "uz0Xu": {
+                          "content": "183.2 lb"
+                        }
+                      }
+                    },
+                    {
+                      "id": "MO1sr",
+                      "type": "ref",
+                      "ref": "F3chGD",
+                      "width": "fill_container",
+                      "name": "st2",
+                      "descendants": {
+                        "Gj0tV": {
+                          "content": "THIS WEEK"
+                        },
+                        "uz0Xu": {
+                          "content": "↓ 1.3 lb",
+                          "fill": "#22C55E"
+                        }
+                      }
+                    },
+                    {
+                      "id": "F37QmM",
+                      "type": "ref",
+                      "ref": "F3chGD",
+                      "width": "fill_container",
+                      "name": "st3",
+                      "descendants": {
+                        "Gj0tV": {
+                          "content": "TOTAL CHANGE"
+                        },
+                        "uz0Xu": {
+                          "content": "↓ 11.8 lb",
+                          "fill": "#22C55E"
+                        }
+                      }
+                    },
+                    {
+                      "id": "Pv8lr",
+                      "type": "ref",
+                      "ref": "F3chGD",
+                      "width": "fill_container",
+                      "name": "st4",
+                      "descendants": {
+                        "Gj0tV": {
+                          "content": "DAYS TRACKED"
+                        },
+                        "uz0Xu": {
+                          "content": "34"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "AENxG",
+      "x": 1520,
+      "y": 924,
+      "name": "SCR-TREND / Early — Desktop",
+      "clip": true,
+      "width": 1440,
+      "height": 900,
+      "fill": "#1a1a2e",
+      "layout": "vertical",
+      "children": [
+        {
+          "id": "K1iVmO",
+          "type": "ref",
+          "ref": "LKqCo",
+          "width": "fill_container",
+          "name": "dh2"
+        },
+        {
+          "type": "frame",
+          "id": "tawR7",
+          "name": "Body",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            32,
+            0
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "SFcMQ",
+              "name": "Content",
+              "width": 720,
+              "layout": "vertical",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "ncfqE",
+                  "name": "titleRow2",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "NTmd8",
+                      "fill": "#FFFFFF",
+                      "content": "Your Trend",
+                      "fontFamily": "Inter",
+                      "fontSize": 22,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "LNAhV",
+                      "name": "dpills2",
+                      "fill": "#252547",
+                      "cornerRadius": 8,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "W38ZWS",
+                          "name": "dp2a",
+                          "width": 72,
+                          "height": 34,
+                          "fill": "#E63946",
+                          "cornerRadius": 8,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "k0YVZ",
+                              "fill": "#FFFFFF",
+                              "content": "2W",
+                              "fontFamily": "Inter",
+                              "fontSize": 13,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "n3dvn",
+                          "name": "dp2b",
+                          "width": 72,
+                          "height": 34,
+                          "cornerRadius": 8,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "Q1VXCG",
+                              "fill": "#888888",
+                              "content": "1M",
+                              "fontFamily": "Inter",
+                              "fontSize": 13,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "a8mp4Z",
+                          "name": "dp2c",
+                          "width": 72,
+                          "height": 34,
+                          "cornerRadius": 8,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "QEyjx",
+                              "fill": "#888888",
+                              "content": "ALL",
+                              "fontFamily": "Inter",
+                              "fontSize": 13,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "oRGmz",
+                  "name": "Chart Area",
+                  "width": "fill_container",
+                  "height": 380,
+                  "fill": "#1f1f3d",
+                  "cornerRadius": 12,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "path",
+                      "id": "bz1CQ",
+                      "x": 30,
+                      "y": 24,
+                      "name": "Grid Lines",
+                      "geometry": "M0 0l660 0m-660 75l660 0m-660 75l660 0m-660 75l660 0m-660 75l660 0",
+                      "viewBox": [
+                        0,
+                        0,
+                        660,
+                        300
+                      ],
+                      "fill": "#00000000",
+                      "width": 660,
+                      "height": 300,
+                      "stroke": {
+                        "align": "center",
+                        "thickness": 1,
+                        "fill": "#2a2a4a"
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "id": "o6OItg",
+                      "x": 30,
+                      "y": 24,
+                      "name": "Daily Weights",
+                      "geometry": "M150 220l150-15 150 7 150-14",
+                      "viewBox": [
+                        0,
+                        0,
+                        660,
+                        300
+                      ],
+                      "fill": "#00000000",
+                      "width": 660,
+                      "height": 300,
+                      "stroke": {
+                        "align": "center",
+                        "thickness": 1.5,
+                        "fill": "#FFFFFF30"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "id": "c8IuD",
+                      "x": 170,
+                      "y": 336,
+                      "fill": "#666666",
+                      "content": "5/11",
+                      "fontFamily": "Inter",
+                      "fontSize": 10
+                    },
+                    {
+                      "type": "text",
+                      "id": "rEQjT",
+                      "x": 440,
+                      "y": 336,
+                      "fill": "#666666",
+                      "content": "5/13",
+                      "fontFamily": "Inter",
+                      "fontSize": 10
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ghi0J",
+                  "name": "Stats Panel",
+                  "width": "fill_container",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "id": "YX2h5",
+                      "type": "ref",
+                      "ref": "F3chGD",
+                      "width": "fill_container",
+                      "name": "sta",
+                      "descendants": {
+                        "Gj0tV": {
+                          "content": "CURRENT TREND"
+                        },
+                        "uz0Xu": {
+                          "content": "Building...",
+                          "fill": "#888888",
+                          "fontSize": 16
+                        }
+                      }
+                    },
+                    {
+                      "id": "XdqbR",
+                      "type": "ref",
+                      "ref": "F3chGD",
+                      "width": "fill_container",
+                      "name": "stb",
+                      "descendants": {
+                        "Gj0tV": {
+                          "content": "THIS WEEK"
+                        },
+                        "uz0Xu": {
+                          "content": "—",
+                          "fill": "#666666"
+                        }
+                      }
+                    },
+                    {
+                      "id": "LNGaK",
+                      "type": "ref",
+                      "ref": "F3chGD",
+                      "width": "fill_container",
+                      "name": "stc",
+                      "descendants": {
+                        "Gj0tV": {
+                          "content": "TOTAL CHANGE"
+                        },
+                        "uz0Xu": {
+                          "content": "↓ 1.0 lb",
+                          "fill": "#22C55E"
+                        }
+                      }
+                    },
+                    {
+                      "id": "eSEX9",
+                      "type": "ref",
+                      "ref": "F3chGD",
+                      "width": "fill_container",
+                      "name": "stdd",
+                      "descendants": {
+                        "Gj0tV": {
+                          "content": "DAYS TRACKED"
+                        },
+                        "uz0Xu": {
+                          "content": "3"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "rSacY",
+                  "fill": "#888888",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Keep logging daily — your trend line starts after 5 days",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 14
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "IAyfQ",
+      "x": 3040,
+      "y": 924,
+      "name": "SCR-TREND / Empty — Desktop",
+      "clip": true,
+      "width": 1440,
+      "height": 900,
+      "fill": "#1a1a2e",
+      "layout": "vertical",
+      "children": [
+        {
+          "id": "qCMXo",
+          "type": "ref",
+          "ref": "LKqCo",
+          "width": "fill_container",
+          "name": "dh3"
+        },
+        {
+          "type": "frame",
+          "id": "fvlui",
+          "name": "Body",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "GLKNO",
+              "width": 72,
+              "height": 72,
+              "iconFontName": "chart-line",
+              "iconFontFamily": "lucide",
+              "fill": "#444444"
+            },
+            {
+              "type": "text",
+              "id": "tUYQX",
+              "fill": "#FFFFFF",
+              "content": "No data yet",
+              "fontFamily": "Inter",
+              "fontSize": 22,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "VcjoC",
+              "fill": "#888888",
+              "textGrowth": "fixed-width",
+              "width": 360,
+              "content": "Log your first weigh-in to start seeing your trend.",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 15
+            },
+            {
+              "type": "frame",
+              "id": "l7wQM",
+              "name": "logBtn",
+              "width": 320,
+              "height": 52,
+              "fill": "#E63946",
+              "cornerRadius": 12,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "i2ctc",
+                  "fill": "#FFFFFF",
+                  "content": "Log Weight",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

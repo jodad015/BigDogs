@@ -50,28 +50,28 @@ Deep navy on light/cream background, or inverted white on dark background.
 ### Phase 1: Core Solo Tracking
 | Screen          | Prompt | Designed | Notes |
 |-----------------|:------:|:--------:|-------|
-| SCR-LOGIN       | ✅     | ⬜       | Google (prod) + email/demo (local) |
-| SCR-DASHBOARD   | ✅     | ⬜       | Solo mode first, challenge mode later |
-| SCR-WEIGH-IN    | ✅     | ⬜       | The daily interaction — must be fast |
-| SCR-TREND       | ✅     | ⬜       | Chart + stats |
+| SCR-LOGIN       | ✅     | ✅       | 3 mobile + 3 desktop variants |
+| SCR-DASHBOARD   | ✅     | ✅       | 3 mobile + 3 desktop variants |
+| SCR-WEIGH-IN    | ✅     | ✅       | 3 mobile + 3 desktop variants |
+| SCR-TREND       | ✅     | ✅       | 3 mobile + 3 desktop variants |
 
 ### Phase 2: Challenge Flow
 | Screen          | Prompt | Designed | Notes |
 |-----------------|:------:|:--------:|-------|
-| SCR-CREATE      | ⬜     | ⬜       |       |
-| SCR-JOIN        | ⬜     | ⬜       |       |
-| SCR-ONBOARDING  | ⬜     | ⬜       | Multi-step with safety rails |
-| SCR-LEADERBOARD | ⬜     | ⬜       |       |
-| SCR-WEEKLY      | ⬜     | ⬜       |       |
-| SCR-SPINUP      | ⬜     | ⬜       |       |
+| SCR-CREATE      | ✅     | ⬜       | Form + success with invite code |
+| SCR-JOIN        | ✅     | ⬜       | Code entry + preview + errors |
+| SCR-ONBOARDING  | ✅     | ⬜       | 4-step wizard with safety rails |
+| SCR-LEADERBOARD | ✅     | ⬜       | Active + showdown + complete |
+| SCR-WEEKLY      | ✅     | ⬜       | Regular + showdown + maintenance |
+| SCR-SPINUP      | ✅     | ⬜       | Day counter + group check-ins |
 
 ### Phase 3: Supporting Screens
 | Screen          | Prompt | Designed | Notes |
 |-----------------|:------:|:--------:|-------|
-| SCR-PROFILE     | ⬜     | ⬜       | Includes dark/light mode toggle |
-| SCR-PARTICIPANT | ⬜     | ⬜       |       |
-| SCR-PUBLIC      | ⬜     | ⬜       |       |
-| SCR-SIGNUP      | ⬜     | ⬜       |       |
+| SCR-PROFILE     | ✅     | ⬜       | With challenge + solo + light mode |
+| SCR-PARTICIPANT | ✅     | ⬜       | Active + maintenance + early |
+| SCR-PUBLIC      | ✅     | ⬜       | Active + complete + not started |
+| SCR-SIGNUP      | ✅     | ⬜       | Form + validation + error |
 
 ### Marketing Site
 | Screen          | Prompt | Designed | Notes |
