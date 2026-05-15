@@ -182,7 +182,8 @@
           "fill": "#666666",
           "content": "Placeholder",
           "fontFamily": "Inter",
-          "fontSize": 16
+          "fontSize": 16,
+          "fontWeight": "normal"
         }
       ]
     },
@@ -276,8 +277,8 @@
               "fill": {
                 "type": "image",
                 "enabled": true,
-                "url": "./images/generated-1778846829758.png",
-                "mode": "fill"
+                "url": "../icons/bigdogs-logo-white.png",
+                "mode": "fit"
               }
             },
             {
@@ -349,7 +350,8 @@
           "fill": "#888888",
           "content": "May 15, 2026",
           "fontFamily": "Inter",
-          "fontSize": 13
+          "fontSize": 13,
+          "fontWeight": "normal"
         }
       ]
     },
@@ -608,7 +610,8 @@
                   "fill": "#666666",
                   "content": "Week 1 is the un-scored baseline week",
                   "fontFamily": "Inter",
-                  "fontSize": 11
+                  "fontSize": 11,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -647,7 +650,8 @@
                   "fill": "#666666",
                   "content": "Determines what 'today' means for everyone",
                   "fontFamily": "Inter",
-                  "fontSize": 11
+                  "fontSize": 11,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -683,7 +687,8 @@
                       "width": 260,
                       "content": "Last Friday of month + final week = 2x pts",
                       "fontFamily": "Inter",
-                      "fontSize": 11
+                      "fontSize": 11,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -726,7 +731,8 @@
                       "width": 260,
                       "content": "Anyone can view leaderboard (no weights)",
                       "fontFamily": "Inter",
-                      "fontSize": 11
+                      "fontSize": 11,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -1028,7 +1034,8 @@
                   "fill": "#666666",
                   "content": "Week 1 is baseline, scoring starts Week 2",
                   "fontFamily": "Inter",
-                  "fontSize": 11
+                  "fontSize": 11,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -1068,7 +1075,8 @@
                   "fill": "#666666",
                   "content": "Determines what 'today' means for everyone",
                   "fontFamily": "Inter",
-                  "fontSize": 11
+                  "fontSize": 11,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -1104,7 +1112,8 @@
                       "width": 260,
                       "content": "Last Friday of month + final week = 2x pts",
                       "fontFamily": "Inter",
-                      "fontSize": 11
+                      "fontSize": 11,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -1147,7 +1156,8 @@
                       "width": 260,
                       "content": "Anyone can view leaderboard (no weights)",
                       "fontFamily": "Inter",
-                      "fontSize": 11
+                      "fontSize": 11,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -1294,7 +1304,8 @@
               "fill": "#888888",
               "content": "12 weeks starting June 2",
               "fontFamily": "Inter",
-              "fontSize": 14
+              "fontSize": 14,
+              "fontWeight": "normal"
             },
             {
               "type": "frame",
@@ -1339,7 +1350,8 @@
                   "fill": "#666666",
                   "content": "Share this code to invite others",
                   "fontFamily": "Inter",
-                  "fontSize": 12
+                  "fontSize": 12,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -1675,7 +1687,8 @@
                       "fill": "#666666",
                       "content": "Week 1 is the un-scored baseline week",
                       "fontFamily": "Inter",
-                      "fontSize": 11
+                      "fontSize": 11,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -1714,7 +1727,8 @@
                       "fill": "#666666",
                       "content": "Determines what 'today' means for everyone",
                       "fontFamily": "Inter",
-                      "fontSize": 11
+                      "fontSize": 11,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -1750,7 +1764,8 @@
                           "width": 360,
                           "content": "Last Friday of month + final week = 2x pts",
                           "fontFamily": "Inter",
-                          "fontSize": 11
+                          "fontSize": 11,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -1793,7 +1808,8 @@
                           "width": 360,
                           "content": "Anyone can view leaderboard (no weights)",
                           "fontFamily": "Inter",
-                          "fontSize": 11
+                          "fontSize": 11,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -2066,7 +2082,8 @@
                       "fill": "#666666",
                       "content": "Week 1 is baseline, scoring starts Week 2",
                       "fontFamily": "Inter",
-                      "fontSize": 11
+                      "fontSize": 11,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -2106,7 +2123,8 @@
                       "fill": "#666666",
                       "content": "Determines what 'today' means for everyone",
                       "fontFamily": "Inter",
-                      "fontSize": 11
+                      "fontSize": 11,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -2142,7 +2160,8 @@
                           "width": 360,
                           "content": "Last Friday of month + final week = 2x pts",
                           "fontFamily": "Inter",
-                          "fontSize": 11
+                          "fontSize": 11,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -2185,7 +2204,8 @@
                           "width": 360,
                           "content": "Anyone can view leaderboard (no weights)",
                           "fontFamily": "Inter",
-                          "fontSize": 11
+                          "fontSize": 11,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -2287,7 +2307,8 @@
               "fill": "#888888",
               "content": "12 weeks starting June 2",
               "fontFamily": "Inter",
-              "fontSize": 14
+              "fontSize": 14,
+              "fontWeight": "normal"
             },
             {
               "type": "frame",
@@ -2332,7 +2353,8 @@
                   "fill": "#666666",
                   "content": "Share this code to invite others",
                   "fontFamily": "Inter",
-                  "fontSize": 12
+                  "fontSize": 12,
+                  "fontWeight": "normal"
                 }
               ]
             },

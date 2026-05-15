@@ -185,8 +185,8 @@
               "fill": {
                 "type": "image",
                 "enabled": true,
-                "url": "./images/generated-1778856390897.png",
-                "mode": "fill"
+                "url": "../icons/bigdogs-logo-white.png",
+                "mode": "fit"
               }
             },
             {
@@ -252,7 +252,8 @@
           "fill": "#888888",
           "content": "May 15, 2026",
           "fontFamily": "Inter",
-          "fontSize": 13
+          "fontSize": 13,
+          "fontWeight": "normal"
         }
       ]
     },
@@ -316,11 +317,249 @@
               "alignItems": "center",
               "children": [
                 {
-                  "type": "ellipse",
-                  "id": "g7MNCJ",
-                  "fill": "#E63946",
+                  "type": "frame",
+                  "id": "pdD15",
+                  "name": "Avatar",
+                  "clip": true,
                   "width": 64,
-                  "height": 64
+                  "height": 64,
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "../icons/colors/bigdog-crimson.png",
+                    "mode": "fill"
+                  },
+                  "cornerRadius": 32
+                },
+                {
+                  "type": "frame",
+                  "id": "m0cpIJ",
+                  "name": "Avatar Picker",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "q0IPV",
+                      "fill": "#888888",
+                      "content": "Choose Avatar",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "j4Lq67",
+                      "name": "Row 1",
+                      "gap": 6,
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "KCIOo",
+                          "fill": "#F08080",
+                          "width": 36,
+                          "height": 36,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#FFFFFF30"
+                          }
+                        },
+                        {
+                          "type": "ellipse",
+                          "id": "WMD4w",
+                          "fill": "#E63946",
+                          "width": 36,
+                          "height": 36,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 2,
+                            "fill": "#FFFFFF"
+                          }
+                        },
+                        {
+                          "type": "ellipse",
+                          "id": "o0bCC",
+                          "fill": "#E86830",
+                          "width": 36,
+                          "height": 36,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#FFFFFF30"
+                          }
+                        },
+                        {
+                          "type": "ellipse",
+                          "id": "LdefI",
+                          "fill": "#DAA520",
+                          "width": 36,
+                          "height": 36,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#FFFFFF30"
+                          }
+                        },
+                        {
+                          "type": "ellipse",
+                          "id": "rGDOX",
+                          "fill": "#B39DDB",
+                          "width": 36,
+                          "height": 36,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#FFFFFF30"
+                          }
+                        },
+                        {
+                          "type": "ellipse",
+                          "id": "QsNvd",
+                          "fill": "#98E4C9",
+                          "width": 36,
+                          "height": 36,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#FFFFFF30"
+                          }
+                        },
+                        {
+                          "type": "ellipse",
+                          "id": "I4ivbZ",
+                          "fill": "#FFA500",
+                          "width": 36,
+                          "height": 36,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#FFFFFF30"
+                          }
+                        },
+                        {
+                          "type": "ellipse",
+                          "id": "OIJlQ",
+                          "fill": "#FFAB91",
+                          "width": 36,
+                          "height": 36,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#FFFFFF30"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "fAtr6",
+                      "name": "Row 2",
+                      "gap": 6,
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "ahS0t",
+                          "fill": "#9B59B6",
+                          "width": 36,
+                          "height": 36,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#FFFFFF30"
+                          }
+                        },
+                        {
+                          "type": "ellipse",
+                          "id": "q2Ao8",
+                          "fill": "#E8909C",
+                          "width": 36,
+                          "height": 36,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#FFFFFF30"
+                          }
+                        },
+                        {
+                          "type": "ellipse",
+                          "id": "HyQLS",
+                          "fill": "#E0115F",
+                          "width": 36,
+                          "height": 36,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#FFFFFF30"
+                          }
+                        },
+                        {
+                          "type": "ellipse",
+                          "id": "GB4pM",
+                          "fill": "#8FBC8F",
+                          "width": 36,
+                          "height": 36,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#FFFFFF30"
+                          }
+                        },
+                        {
+                          "type": "ellipse",
+                          "id": "K1DNnH",
+                          "fill": "#7EC8E3",
+                          "width": 36,
+                          "height": 36,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#FFFFFF30"
+                          }
+                        },
+                        {
+                          "type": "ellipse",
+                          "id": "eyxGl",
+                          "fill": "#708090",
+                          "width": 36,
+                          "height": 36,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#FFFFFF30"
+                          }
+                        },
+                        {
+                          "type": "ellipse",
+                          "id": "ksVXL",
+                          "fill": "#FFD700",
+                          "width": 36,
+                          "height": 36,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#FFFFFF30"
+                          }
+                        },
+                        {
+                          "type": "ellipse",
+                          "id": "k7voZ",
+                          "fill": "#20B2AA",
+                          "width": 36,
+                          "height": 36,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#FFFFFF30"
+                          }
+                        }
+                      ]
+                    }
+                  ]
                 },
                 {
                   "type": "frame",
@@ -355,7 +594,8 @@
                   "fill": "#888888",
                   "content": "jeff@example.com",
                   "fontFamily": "Inter",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -416,7 +656,8 @@
                               "fill": "#F59E0B",
                               "content": "Locked during challenge",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         }
@@ -505,7 +746,8 @@
                           "fill": "#666666",
                           "content": "For solo tracking only",
                           "fontFamily": "Inter",
-                          "fontSize": 10
+                          "fontSize": 10,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -570,7 +812,8 @@
                       "fill": "#888888",
                       "content": "Role",
                       "fontFamily": "Inter",
-                      "fontSize": 12
+                      "fontSize": 12,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -597,7 +840,8 @@
                       "fill": "#888888",
                       "content": "Invite Code",
                       "fontFamily": "Inter",
-                      "fontSize": 12
+                      "fontSize": 12,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "frame",
@@ -642,7 +886,8 @@
                       "fill": "#888888",
                       "content": "Week",
                       "fontFamily": "Inter",
-                      "fontSize": 12
+                      "fontSize": 12,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -828,11 +1073,19 @@
               "alignItems": "center",
               "children": [
                 {
-                  "type": "ellipse",
-                  "id": "SfbFq",
-                  "fill": "#E63946",
+                  "type": "frame",
+                  "id": "B9WQ1M",
+                  "name": "Avatar",
+                  "clip": true,
                   "width": 64,
-                  "height": 64
+                  "height": 64,
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "../icons/colors/bigdog-crimson.png",
+                    "mode": "fill"
+                  },
+                  "cornerRadius": 32
                 },
                 {
                   "type": "frame",
@@ -867,7 +1120,8 @@
                   "fill": "#888888",
                   "content": "jeff@example.com",
                   "fontFamily": "Inter",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -982,7 +1236,8 @@
                           "fill": "#666666",
                           "content": "For solo tracking only",
                           "fontFamily": "Inter",
-                          "fontSize": 10
+                          "fontSize": 10,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -1017,7 +1272,8 @@
                   "fill": "#888888",
                   "content": "No active challenge",
                   "fontFamily": "Inter",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 },
                 {
                   "type": "text",
@@ -1202,11 +1458,19 @@
               "alignItems": "center",
               "children": [
                 {
-                  "type": "ellipse",
-                  "id": "dD5qv",
-                  "fill": "#E63946",
+                  "type": "frame",
+                  "id": "lvdBV",
+                  "name": "Avatar",
+                  "clip": true,
                   "width": 64,
-                  "height": 64
+                  "height": 64,
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "../icons/colors/bigdog-crimson.png",
+                    "mode": "fill"
+                  },
+                  "cornerRadius": 32
                 },
                 {
                   "type": "frame",
@@ -1241,7 +1505,8 @@
                   "fill": "#999999",
                   "content": "jeff@example.com",
                   "fontFamily": "Inter",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -1307,7 +1572,8 @@
                               "fill": "#F59E0B",
                               "content": "Locked during challenge",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         }
@@ -1396,7 +1662,8 @@
                           "fill": "#999999",
                           "content": "For solo tracking only",
                           "fontFamily": "Inter",
-                          "fontSize": 10
+                          "fontSize": 10,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -1461,7 +1728,8 @@
                       "fill": "#999999",
                       "content": "Week",
                       "fontFamily": "Inter",
-                      "fontSize": 12
+                      "fontSize": 12,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -1776,11 +2044,19 @@
                   "alignItems": "center",
                   "children": [
                     {
-                      "type": "ellipse",
-                      "id": "nTMDi",
-                      "fill": "#E63946",
+                      "type": "frame",
+                      "id": "YoQm0",
+                      "name": "Avatar",
+                      "clip": true,
                       "width": 72,
-                      "height": 72
+                      "height": 72,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "../icons/colors/bigdog-crimson.png",
+                        "mode": "fill"
+                      },
+                      "cornerRadius": 36
                     },
                     {
                       "type": "frame",
@@ -1815,7 +2091,8 @@
                       "fill": "#888888",
                       "content": "jeff@example.com",
                       "fontFamily": "Inter",
-                      "fontSize": 14
+                      "fontSize": 14,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -1876,7 +2153,8 @@
                                   "fill": "#F59E0B",
                                   "content": "Locked during challenge",
                                   "fontFamily": "Inter",
-                                  "fontSize": 10
+                                  "fontSize": 10,
+                                  "fontWeight": "normal"
                                 }
                               ]
                             }
@@ -1964,7 +2242,8 @@
                               "fill": "#666666",
                               "content": "For solo tracking only",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -2029,7 +2308,8 @@
                           "fill": "#888888",
                           "content": "Week 6 of 12",
                           "fontFamily": "Inter",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "text",
@@ -2190,7 +2470,8 @@
               "content": "(Same layout as Variant 1 desktop — no challenge card, height editable)",
               "textAlign": "center",
               "fontFamily": "Inter",
-              "fontSize": 14
+              "fontSize": 14,
+              "fontWeight": "normal"
             },
             {
               "type": "text",
@@ -2311,7 +2592,8 @@
               "fill": "#888888",
               "content": "May 15, 2026",
               "fontFamily": "Inter",
-              "fontSize": 13
+              "fontSize": 13,
+              "fontWeight": "normal"
             }
           ]
         },
@@ -2335,7 +2617,8 @@
               "content": "(Light mode desktop — cream background, white cards, dark text)",
               "textAlign": "center",
               "fontFamily": "Inter",
-              "fontSize": 14
+              "fontSize": 14,
+              "fontWeight": "normal"
             },
             {
               "type": "text",

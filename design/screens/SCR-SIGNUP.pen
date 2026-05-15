@@ -1,0 +1,1149 @@
+{
+  "version": "2.11",
+  "children": [
+    {
+      "type": "frame",
+      "id": "dpEl1",
+      "x": 1370,
+      "y": 0,
+      "name": "Component/Input Field",
+      "reusable": true,
+      "width": 342,
+      "height": 52,
+      "fill": "#16162b",
+      "cornerRadius": 10,
+      "stroke": {
+        "align": "inside",
+        "thickness": 1,
+        "fill": "#333333"
+      },
+      "padding": [
+        0,
+        16
+      ],
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "text",
+          "id": "cJ6Tj",
+          "name": "Label",
+          "fill": "#666666",
+          "content": "Placeholder",
+          "fontFamily": "Inter",
+          "fontSize": 16,
+          "fontWeight": "normal"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "NWFZm",
+      "x": 1370,
+      "y": 80,
+      "name": "Component/Primary Button",
+      "reusable": true,
+      "width": 342,
+      "height": 52,
+      "fill": "#E63946",
+      "cornerRadius": 12,
+      "justifyContent": "center",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "text",
+          "id": "kahJ2",
+          "name": "Label",
+          "fill": "#FFFFFF",
+          "content": "Button",
+          "fontFamily": "Inter",
+          "fontSize": 16,
+          "fontWeight": "600"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "RdjGP",
+      "x": 1370,
+      "y": 240,
+      "name": "Component/Brand Header",
+      "reusable": true,
+      "width": 342,
+      "layout": "vertical",
+      "gap": 16,
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "PJW6f",
+          "name": "Logo",
+          "width": 120,
+          "height": 109,
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../icons/bigdogs-logo-white.png",
+            "mode": "fit"
+          }
+        },
+        {
+          "type": "text",
+          "id": "PV00j",
+          "name": "App Name",
+          "fill": "#FFFFFF",
+          "content": "BIGDOGS",
+          "fontFamily": "Inter",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "letterSpacing": 6
+        },
+        {
+          "type": "text",
+          "id": "wsJ6o",
+          "name": "Tagline",
+          "fill": "#888888",
+          "content": "Prove it on the scale.",
+          "fontFamily": "Inter",
+          "fontSize": 16,
+          "fontWeight": "normal"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "ZuNyG",
+      "x": 0,
+      "y": 0,
+      "name": "SCR-SIGNUP / Empty Form",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "#1a1a2e",
+      "layout": "vertical",
+      "padding": [
+        0,
+        24,
+        48,
+        24
+      ],
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "z2NHLf",
+          "name": "Brand Area",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "id": "RhGDl",
+              "type": "ref",
+              "ref": "RdjGP",
+              "name": "header1",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "nQVp6",
+          "name": "Form Area",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "id": "S5BbzY",
+              "type": "ref",
+              "ref": "dpEl1",
+              "name": "nameInput",
+              "width": "fill_container",
+              "descendants": {
+                "cJ6Tj": {
+                  "content": "What should we call you?"
+                }
+              }
+            },
+            {
+              "id": "caw5P",
+              "type": "ref",
+              "ref": "dpEl1",
+              "name": "emailInput",
+              "width": "fill_container",
+              "descendants": {
+                "cJ6Tj": {
+                  "content": "Email"
+                }
+              }
+            },
+            {
+              "id": "s4mtY",
+              "type": "ref",
+              "ref": "dpEl1",
+              "name": "pwInput",
+              "width": "fill_container",
+              "descendants": {
+                "cJ6Tj": {
+                  "content": "Password"
+                }
+              }
+            },
+            {
+              "type": "frame",
+              "id": "RkPJZ",
+              "name": "Strength Section",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 6,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "ub3mR",
+                  "name": "Strength Bar",
+                  "width": "fill_container",
+                  "height": 4,
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "RjG4X",
+                      "fill": "#333333",
+                      "width": "fill_container",
+                      "height": 4
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "juCyd",
+                      "fill": "#333333",
+                      "width": "fill_container",
+                      "height": 4
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "j1iGa",
+                      "fill": "#333333",
+                      "width": "fill_container",
+                      "height": 4
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "o8YvG",
+                      "fill": "#333333",
+                      "width": "fill_container",
+                      "height": 4
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "wdcBJ",
+              "type": "ref",
+              "ref": "NWFZm",
+              "name": "signUpBtn",
+              "width": "fill_container",
+              "descendants": {
+                "kahJ2": {
+                  "content": "Sign Up"
+                }
+              }
+            },
+            {
+              "type": "text",
+              "id": "j1Iql",
+              "name": "loginLink",
+              "fill": "#888888",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Already have an account? Log in",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "FLKhF",
+      "x": 440,
+      "y": 0,
+      "name": "SCR-SIGNUP / Filled with Validation",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "#1a1a2e",
+      "layout": "vertical",
+      "padding": [
+        0,
+        24,
+        48,
+        24
+      ],
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "RdvPp",
+          "name": "Brand Area",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "id": "G9LFSI",
+              "type": "ref",
+              "ref": "RdjGP",
+              "name": "header2",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "n9YFn5",
+          "name": "Form Area",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "id": "x8t6U",
+              "type": "ref",
+              "ref": "dpEl1",
+              "name": "nameInput2",
+              "width": "fill_container",
+              "descendants": {
+                "cJ6Tj": {
+                  "content": "Jeff",
+                  "fill": "#FFFFFF"
+                }
+              }
+            },
+            {
+              "id": "Z4ksJ9",
+              "type": "ref",
+              "ref": "dpEl1",
+              "name": "emailInput2",
+              "width": "fill_container",
+              "descendants": {
+                "cJ6Tj": {
+                  "content": "jeff@example.com",
+                  "fill": "#FFFFFF"
+                }
+              }
+            },
+            {
+              "id": "W5umyi",
+              "type": "ref",
+              "ref": "dpEl1",
+              "name": "pwInput2",
+              "width": "fill_container",
+              "descendants": {
+                "cJ6Tj": {
+                  "content": "••••••••••",
+                  "fill": "#FFFFFF"
+                }
+              }
+            },
+            {
+              "type": "frame",
+              "id": "VarGJ",
+              "name": "Strength Section",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 6,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "tDUEe",
+                  "name": "Strength Bar",
+                  "width": "fill_container",
+                  "height": 4,
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "C4G8OK",
+                      "fill": "#22C55E",
+                      "width": "fill_container",
+                      "height": 4
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "dp65k",
+                      "fill": "#22C55E",
+                      "width": "fill_container",
+                      "height": 4
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "Ld1rt",
+                      "fill": "#22C55E",
+                      "width": "fill_container",
+                      "height": 4
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "iLIpN",
+                      "fill": "#22C55E",
+                      "width": "fill_container",
+                      "height": 4
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "jwpTU",
+                  "name": "strengthLabel",
+                  "fill": "#22C55E",
+                  "content": "Strong",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "id": "SPXXy",
+              "type": "ref",
+              "ref": "NWFZm",
+              "name": "signUpBtn2",
+              "width": "fill_container",
+              "descendants": {
+                "kahJ2": {
+                  "content": "Sign Up"
+                }
+              }
+            },
+            {
+              "type": "text",
+              "id": "PBtxJ",
+              "name": "loginLink2",
+              "fill": "#888888",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Already have an account? Log in",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "kU6tO",
+      "x": 880,
+      "y": 0,
+      "name": "SCR-SIGNUP / Error State",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "#1a1a2e",
+      "layout": "vertical",
+      "padding": [
+        0,
+        24,
+        48,
+        24
+      ],
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "w3grD",
+          "name": "Brand Area",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "id": "RQ0pE",
+              "type": "ref",
+              "ref": "RdjGP",
+              "name": "header3",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "RW7vB",
+          "name": "Form Area",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "id": "S9FKwV",
+              "type": "ref",
+              "ref": "dpEl1",
+              "name": "nameInput3",
+              "width": "fill_container",
+              "descendants": {
+                "cJ6Tj": {
+                  "content": "Jeff",
+                  "fill": "#FFFFFF"
+                }
+              }
+            },
+            {
+              "type": "frame",
+              "id": "Ei6dt",
+              "name": "Email Section",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 6,
+              "children": [
+                {
+                  "id": "XfxZt",
+                  "type": "ref",
+                  "ref": "dpEl1",
+                  "name": "emailInput3",
+                  "width": "fill_container",
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#EF4444"
+                  },
+                  "descendants": {
+                    "cJ6Tj": {
+                      "content": "jeff@example.com",
+                      "fill": "#FFFFFF"
+                    }
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "DIySP",
+                  "name": "errorMsg",
+                  "fill": "#EF4444",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "An account with this email already exists. Log in instead",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "id": "tOwJV",
+              "type": "ref",
+              "ref": "dpEl1",
+              "name": "pwInput3",
+              "width": "fill_container",
+              "descendants": {
+                "cJ6Tj": {
+                  "content": "••••••••••",
+                  "fill": "#FFFFFF"
+                }
+              }
+            },
+            {
+              "type": "frame",
+              "id": "reQDh",
+              "name": "Strength Section",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 6,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "L7g0K",
+                  "name": "Strength Bar",
+                  "width": "fill_container",
+                  "height": 4,
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "w5RrGW",
+                      "fill": "#22C55E",
+                      "width": "fill_container",
+                      "height": 4
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "j2ICo",
+                      "fill": "#22C55E",
+                      "width": "fill_container",
+                      "height": 4
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "cF3TC",
+                      "fill": "#22C55E",
+                      "width": "fill_container",
+                      "height": 4
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "wrHSI",
+                      "fill": "#22C55E",
+                      "width": "fill_container",
+                      "height": 4
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "iDqz9",
+                  "name": "strengthLabel3",
+                  "fill": "#22C55E",
+                  "content": "Strong",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "id": "h2Kp6B",
+              "type": "ref",
+              "ref": "NWFZm",
+              "name": "signUpBtn3",
+              "width": "fill_container",
+              "descendants": {
+                "kahJ2": {
+                  "content": "Sign Up"
+                }
+              }
+            },
+            {
+              "type": "text",
+              "id": "r06OF",
+              "name": "loginLink3",
+              "fill": "#888888",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Already have an account? Log in",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "G8YR3z",
+      "x": 0,
+      "y": 924,
+      "name": "SCR-SIGNUP / Empty Form — Desktop",
+      "clip": true,
+      "width": 1440,
+      "height": 900,
+      "fill": "#1a1a2e",
+      "layout": "vertical",
+      "gap": 48,
+      "justifyContent": "center",
+      "alignItems": "center",
+      "children": [
+        {
+          "id": "mOUwI",
+          "type": "ref",
+          "ref": "RdjGP",
+          "name": "dHeader1"
+        },
+        {
+          "type": "frame",
+          "id": "wKylV",
+          "name": "Form Area",
+          "width": 360,
+          "layout": "vertical",
+          "gap": 16,
+          "alignItems": "center",
+          "children": [
+            {
+              "id": "YwCHT",
+              "type": "ref",
+              "ref": "dpEl1",
+              "name": "dNameInput1",
+              "width": "fill_container",
+              "descendants": {
+                "cJ6Tj": {
+                  "content": "What should we call you?"
+                }
+              }
+            },
+            {
+              "id": "sOdeS",
+              "type": "ref",
+              "ref": "dpEl1",
+              "name": "dEmailInput1",
+              "width": "fill_container",
+              "descendants": {
+                "cJ6Tj": {
+                  "content": "Email"
+                }
+              }
+            },
+            {
+              "id": "d55JON",
+              "type": "ref",
+              "ref": "dpEl1",
+              "name": "dPwInput1",
+              "width": "fill_container",
+              "descendants": {
+                "cJ6Tj": {
+                  "content": "Password"
+                }
+              }
+            },
+            {
+              "type": "frame",
+              "id": "FjeDe",
+              "name": "Strength Section",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 6,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f4bkL",
+                  "name": "Strength Bar",
+                  "width": "fill_container",
+                  "height": 4,
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "Q7SRu",
+                      "fill": "#333333",
+                      "width": "fill_container",
+                      "height": 4
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "hR0Et",
+                      "fill": "#333333",
+                      "width": "fill_container",
+                      "height": 4
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "Im1iJ",
+                      "fill": "#333333",
+                      "width": "fill_container",
+                      "height": 4
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "dEznx",
+                      "fill": "#333333",
+                      "width": "fill_container",
+                      "height": 4
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "wfmjZ",
+              "type": "ref",
+              "ref": "NWFZm",
+              "name": "dSignUp1",
+              "width": "fill_container",
+              "descendants": {
+                "kahJ2": {
+                  "content": "Sign Up"
+                }
+              }
+            },
+            {
+              "type": "text",
+              "id": "CT36M",
+              "name": "dLoginLink1",
+              "fill": "#888888",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Already have an account? Log in",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "wqXPn",
+      "x": 1520,
+      "y": 924,
+      "name": "SCR-SIGNUP / Filled — Desktop",
+      "clip": true,
+      "width": 1440,
+      "height": 900,
+      "fill": "#1a1a2e",
+      "layout": "vertical",
+      "gap": 48,
+      "justifyContent": "center",
+      "alignItems": "center",
+      "children": [
+        {
+          "id": "Ka8CI",
+          "type": "ref",
+          "ref": "RdjGP",
+          "name": "dHeader2"
+        },
+        {
+          "type": "frame",
+          "id": "uUCyz",
+          "name": "Form Area",
+          "width": 360,
+          "layout": "vertical",
+          "gap": 16,
+          "alignItems": "center",
+          "children": [
+            {
+              "id": "wdxtF",
+              "type": "ref",
+              "ref": "dpEl1",
+              "name": "dNameInput2",
+              "width": "fill_container",
+              "descendants": {
+                "cJ6Tj": {
+                  "content": "Jeff",
+                  "fill": "#FFFFFF"
+                }
+              }
+            },
+            {
+              "id": "mhxCw",
+              "type": "ref",
+              "ref": "dpEl1",
+              "name": "dEmailInput2",
+              "width": "fill_container",
+              "descendants": {
+                "cJ6Tj": {
+                  "content": "jeff@example.com",
+                  "fill": "#FFFFFF"
+                }
+              }
+            },
+            {
+              "id": "lQMyT",
+              "type": "ref",
+              "ref": "dpEl1",
+              "name": "dPwInput2",
+              "width": "fill_container",
+              "descendants": {
+                "cJ6Tj": {
+                  "content": "••••••••••",
+                  "fill": "#FFFFFF"
+                }
+              }
+            },
+            {
+              "type": "frame",
+              "id": "z9BJpQ",
+              "name": "Strength Section",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 6,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "cGEJH",
+                  "name": "Strength Bar",
+                  "width": "fill_container",
+                  "height": 4,
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "b7oBZC",
+                      "fill": "#22C55E",
+                      "width": "fill_container",
+                      "height": 4
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "HewrD",
+                      "fill": "#22C55E",
+                      "width": "fill_container",
+                      "height": 4
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "ty47e",
+                      "fill": "#22C55E",
+                      "width": "fill_container",
+                      "height": 4
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "JQ0GU",
+                      "fill": "#22C55E",
+                      "width": "fill_container",
+                      "height": 4
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "DGrTH",
+                  "name": "dStrengthLabel2",
+                  "fill": "#22C55E",
+                  "content": "Strong",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "id": "s83ith",
+              "type": "ref",
+              "ref": "NWFZm",
+              "name": "dSignUp2",
+              "width": "fill_container",
+              "descendants": {
+                "kahJ2": {
+                  "content": "Sign Up"
+                }
+              }
+            },
+            {
+              "type": "text",
+              "id": "XqTHH",
+              "name": "dLoginLink2",
+              "fill": "#888888",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Already have an account? Log in",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "QACBu",
+      "x": 3040,
+      "y": 924,
+      "name": "SCR-SIGNUP / Error — Desktop",
+      "clip": true,
+      "width": 1440,
+      "height": 900,
+      "fill": "#1a1a2e",
+      "layout": "vertical",
+      "gap": 48,
+      "justifyContent": "center",
+      "alignItems": "center",
+      "children": [
+        {
+          "id": "eMLlq",
+          "type": "ref",
+          "ref": "RdjGP",
+          "name": "dHeader3"
+        },
+        {
+          "type": "frame",
+          "id": "k02Zqm",
+          "name": "Form Area",
+          "width": 360,
+          "layout": "vertical",
+          "gap": 16,
+          "alignItems": "center",
+          "children": [
+            {
+              "id": "mctAg",
+              "type": "ref",
+              "ref": "dpEl1",
+              "name": "dNameInput3",
+              "width": "fill_container",
+              "descendants": {
+                "cJ6Tj": {
+                  "content": "Jeff",
+                  "fill": "#FFFFFF"
+                }
+              }
+            },
+            {
+              "type": "frame",
+              "id": "dLUhE",
+              "name": "Email Section",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 6,
+              "children": [
+                {
+                  "id": "Q2cnf1",
+                  "type": "ref",
+                  "ref": "dpEl1",
+                  "name": "dEmailInput3",
+                  "width": "fill_container",
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#EF4444"
+                  },
+                  "descendants": {
+                    "cJ6Tj": {
+                      "content": "jeff@example.com",
+                      "fill": "#FFFFFF"
+                    }
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "GHust",
+                  "name": "dErrorMsg",
+                  "fill": "#EF4444",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "An account with this email already exists. Log in instead",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "id": "WFlWb",
+              "type": "ref",
+              "ref": "dpEl1",
+              "name": "dPwInput3",
+              "width": "fill_container",
+              "descendants": {
+                "cJ6Tj": {
+                  "content": "••••••••••",
+                  "fill": "#FFFFFF"
+                }
+              }
+            },
+            {
+              "type": "frame",
+              "id": "HdqGW",
+              "name": "Strength Section",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 6,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "ROpcd",
+                  "name": "Strength Bar",
+                  "width": "fill_container",
+                  "height": 4,
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "q0ng9b",
+                      "fill": "#22C55E",
+                      "width": "fill_container",
+                      "height": 4
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "fmOS3",
+                      "fill": "#22C55E",
+                      "width": "fill_container",
+                      "height": 4
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "NC5Me",
+                      "fill": "#22C55E",
+                      "width": "fill_container",
+                      "height": 4
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "Zioo6",
+                      "fill": "#22C55E",
+                      "width": "fill_container",
+                      "height": 4
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "f5NDJI",
+                  "name": "dStrengthLabel3",
+                  "fill": "#22C55E",
+                  "content": "Strong",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "id": "k6Pa4w",
+              "type": "ref",
+              "ref": "NWFZm",
+              "name": "dSignUp3",
+              "width": "fill_container",
+              "descendants": {
+                "kahJ2": {
+                  "content": "Sign Up"
+                }
+              }
+            },
+            {
+              "type": "text",
+              "id": "E6xIk",
+              "name": "dLoginLink3",
+              "fill": "#888888",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Already have an account? Log in",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

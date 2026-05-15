@@ -1,0 +1,1543 @@
+{
+  "version": "2.11",
+  "children": [
+    {
+      "type": "frame",
+      "id": "UMhBX",
+      "x": 0,
+      "y": 0,
+      "name": "SCR-MARKETING / Mobile",
+      "clip": true,
+      "width": 390,
+      "fill": "#1a1a2e",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "c5Sph",
+          "name": "Hero",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 20,
+          "padding": [
+            80,
+            24,
+            40,
+            24
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "mUeVH",
+              "name": "Logo",
+              "width": 150,
+              "height": 136,
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "../icons/bigdogs-logo-white.png",
+                "mode": "fit"
+              }
+            },
+            {
+              "type": "text",
+              "id": "BirZg",
+              "fill": "#FFFFFF",
+              "content": "BIGDOGS",
+              "fontFamily": "Inter",
+              "fontSize": 40,
+              "fontWeight": "900",
+              "letterSpacing": 8
+            },
+            {
+              "type": "text",
+              "id": "FzifB",
+              "fill": "#999999",
+              "content": "Prove it on the scale.",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "C1nztt",
+              "name": "CTA Button",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "#E63946",
+              "cornerRadius": 12,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "w2nuoi",
+                  "fill": "#FFFFFF",
+                  "content": "Get Started",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "icon_font",
+              "id": "MBy27",
+              "width": 24,
+              "height": 24,
+              "iconFontName": "chevron-down",
+              "iconFontFamily": "lucide",
+              "fill": "#555555"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ZjLBw",
+          "name": "What Is BigDogs",
+          "width": "fill_container",
+          "fill": "#0f0f1a",
+          "layout": "vertical",
+          "gap": 16,
+          "padding": [
+            48,
+            24
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "aJzE9",
+              "fill": "#FFFFFF",
+              "content": "A Weight Loss Competition",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": "800"
+            },
+            {
+              "type": "text",
+              "id": "hOj69",
+              "fill": "#999999",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Challenge your friends. Track your progress. Win with consistency — not crash diets. BigDogs rewards hitting your pace, not racing to the bottom.",
+              "lineHeight": 1.6,
+              "fontFamily": "Inter",
+              "fontSize": 16,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ejrc9",
+          "name": "How It Works",
+          "width": "fill_container",
+          "fill": "#1a1a2e",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            48,
+            24
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "DUFNn",
+              "fill": "#FFFFFF",
+              "content": "How It Works",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": "800"
+            },
+            {
+              "type": "frame",
+              "id": "R0h3p",
+              "name": "s1",
+              "width": "fill_container",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "xL0dB",
+                  "name": "s1b",
+                  "width": 40,
+                  "height": 40,
+                  "fill": "#E63946",
+                  "cornerRadius": 20,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "o0F9ud",
+                      "fill": "#FFFFFF",
+                      "content": "1",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "HQilV",
+                  "name": "s1t",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "i71Iz",
+                      "fill": "#FFFFFF",
+                      "content": "Set Your Pace",
+                      "fontFamily": "Inter",
+                      "fontSize": 17,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "UtwvN",
+                      "fill": "#999999",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Pick a goal. The app computes your weekly target.",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "RA7m3",
+              "name": "s2",
+              "width": "fill_container",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "TXmae",
+                  "name": "s2b",
+                  "width": 40,
+                  "height": 40,
+                  "fill": "#E63946",
+                  "cornerRadius": 20,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Ldo0E",
+                      "fill": "#FFFFFF",
+                      "content": "2",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "W9a0o",
+                  "name": "s2t",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "LESkS",
+                      "fill": "#FFFFFF",
+                      "content": "Weigh In Daily",
+                      "fontFamily": "Inter",
+                      "fontSize": 17,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "T1hIAz",
+                      "fill": "#999999",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Step on the scale each morning. Your 7-day trend does the rest.",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "H0MhuL",
+              "name": "s3",
+              "width": "fill_container",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "hsPEl",
+                  "name": "s3b",
+                  "width": 40,
+                  "height": 40,
+                  "fill": "#E63946",
+                  "cornerRadius": 20,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "mejFs",
+                      "fill": "#FFFFFF",
+                      "content": "3",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "zmBGo",
+                  "name": "s3t",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "YfR56",
+                      "fill": "#FFFFFF",
+                      "content": "Compete Weekly",
+                      "fontFamily": "Inter",
+                      "fontSize": 17,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "tXMSN",
+                      "fill": "#999999",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Every Friday, scores drop. Stay on pace to climb the board.",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "qW4Um",
+              "name": "s4",
+              "width": "fill_container",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "L5M7Be",
+                  "name": "s4b",
+                  "width": 40,
+                  "height": 40,
+                  "fill": "#E63946",
+                  "cornerRadius": 20,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Xztih",
+                      "fill": "#FFFFFF",
+                      "content": "4",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ieTMn",
+                  "name": "s4t",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "VAgaH",
+                      "fill": "#FFFFFF",
+                      "content": "Win the Challenge",
+                      "fontFamily": "Inter",
+                      "fontSize": 17,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "maaAd",
+                      "fill": "#999999",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Most placement points at the end takes the crown.",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "fVuW0",
+          "name": "Features",
+          "width": "fill_container",
+          "fill": "#0f0f1a",
+          "layout": "vertical",
+          "gap": 20,
+          "padding": [
+            48,
+            24
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "w47vPA",
+              "fill": "#FFFFFF",
+              "content": "Built for Competition",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": "800"
+            },
+            {
+              "type": "frame",
+              "id": "ZRkBi",
+              "name": "f1",
+              "width": "fill_container",
+              "fill": "#1a1a2e",
+              "cornerRadius": 12,
+              "gap": 16,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "pDKQh",
+                  "width": 24,
+                  "height": 24,
+                  "iconFontName": "trending-down",
+                  "iconFontFamily": "lucide",
+                  "fill": "#E63946"
+                },
+                {
+                  "type": "frame",
+                  "id": "RLqlz",
+                  "name": "f1t",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "yMTHW",
+                      "fill": "#FFFFFF",
+                      "content": "Trend Tracking",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "hoLiP",
+                      "fill": "#999999",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "7-day rolling average smooths the noise",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "zn0Oh",
+              "name": "f2",
+              "width": "fill_container",
+              "fill": "#1a1a2e",
+              "cornerRadius": 12,
+              "gap": 16,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "isZ33",
+                  "width": 24,
+                  "height": 24,
+                  "iconFontName": "zap",
+                  "iconFontFamily": "lucide",
+                  "fill": "#8B5CF6"
+                },
+                {
+                  "type": "frame",
+                  "id": "j7DPFI",
+                  "name": "f2t",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "dD6WH",
+                      "fill": "#FFFFFF",
+                      "content": "Showdown Weeks",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "N4ndb",
+                      "fill": "#999999",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Last Friday of the month. Double points.",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "a8Dy11",
+              "name": "f3",
+              "width": "fill_container",
+              "fill": "#1a1a2e",
+              "cornerRadius": 12,
+              "gap": 16,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "r1ivGr",
+                  "width": 24,
+                  "height": 24,
+                  "iconFontName": "user",
+                  "iconFontFamily": "lucide",
+                  "fill": "#3B82F6"
+                },
+                {
+                  "type": "frame",
+                  "id": "T6Qqp2",
+                  "name": "f3t",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "R4OdMu",
+                      "fill": "#FFFFFF",
+                      "content": "Solo Mode",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "j2e4uw",
+                      "fill": "#999999",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Track your weight without a challenge",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "YGTgo",
+              "name": "f4",
+              "width": "fill_container",
+              "fill": "#1a1a2e",
+              "cornerRadius": 12,
+              "gap": 16,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "xOxx8",
+                  "width": 24,
+                  "height": 24,
+                  "iconFontName": "trophy",
+                  "iconFontFamily": "lucide",
+                  "fill": "#F59E0B"
+                },
+                {
+                  "type": "frame",
+                  "id": "jtTLv",
+                  "name": "f4t",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "KI2yk",
+                      "fill": "#FFFFFF",
+                      "content": "Public Leaderboard",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Ds2Mt",
+                      "fill": "#999999",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Let spectators follow along — no weight numbers exposed",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Q5sPoV",
+              "name": "f5",
+              "width": "fill_container",
+              "fill": "#1a1a2e",
+              "cornerRadius": 12,
+              "gap": 16,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "I1TY9t",
+                  "width": 24,
+                  "height": 24,
+                  "iconFontName": "shield-check",
+                  "iconFontFamily": "lucide",
+                  "fill": "#22C55E"
+                },
+                {
+                  "type": "frame",
+                  "id": "S2DdXa",
+                  "name": "f5t",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "HhFRb",
+                      "fill": "#FFFFFF",
+                      "content": "Safety Rails",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "koZc6",
+                      "fill": "#999999",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Smart guardrails keep goals healthy and sustainable",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "heWj2",
+          "name": "Footer CTA",
+          "width": "fill_container",
+          "fill": "#1a1a2e",
+          "layout": "vertical",
+          "gap": 20,
+          "padding": [
+            56,
+            24,
+            48,
+            24
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "C3WRNp",
+              "fill": "#FFFFFF",
+              "content": "Ready to step up?",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 28,
+              "fontWeight": "800"
+            },
+            {
+              "type": "frame",
+              "id": "V6MYSY",
+              "name": "footBtn",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "#E63946",
+              "cornerRadius": 12,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "qOmeZ",
+                  "fill": "#FFFFFF",
+                  "content": "Get Started",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "V9N8N",
+              "fill": "#666666",
+              "content": "Free to use. No ads. No nonsense.",
+              "fontFamily": "Inter",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "P0nRO",
+      "x": 440,
+      "y": 0,
+      "name": "SCR-MARKETING / Desktop",
+      "clip": true,
+      "width": 1440,
+      "fill": "#1a1a2e",
+      "layout": "vertical",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "ptVRo",
+          "name": "Hero",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            100,
+            40,
+            60,
+            40
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "e8RRy",
+              "name": "Logo",
+              "width": 180,
+              "height": 163,
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "../icons/bigdogs-logo-white.png",
+                "mode": "fit"
+              }
+            },
+            {
+              "type": "text",
+              "id": "Q9NFuI",
+              "fill": "#FFFFFF",
+              "content": "BIGDOGS",
+              "fontFamily": "Inter",
+              "fontSize": 56,
+              "fontWeight": "900",
+              "letterSpacing": 12
+            },
+            {
+              "type": "text",
+              "id": "JqRQo",
+              "fill": "#999999",
+              "content": "Prove it on the scale.",
+              "fontFamily": "Inter",
+              "fontSize": 22,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "zsa8l",
+              "name": "dCtaBtn",
+              "width": 300,
+              "height": 56,
+              "fill": "#E63946",
+              "cornerRadius": 12,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "uUiJh",
+                  "fill": "#FFFFFF",
+                  "content": "Get Started",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "icon_font",
+              "id": "LTsnO",
+              "width": 28,
+              "height": 28,
+              "iconFontName": "chevron-down",
+              "iconFontFamily": "lucide",
+              "fill": "#555555"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Q39oX",
+          "name": "What Is BigDogs",
+          "width": "fill_container",
+          "fill": "#0f0f1a",
+          "layout": "vertical",
+          "padding": [
+            64,
+            40
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "Z4o6T4",
+              "name": "dWhatInner",
+              "width": 800,
+              "layout": "vertical",
+              "gap": 20,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "hHqu4",
+                  "fill": "#FFFFFF",
+                  "content": "A Weight Loss Competition",
+                  "fontFamily": "Inter",
+                  "fontSize": 32,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "text",
+                  "id": "nj2Ab",
+                  "fill": "#999999",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Challenge your friends. Track your progress. Win with consistency — not crash diets. BigDogs rewards hitting your pace, not racing to the bottom.",
+                  "lineHeight": 1.6,
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "B4vSxx",
+          "name": "How It Works",
+          "width": "fill_container",
+          "fill": "#1a1a2e",
+          "layout": "vertical",
+          "padding": [
+            64,
+            40
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "elIXB",
+              "name": "dHowInner",
+              "width": 800,
+              "layout": "vertical",
+              "gap": 32,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "F89ef",
+                  "fill": "#FFFFFF",
+                  "content": "How It Works",
+                  "fontFamily": "Inter",
+                  "fontSize": 32,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "frame",
+                  "id": "LqXg0",
+                  "name": "dGrid",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 24,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "bjv6r",
+                      "name": "dRow1",
+                      "width": "fill_container",
+                      "gap": 24,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "WIWED",
+                          "name": "ds1",
+                          "width": "fill_container",
+                          "fill": "#252547",
+                          "cornerRadius": 12,
+                          "gap": 16,
+                          "padding": 20,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "YLz8E",
+                              "name": "ds1b",
+                              "width": 40,
+                              "height": 40,
+                              "fill": "#E63946",
+                              "cornerRadius": 20,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "Ykrop",
+                                  "fill": "#FFFFFF",
+                                  "content": "1",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 18,
+                                  "fontWeight": "800"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "Hg6zB",
+                              "name": "ds1t",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 4,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "iIYur",
+                                  "fill": "#FFFFFF",
+                                  "content": "Set Your Pace",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 17,
+                                  "fontWeight": "700"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "l6rUa",
+                                  "fill": "#999999",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Pick a goal. The app computes your weekly target.",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "o8NOrz",
+                          "name": "ds2",
+                          "width": "fill_container",
+                          "fill": "#252547",
+                          "cornerRadius": 12,
+                          "gap": 16,
+                          "padding": 20,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "BlbuJ",
+                              "name": "ds2b",
+                              "width": 40,
+                              "height": 40,
+                              "fill": "#E63946",
+                              "cornerRadius": 20,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "J2hXLI",
+                                  "fill": "#FFFFFF",
+                                  "content": "2",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 18,
+                                  "fontWeight": "800"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "Y9uHE0",
+                              "name": "ds2t",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 4,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "XiqDO",
+                                  "fill": "#FFFFFF",
+                                  "content": "Weigh In Daily",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 17,
+                                  "fontWeight": "700"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "qmjTF",
+                                  "fill": "#999999",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Step on the scale each morning. Your 7-day trend does the rest.",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "OpimF",
+                      "name": "dRow2",
+                      "width": "fill_container",
+                      "gap": 24,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "MJbXb",
+                          "name": "ds3",
+                          "width": "fill_container",
+                          "fill": "#252547",
+                          "cornerRadius": 12,
+                          "gap": 16,
+                          "padding": 20,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "nyyvE",
+                              "name": "ds3b",
+                              "width": 40,
+                              "height": 40,
+                              "fill": "#E63946",
+                              "cornerRadius": 20,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "x7N2lP",
+                                  "fill": "#FFFFFF",
+                                  "content": "3",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 18,
+                                  "fontWeight": "800"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "h2SFk",
+                              "name": "ds3t",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 4,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "bP5ED",
+                                  "fill": "#FFFFFF",
+                                  "content": "Compete Weekly",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 17,
+                                  "fontWeight": "700"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "Z8rgf",
+                                  "fill": "#999999",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Every Friday, scores drop. Stay on pace to climb the board.",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "C1t6Ka",
+                          "name": "ds4",
+                          "width": "fill_container",
+                          "fill": "#252547",
+                          "cornerRadius": 12,
+                          "gap": 16,
+                          "padding": 20,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "DaLBp",
+                              "name": "ds4b",
+                              "width": 40,
+                              "height": 40,
+                              "fill": "#E63946",
+                              "cornerRadius": 20,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "GJNeY",
+                                  "fill": "#FFFFFF",
+                                  "content": "4",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 18,
+                                  "fontWeight": "800"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "Djri7",
+                              "name": "ds4t",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 4,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "D9k7ot",
+                                  "fill": "#FFFFFF",
+                                  "content": "Win the Challenge",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 17,
+                                  "fontWeight": "700"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "zHo4i",
+                                  "fill": "#999999",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Most placement points at the end takes the crown.",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "NEKLB",
+          "name": "Features",
+          "width": "fill_container",
+          "fill": "#0f0f1a",
+          "layout": "vertical",
+          "padding": [
+            64,
+            40
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "Ekihf",
+              "name": "dFeatInner",
+              "width": 800,
+              "layout": "vertical",
+              "gap": 32,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "OfbCQ",
+                  "fill": "#FFFFFF",
+                  "content": "Built for Competition",
+                  "fontFamily": "Inter",
+                  "fontSize": 32,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "frame",
+                  "id": "pq550",
+                  "name": "fRow1",
+                  "width": "fill_container",
+                  "gap": 20,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "hCyGX",
+                      "name": "fc1",
+                      "width": "fill_container",
+                      "fill": "#1a1a2e",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#2a2a4a"
+                      },
+                      "layout": "vertical",
+                      "gap": 8,
+                      "padding": 20,
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "jrVey",
+                          "width": 24,
+                          "height": 24,
+                          "iconFontName": "trending-down",
+                          "iconFontFamily": "lucide",
+                          "fill": "#E63946"
+                        },
+                        {
+                          "type": "text",
+                          "id": "HTLOy",
+                          "fill": "#FFFFFF",
+                          "content": "Trend Tracking",
+                          "fontFamily": "Inter",
+                          "fontSize": 15,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "XVVDc",
+                          "fill": "#999999",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "7-day rolling average smooths the noise",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "K1ACYx",
+                      "name": "fc2",
+                      "width": "fill_container",
+                      "fill": "#1a1a2e",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#2a2a4a"
+                      },
+                      "layout": "vertical",
+                      "gap": 8,
+                      "padding": 20,
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "F5Ctx",
+                          "width": 24,
+                          "height": 24,
+                          "iconFontName": "zap",
+                          "iconFontFamily": "lucide",
+                          "fill": "#8B5CF6"
+                        },
+                        {
+                          "type": "text",
+                          "id": "BRyA3",
+                          "fill": "#FFFFFF",
+                          "content": "Showdown Weeks",
+                          "fontFamily": "Inter",
+                          "fontSize": 15,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "lrhcD",
+                          "fill": "#999999",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Last Friday of the month. Double points.",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Kdbwj",
+                      "name": "fc3",
+                      "width": "fill_container",
+                      "fill": "#1a1a2e",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#2a2a4a"
+                      },
+                      "layout": "vertical",
+                      "gap": 8,
+                      "padding": 20,
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "bfyM6",
+                          "width": 24,
+                          "height": 24,
+                          "iconFontName": "user",
+                          "iconFontFamily": "lucide",
+                          "fill": "#3B82F6"
+                        },
+                        {
+                          "type": "text",
+                          "id": "jeN1m",
+                          "fill": "#FFFFFF",
+                          "content": "Solo Mode",
+                          "fontFamily": "Inter",
+                          "fontSize": 15,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "ir3IR",
+                          "fill": "#999999",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Track your weight without a challenge",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "UESYy",
+                  "name": "fRow2",
+                  "width": "fill_container",
+                  "gap": 20,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "bBPTc",
+                      "name": "fc4",
+                      "width": "fill_container",
+                      "fill": "#1a1a2e",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#2a2a4a"
+                      },
+                      "layout": "vertical",
+                      "gap": 8,
+                      "padding": 20,
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "jGUy0",
+                          "width": 24,
+                          "height": 24,
+                          "iconFontName": "trophy",
+                          "iconFontFamily": "lucide",
+                          "fill": "#F59E0B"
+                        },
+                        {
+                          "type": "text",
+                          "id": "SvCUe",
+                          "fill": "#FFFFFF",
+                          "content": "Public Leaderboard",
+                          "fontFamily": "Inter",
+                          "fontSize": 15,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "VWyCX",
+                          "fill": "#999999",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Let spectators follow along — no weight numbers exposed",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "mRyQM",
+                      "name": "fc5",
+                      "width": "fill_container",
+                      "fill": "#1a1a2e",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#2a2a4a"
+                      },
+                      "layout": "vertical",
+                      "gap": 8,
+                      "padding": 20,
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "vHEbP",
+                          "width": 24,
+                          "height": 24,
+                          "iconFontName": "shield-check",
+                          "iconFontFamily": "lucide",
+                          "fill": "#22C55E"
+                        },
+                        {
+                          "type": "text",
+                          "id": "NyKoo",
+                          "fill": "#FFFFFF",
+                          "content": "Safety Rails",
+                          "fontFamily": "Inter",
+                          "fontSize": 15,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "lffme",
+                          "fill": "#999999",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Smart guardrails keep goals healthy and sustainable",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "CNGoT",
+          "name": "Footer CTA",
+          "width": "fill_container",
+          "fill": "#1a1a2e",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            80,
+            40,
+            64,
+            40
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "igHtl",
+              "fill": "#FFFFFF",
+              "content": "Ready to step up?",
+              "fontFamily": "Inter",
+              "fontSize": 36,
+              "fontWeight": "800"
+            },
+            {
+              "type": "frame",
+              "id": "BTcZI",
+              "name": "dFootBtn",
+              "width": 300,
+              "height": 56,
+              "fill": "#E63946",
+              "cornerRadius": 12,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Hvj7X",
+                  "fill": "#FFFFFF",
+                  "content": "Get Started",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "HYmmN",
+              "fill": "#666666",
+              "content": "Free to use. No ads. No nonsense.",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

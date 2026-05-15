@@ -30,7 +30,8 @@
           "fill": "#666666",
           "content": "Placeholder",
           "fontFamily": "Inter",
-          "fontSize": 16
+          "fontSize": 16,
+          "fontWeight": "normal"
         }
       ]
     },
@@ -111,8 +112,8 @@
           "fill": {
             "type": "image",
             "enabled": true,
-            "url": "./images/generated-1778810118075.png",
-            "mode": "fill"
+            "url": "../icons/bigdogs-logo-white.png",
+            "mode": "fit"
           }
         },
         {
@@ -133,7 +134,8 @@
           "fill": "#888888",
           "content": "Prove it on the scale.",
           "fontFamily": "Inter",
-          "fontSize": 16
+          "fontSize": 16,
+          "fontWeight": "normal"
         }
       ]
     },

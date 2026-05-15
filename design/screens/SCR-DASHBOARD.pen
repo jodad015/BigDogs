@@ -232,8 +232,8 @@
                   "fill": {
                     "type": "image",
                     "enabled": true,
-                    "url": "./images/generated-1778811140119.png",
-                    "mode": "fill"
+                    "url": "../icons/bigdogs-logo-white.png",
+                    "mode": "fit"
                   }
                 },
                 {
@@ -256,7 +256,8 @@
               "fill": "#888888",
               "content": "May 14, 2026",
               "fontFamily": "Inter",
-              "fontSize": 13
+              "fontSize": 13,
+              "fontWeight": "normal"
             }
           ]
         },
@@ -570,8 +571,8 @@
                   "fill": {
                     "type": "image",
                     "enabled": true,
-                    "url": "./images/generated-1778811194558.png",
-                    "mode": "fill"
+                    "url": "../icons/bigdogs-logo-white.png",
+                    "mode": "fit"
                   }
                 },
                 {
@@ -594,7 +595,8 @@
               "fill": "#888888",
               "content": "May 14, 2026",
               "fontFamily": "Inter",
-              "fontSize": 13
+              "fontSize": 13,
+              "fontWeight": "normal"
             }
           ]
         },
@@ -901,8 +903,8 @@
                   "fill": {
                     "type": "image",
                     "enabled": true,
-                    "url": "./images/generated-1778811223055.png",
-                    "mode": "fill"
+                    "url": "../icons/bigdogs-logo-white.png",
+                    "mode": "fit"
                   }
                 },
                 {
@@ -925,7 +927,8 @@
               "fill": "#888888",
               "content": "May 14, 2026",
               "fontFamily": "Inter",
-              "fontSize": 13
+              "fontSize": 13,
+              "fontWeight": "normal"
             }
           ]
         },
@@ -975,7 +978,8 @@
               "content": "Log your first weigh-in to see your trends and stats.",
               "textAlign": "center",
               "fontFamily": "Inter",
-              "fontSize": 14
+              "fontSize": 14,
+              "fontWeight": "normal"
             },
             {
               "type": "frame",
@@ -1088,8 +1092,8 @@
               "fill": {
                 "type": "image",
                 "enabled": true,
-                "url": "./images/generated-1778811428281.png",
-                "mode": "fill"
+                "url": "../icons/bigdogs-logo-white.png",
+                "mode": "fit"
               }
             },
             {
@@ -1161,7 +1165,8 @@
           "fill": "#888888",
           "content": "May 14, 2026",
           "fontFamily": "Inter",
-          "fontSize": 13
+          "fontSize": 13,
+          "fontWeight": "normal"
         }
       ]
     },
@@ -1761,7 +1766,8 @@
               "content": "Log your first weigh-in to see your trends and stats.",
               "textAlign": "center",
               "fontFamily": "Inter",
-              "fontSize": 15
+              "fontSize": 15,
+              "fontWeight": "normal"
             },
             {
               "type": "frame",

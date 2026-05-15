@@ -44,8 +44,8 @@
                   "fill": {
                     "type": "image",
                     "enabled": true,
-                    "url": "./images/generated-1778856634351.png",
-                    "mode": "fill"
+                    "url": "../icons/bigdogs-logo-white.png",
+                    "mode": "fit"
                   }
                 },
                 {
@@ -474,7 +474,8 @@
                       "fill": "#BBBBBB",
                       "content": "Jeff",
                       "fontFamily": "Inter",
-                      "fontSize": 11
+                      "fontSize": 11,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -498,7 +499,8 @@
                       "fill": "#BBBBBB",
                       "content": "Alice",
                       "fontFamily": "Inter",
-                      "fontSize": 11
+                      "fontSize": 11,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -522,7 +524,8 @@
                       "fill": "#BBBBBB",
                       "content": "Bob",
                       "fontFamily": "Inter",
-                      "fontSize": 11
+                      "fontSize": 11,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -546,7 +549,8 @@
                       "fill": "#BBBBBB",
                       "content": "Carol",
                       "fontFamily": "Inter",
-                      "fontSize": 11
+                      "fontSize": 11,
+                      "fontWeight": "normal"
                     }
                   ]
                 }
@@ -648,8 +652,8 @@
                   "fill": {
                     "type": "image",
                     "enabled": true,
-                    "url": "./images/generated-1778856683779.png",
-                    "mode": "fill"
+                    "url": "../icons/bigdogs-logo-white.png",
+                    "mode": "fit"
                   }
                 },
                 {
@@ -1076,8 +1080,8 @@
                   "fill": {
                     "type": "image",
                     "enabled": true,
-                    "url": "./images/generated-1778856696840.png",
-                    "mode": "fill"
+                    "url": "../icons/bigdogs-logo-white.png",
+                    "mode": "fit"
                   }
                 },
                 {
@@ -1160,7 +1164,8 @@
               "fill": "#888888",
               "content": "3 participants joined",
               "fontFamily": "Inter",
-              "fontSize": 14
+              "fontSize": 14,
+              "fontWeight": "normal"
             },
             {
               "type": "text",
@@ -1168,7 +1173,8 @@
               "fill": "#666666",
               "content": "Check back after the baseline week",
               "fontFamily": "Inter",
-              "fontSize": 13
+              "fontSize": 13,
+              "fontWeight": "normal"
             }
           ]
         },
@@ -1266,8 +1272,8 @@
                   "fill": {
                     "type": "image",
                     "enabled": true,
-                    "url": "./images/generated-1778856713442.png",
-                    "mode": "fill"
+                    "url": "../icons/bigdogs-logo-white.png",
+                    "mode": "fit"
                   }
                 },
                 {
@@ -1711,7 +1717,8 @@
                           "fill": "#BBBBBB",
                           "content": "Jeff",
                           "fontFamily": "Inter",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -1735,7 +1742,8 @@
                           "fill": "#BBBBBB",
                           "content": "Alice",
                           "fontFamily": "Inter",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -1759,7 +1767,8 @@
                           "fill": "#BBBBBB",
                           "content": "Bob",
                           "fontFamily": "Inter",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -1783,7 +1792,8 @@
                           "fill": "#BBBBBB",
                           "content": "Carol",
                           "fontFamily": "Inter",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -1878,7 +1888,8 @@
               "content": "(Same side-by-side layout as Active desktop — winner banner + final standings)",
               "textAlign": "center",
               "fontFamily": "Inter",
-              "fontSize": 14
+              "fontSize": 14,
+              "fontWeight": "normal"
             },
             {
               "type": "text",
@@ -1943,7 +1954,8 @@
               "fill": "#888888",
               "content": "3 participants joined  ·  Starting June 2",
               "fontFamily": "Inter",
-              "fontSize": 15
+              "fontSize": 15,
+              "fontWeight": "normal"
             },
             {
               "type": "text",
@@ -1951,7 +1963,8 @@
               "fill": "#666666",
               "content": "Check back after the baseline week",
               "fontFamily": "Inter",
-              "fontSize": 13
+              "fontSize": 13,
+              "fontWeight": "normal"
             },
             {
               "type": "frame",

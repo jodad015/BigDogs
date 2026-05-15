@@ -62,18 +62,18 @@ Deep navy on light/cream background, or inverted white on dark background.
 | SCR-JOIN        | ✅     | ✅       | 3 mobile + 3 desktop, no participant cap |
 | SCR-ONBOARDING  | ✅     | ✅       | 4 mobile + 4 desktop (4-step wizard) |
 | SCR-LEADERBOARD | ✅     | ✅       | 3 mobile + 3 desktop, gold/silver/bronze |
-| SCR-WEEKLY      | ✅     | ⬜       | Regular + showdown + maintenance |
-| SCR-SPINUP      | ✅     | ⬜       | Baseline week (renamed from spin-up) |
+| SCR-WEEKLY      | ✅     | ✅       | 3 mobile + 3 desktop, regular + showdown + maintenance |
+| SCR-SPINUP      | ✅     | ✅       | 3 mobile + 3 desktop, day counter + check-ins |
 
 ### Phase 3: Supporting Screens
 | Screen          | Prompt | Designed | Notes |
 |-----------------|:------:|:--------:|-------|
-| SCR-PROFILE     | ✅     | ✅       | 3 mobile + 3 desktop, includes light mode |
+| SCR-PROFILE     | ✅     | ✅       | 3 mobile + 3 desktop, light mode + avatar picker |
 | SCR-PARTICIPANT | ✅     | ✅       | 3 mobile + 3 desktop, active/maint/early |
 | SCR-PUBLIC      | ✅     | ✅       | 3 mobile + 3 desktop, standalone page |
-| SCR-SIGNUP      | ✅     | ⬜       | Form + validation + error |
+| SCR-SIGNUP      | ✅     | ✅       | 3 mobile + 3 desktop, form + validation + error |
 
 ### Marketing Site
 | Screen          | Prompt | Designed | Notes |
 |-----------------|:------:|:--------:|-------|
-| SCR-MARKETING   | ✅     | ⬜       | Dark-only, mobile + desktop variants |
+| SCR-MARKETING   | ✅     | ✅       | Dark-only, mobile + desktop variants |
