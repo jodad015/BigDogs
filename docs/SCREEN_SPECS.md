@@ -3,11 +3,11 @@
 ## Index
 
 ### Marketing & Auth
-| ID          | Screen              | Spec                                           |
-|-------------|---------------------|-------------------------------------------------|
-| SCR-LANDING | Landing Page        | [SCR-LANDING](screens/SCR-LANDING.md)          |
-| SCR-SIGNUP  | Sign Up             | [SCR-SIGNUP](screens/SCR-SIGNUP.md)            |
-| SCR-LOGIN   | Log In              | [SCR-LOGIN](screens/SCR-LOGIN.md)              |
+| ID            | Screen              | Spec                                             |
+|---------------|---------------------|--------------------------------------------------|
+| SCR-MARKETING | Marketing Site      | [SCR-MARKETING](screens/SCR-MARKETING.md)        |
+| SCR-SIGNUP    | Sign Up             | [SCR-SIGNUP](screens/SCR-SIGNUP.md)              |
+| SCR-LOGIN     | Log In              | [SCR-LOGIN](screens/SCR-LOGIN.md)                |
 
 ### Challenge Setup
 | ID              | Screen              | Spec                                             |

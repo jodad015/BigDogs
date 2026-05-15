@@ -32,6 +32,17 @@ Deep navy on light/cream background, or inverted white on dark background.
 - Clean sans-serif for body text
 - Monospace or tabular figures for data alignment
 
+**Dark/Light Mode:**
+- Dark mode is the default (matches brand navy)
+- Light mode toggle in Profile settings, stored in localStorage + profile
+- Marketing site is dark-only
+- See DESIGN_PATTERNS.md for full token table
+
+**Architecture:**
+- Marketing site at `bigdogs.app` — `apps/marketing/` in monorepo
+- Web app at `app.bigdogs.app` — `apps/web/` in monorepo
+- Separate Cloudflare Pages projects for each
+
 ---
 
 ## Design Phases
@@ -57,8 +68,12 @@ Deep navy on light/cream background, or inverted white on dark background.
 ### Phase 3: Supporting Screens
 | Screen          | Prompt | Designed | Notes |
 |-----------------|:------:|:--------:|-------|
-| SCR-LANDING     | ⬜     | ⬜       |       |
-| SCR-PROFILE     | ⬜     | ⬜       |       |
+| SCR-PROFILE     | ⬜     | ⬜       | Includes dark/light mode toggle |
 | SCR-PARTICIPANT | ⬜     | ⬜       |       |
 | SCR-PUBLIC      | ⬜     | ⬜       |       |
 | SCR-SIGNUP      | ⬜     | ⬜       |       |
+
+### Marketing Site
+| Screen          | Prompt | Designed | Notes |
+|-----------------|:------:|:--------:|-------|
+| SCR-MARKETING   | ✅     | ⬜       | Dark-only, mobile + desktop variants |
