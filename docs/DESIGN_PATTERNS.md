@@ -85,15 +85,49 @@ Minimal destructive actions in this app. Primary ones:
 
 ## Theming
 
-- Light mode primary for v1
-- Dark mode as future enhancement
-- Semantic color tokens for scoring states:
-  - On pace (green)
-  - Slightly under (yellow)
-  - Significantly under (orange)
-  - Over pace / penalty zone (red)
-  - Maintenance (blue)
-  - Showdown (purple/gold)
+### Dark/Light Mode
+
+- **Dark mode is the default** — matches the brand navy foundation
+- Light mode available via toggle in Profile settings
+- User preference stored in `localStorage` and on the profile
+- If no preference set, defaults to dark
+
+### Implementation (Tailwind v4)
+
+- CSS custom properties define all colors in `index.css`
+- Two token sets: `@theme` for dark (default), `.light` class override
+- The `<html>` element gets a `light` class when toggled
+- All component colors reference semantic tokens, never raw values
+
+### Color Tokens (Both Modes)
+
+| Token              | Dark Mode           | Light Mode          | Usage                |
+|--------------------|---------------------|---------------------|----------------------|
+| `--background`     | navy (#0f0f1a)      | cream (#f5f0eb)     | Page background      |
+| `--foreground`     | white (#f5f5f5)     | navy (#1a1a2e)      | Primary text         |
+| `--card`           | dark navy (#1a1a2e) | white (#ffffff)     | Card backgrounds     |
+| `--card-foreground`| white (#f5f5f5)     | navy (#1a1a2e)      | Card text            |
+| `--primary`        | crimson (#e94560)   | crimson (#e94560)   | CTAs, brand accent   |
+| `--muted`          | gray (#2a2a3e)      | light gray (#e5e5e5)| Muted backgrounds    |
+| `--muted-foreground`| gray (#888)        | gray (#666)         | Secondary text       |
+| `--border`         | dark (#2a2a3e)      | light (#e0e0e0)     | Borders              |
+| `--input`          | dark (#1a1a2e)      | white (#ffffff)     | Input backgrounds    |
+
+### Scoring Colors (Same in Both Modes)
+
+These don't change between modes — they need consistent meaning:
+
+| Token                | Value     | Usage                      |
+|----------------------|-----------|----------------------------|
+| `--on-pace`          | #16a34a   | On target (green)          |
+| `--slightly-under`   | #f59e0b   | Close to target (amber)    |
+| `--significantly-under`| #f97316 | Behind target (orange)     |
+| `--over-pace`        | #dc2626   | Over target / penalty (red)|
+| `--maintenance`      | #3b82f6   | Maintenance mode (blue)    |
+| `--showdown`         | #7c3aed   | Showdown week (purple)     |
+| `--gold`             | #fbbf24   | 1st place                  |
+| `--silver`           | #9ca3af   | 2nd place                  |
+| `--bronze`           | #d97706   | 3rd place                  |
 
 ---
 
