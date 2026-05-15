@@ -58,19 +58,19 @@ Deep navy on light/cream background, or inverted white on dark background.
 ### Phase 2: Challenge Flow
 | Screen          | Prompt | Designed | Notes |
 |-----------------|:------:|:--------:|-------|
-| SCR-CREATE      | ✅     | ⬜       | Form + success with invite code |
-| SCR-JOIN        | ✅     | ⬜       | Code entry + preview + errors |
-| SCR-ONBOARDING  | ✅     | ⬜       | 4-step wizard with safety rails |
-| SCR-LEADERBOARD | ✅     | ⬜       | Active + showdown + complete |
+| SCR-CREATE      | ✅     | ✅       | 3 mobile + 3 desktop, baseline week model |
+| SCR-JOIN        | ✅     | ✅       | 3 mobile + 3 desktop, no participant cap |
+| SCR-ONBOARDING  | ✅     | ✅       | 4 mobile + 4 desktop (4-step wizard) |
+| SCR-LEADERBOARD | ✅     | ✅       | 3 mobile + 3 desktop, gold/silver/bronze |
 | SCR-WEEKLY      | ✅     | ⬜       | Regular + showdown + maintenance |
-| SCR-SPINUP      | ✅     | ⬜       | Day counter + group check-ins |
+| SCR-SPINUP      | ✅     | ⬜       | Baseline week (renamed from spin-up) |
 
 ### Phase 3: Supporting Screens
 | Screen          | Prompt | Designed | Notes |
 |-----------------|:------:|:--------:|-------|
-| SCR-PROFILE     | ✅     | ⬜       | With challenge + solo + light mode |
-| SCR-PARTICIPANT | ✅     | ⬜       | Active + maintenance + early |
-| SCR-PUBLIC      | ✅     | ⬜       | Active + complete + not started |
+| SCR-PROFILE     | ✅     | ✅       | 3 mobile + 3 desktop, includes light mode |
+| SCR-PARTICIPANT | ✅     | ✅       | 3 mobile + 3 desktop, active/maint/early |
+| SCR-PUBLIC      | ✅     | ✅       | 3 mobile + 3 desktop, standalone page |
 | SCR-SIGNUP      | ✅     | ⬜       | Form + validation + error |
 
 ### Marketing Site
