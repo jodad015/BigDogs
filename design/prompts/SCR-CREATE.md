@@ -28,7 +28,7 @@ Fresh form, nothing filled in yet.
 - Challenge name input — dark input bg, white text, placeholder "Name your challenge"
 - Duration picker — 4 pill-style options: 10 / 12 / 14 / 16 weeks, none selected
 - Start date picker — shows a date input, helper text below:
-  "Spin-up week begins [start - 7 days]"
+  "Week 1 is the un-scored baseline week"
 - Timezone picker — dropdown defaulting to user's local timezone,
   helper text: "Determines what 'today' means for everyone"
 - Showdown weeks toggle — on by default, with label and helper text:
@@ -51,7 +51,7 @@ All fields completed, ready to submit.
 **Same layout, except:**
 - Name filled: "Office BigDogs Q3"
 - Duration: "12 weeks" pill selected (accent color fill)
-- Start date: "June 2, 2026" — helper shows "Spin-up begins May 26"
+- Start date: "June 2, 2026" — helper shows "Week 1 is baseline, scoring starts Week 2"
 - Timezone: "America/Chicago (CDT)"
 - Showdown toggle: on
 - Public toggle: off
@@ -73,7 +73,7 @@ Challenge created. Showing the invite code.
 - "Copy Code" button — outlined, with copy icon
 - "Share Link" button — outlined, with share icon
 - Or a single "Copy Invite Link" primary button
-- Small text: "Share this code with up to 3 friends"
+- Small text: "Share this code to invite others"
 - "Go to Dashboard" text link below
 
 ---

@@ -1,0 +1,2238 @@
+{
+  "version": "2.11",
+  "children": [
+    {
+      "type": "frame",
+      "id": "A92oV0",
+      "x": 0,
+      "y": 0,
+      "name": "SCR-ONBOARDING / Step 1 — Height",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "#1a1a2e",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "oc9fK",
+          "name": "Header",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 10,
+          "padding": [
+            44,
+            20,
+            12,
+            20
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "HdT0x",
+              "name": "backRow1",
+              "width": "fill_container",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "fioca",
+                  "width": 24,
+                  "height": 24,
+                  "iconFontName": "arrow-left",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "N6PaE",
+              "fill": "#FFFFFF",
+              "content": "Set Up Your Challenge",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "VlNc4",
+              "name": "dots1",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "X9DeV",
+                  "fill": "#E63946",
+                  "width": 8,
+                  "height": 8
+                },
+                {
+                  "type": "ellipse",
+                  "id": "PTL34",
+                  "fill": "#444444",
+                  "width": 8,
+                  "height": 8
+                },
+                {
+                  "type": "ellipse",
+                  "id": "HnwsO",
+                  "fill": "#444444",
+                  "width": 8,
+                  "height": 8
+                },
+                {
+                  "type": "ellipse",
+                  "id": "Us9OX",
+                  "fill": "#444444",
+                  "width": 8,
+                  "height": 8
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "M6spx",
+          "name": "Body",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 32,
+          "padding": [
+            40,
+            24,
+            0,
+            24
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "IpKRm",
+              "fill": "#FFFFFF",
+              "content": "What's your height?",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "J8WeV",
+              "name": "heightRow",
+              "gap": 16,
+              "alignItems": "end",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "YxiXj",
+                  "name": "ftBox",
+                  "width": 100,
+                  "height": 64,
+                  "fill": "#16162b",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#333333"
+                  },
+                  "gap": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "HjaeA",
+                      "fill": "#FFFFFF",
+                      "content": "5",
+                      "fontFamily": "Inter",
+                      "fontSize": 32,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "wbcmj",
+                      "fill": "#888888",
+                      "content": "ft",
+                      "fontFamily": "Inter",
+                      "fontSize": 16
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tgmWL",
+                  "name": "inBox",
+                  "width": 100,
+                  "height": 64,
+                  "fill": "#16162b",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#333333"
+                  },
+                  "gap": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "lfE1w",
+                      "fill": "#FFFFFF",
+                      "content": "10",
+                      "fontFamily": "Inter",
+                      "fontSize": 32,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "VRZVt",
+                      "fill": "#888888",
+                      "content": "in",
+                      "fontFamily": "Inter",
+                      "fontSize": 16
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "T9zoZO",
+              "fill": "#666666",
+              "content": "Used for safety checks only — never shared",
+              "fontFamily": "Inter",
+              "fontSize": 13
+            },
+            {
+              "type": "frame",
+              "id": "GlcTn",
+              "name": "spacer1",
+              "width": 1,
+              "height": "fill_container"
+            },
+            {
+              "type": "frame",
+              "id": "mfPwp",
+              "name": "nextBtn1",
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#E63946",
+              "cornerRadius": 12,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "GTV0s",
+                  "fill": "#FFFFFF",
+                  "content": "Next",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "jhzdt",
+              "name": "pad1",
+              "width": 1,
+              "height": 48
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "wca3s",
+      "x": 440,
+      "y": 0,
+      "name": "SCR-ONBOARDING / Step 2 — Goal Method",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "#1a1a2e",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "RyaLS",
+          "name": "Header",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 10,
+          "padding": [
+            44,
+            20,
+            12,
+            20
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "cLooq",
+              "name": "br2",
+              "width": "fill_container",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "mpEmB",
+                  "width": 24,
+                  "height": 24,
+                  "iconFontName": "arrow-left",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "konnD",
+              "fill": "#FFFFFF",
+              "content": "Set Up Your Challenge",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "UFEUk",
+              "name": "dots2",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "Wyp6P",
+                  "fill": "#E63946",
+                  "width": 8,
+                  "height": 8
+                },
+                {
+                  "type": "ellipse",
+                  "id": "iC3SD",
+                  "fill": "#E63946",
+                  "width": 8,
+                  "height": 8
+                },
+                {
+                  "type": "ellipse",
+                  "id": "dNrSw",
+                  "fill": "#444444",
+                  "width": 8,
+                  "height": 8
+                },
+                {
+                  "type": "ellipse",
+                  "id": "GU6Im",
+                  "fill": "#444444",
+                  "width": 8,
+                  "height": 8
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "a7B0U",
+          "name": "Body",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "padding": [
+            24,
+            24,
+            48,
+            24
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "izkNK",
+              "fill": "#FFFFFF",
+              "content": "How do you want to set your goal?",
+              "fontFamily": "Inter",
+              "fontSize": 22,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "y5QnHX",
+              "name": "c1",
+              "width": "fill_container",
+              "fill": "#252547",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 2,
+                "fill": "#E63946"
+              },
+              "layout": "vertical",
+              "gap": 4,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Gs6c0",
+                  "fill": "#FFFFFF",
+                  "content": "I want to reach ___ lb",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "naRIa",
+                  "fill": "#888888",
+                  "content": "Set a specific target weight",
+                  "fontFamily": "Inter",
+                  "fontSize": 12
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "R1jzRW",
+              "name": "c2",
+              "width": "fill_container",
+              "fill": "#252547",
+              "cornerRadius": 12,
+              "layout": "vertical",
+              "gap": 4,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "c7diX",
+                  "fill": "#FFFFFF",
+                  "content": "I want to lose ___%",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "DSu7G",
+                  "fill": "#888888",
+                  "content": "Percentage of body weight",
+                  "fontFamily": "Inter",
+                  "fontSize": 12
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "T4QGC",
+              "name": "c3",
+              "width": "fill_container",
+              "fill": "#252547",
+              "cornerRadius": 12,
+              "layout": "vertical",
+              "gap": 4,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "A9DmFR",
+                  "fill": "#FFFFFF",
+                  "content": "I want to hit BMI ___",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "O0f5Z",
+                  "fill": "#888888",
+                  "content": "Target a specific BMI",
+                  "fontFamily": "Inter",
+                  "fontSize": 12
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "T9jyl",
+              "name": "c4",
+              "width": "fill_container",
+              "fill": "#252547",
+              "cornerRadius": 12,
+              "layout": "vertical",
+              "gap": 4,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "QVpXG",
+                  "fill": "#FFFFFF",
+                  "content": "I'll lose ___ lb/week",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "F2lHS2",
+                  "fill": "#888888",
+                  "content": "Set your weekly pace",
+                  "fontFamily": "Inter",
+                  "fontSize": 12
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "RwzrS",
+              "name": "c5",
+              "width": "fill_container",
+              "fill": "#252547",
+              "cornerRadius": 12,
+              "layout": "vertical",
+              "gap": 4,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "GoOJs",
+                  "fill": "#FFFFFF",
+                  "content": "Use the suggested pace",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "eOE81",
+                  "fill": "#888888",
+                  "content": "1.5 lb/week — a steady, sustainable pace",
+                  "fontFamily": "Inter",
+                  "fontSize": 12
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ayBgE",
+              "name": "sp2",
+              "width": 1,
+              "height": "fill_container"
+            },
+            {
+              "type": "frame",
+              "id": "QcBAV",
+              "name": "nb2",
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#E63946",
+              "cornerRadius": 12,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "J41nHR",
+                  "fill": "#FFFFFF",
+                  "content": "Next",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "YE8Xt",
+      "x": 880,
+      "y": 0,
+      "name": "SCR-ONBOARDING / Step 3 — Safety Rail",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "#1a1a2e",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "xe17N",
+          "name": "Header",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 10,
+          "padding": [
+            44,
+            20,
+            12,
+            20
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "tPSCx",
+              "name": "br3",
+              "width": "fill_container",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "ECSRX",
+                  "width": 24,
+                  "height": 24,
+                  "iconFontName": "arrow-left",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "X422xV",
+              "fill": "#FFFFFF",
+              "content": "Set Up Your Challenge",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "e1fGH",
+              "name": "dots3",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "f4wiud",
+                  "fill": "#E63946",
+                  "width": 8,
+                  "height": 8
+                },
+                {
+                  "type": "ellipse",
+                  "id": "W0N0y",
+                  "fill": "#E63946",
+                  "width": 8,
+                  "height": 8
+                },
+                {
+                  "type": "ellipse",
+                  "id": "sX4YX",
+                  "fill": "#E63946",
+                  "width": 8,
+                  "height": 8
+                },
+                {
+                  "type": "ellipse",
+                  "id": "MyoCE",
+                  "fill": "#444444",
+                  "width": 8,
+                  "height": 8
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ZMVWy",
+          "name": "Body",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "padding": [
+            16,
+            24,
+            48,
+            24
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "ju5Fw",
+              "fill": "#888888",
+              "content": "Target Weight",
+              "fontFamily": "Inter",
+              "fontSize": 13,
+              "fontWeight": "500"
+            },
+            {
+              "type": "frame",
+              "id": "cTsIP",
+              "name": "goalInput",
+              "gap": 8,
+              "alignItems": "end",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "m2Mp7q",
+                  "fill": "#FFFFFF",
+                  "content": "165",
+                  "fontFamily": "Inter",
+                  "fontSize": 48,
+                  "fontWeight": "900"
+                },
+                {
+                  "type": "text",
+                  "id": "HUd9n",
+                  "fill": "#888888",
+                  "content": "lb",
+                  "fontFamily": "Inter",
+                  "fontSize": 20,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "vHfzL",
+              "name": "preview",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 6,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Satdq",
+                  "fill": "#BBBBBB",
+                  "content": "Total loss: 30.0 lb",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "EezeZ",
+                  "fill": "#BBBBBB",
+                  "content": "Weekly pace: 2.5 lb/wk",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "sEUfG",
+              "name": "Safety Rail",
+              "width": "fill_container",
+              "fill": "#F59E0B15",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#F59E0B40"
+              },
+              "layout": "vertical",
+              "gap": 12,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "kD9rJ",
+                  "name": "alertHdr",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "lxUfd",
+                      "width": 18,
+                      "height": 18,
+                      "iconFontName": "triangle-alert",
+                      "iconFontFamily": "lucide",
+                      "fill": "#F59E0B"
+                    },
+                    {
+                      "type": "text",
+                      "id": "J1L95",
+                      "fill": "#F59E0B",
+                      "textGrowth": "fixed-width",
+                      "width": 270,
+                      "content": "That's 2.5 lb/wk — above the 2 lb/wk sustainable max.",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "dd24O",
+                  "name": "opt1",
+                  "width": "fill_container",
+                  "fill": "#F59E0B10",
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#F59E0B"
+                  },
+                  "padding": [
+                    10,
+                    14
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "S0ZIt",
+                      "fill": "#FFFFFF",
+                      "content": "Lower goal to 171 lb",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "UKxYy",
+                  "name": "opt2",
+                  "width": "fill_container",
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#444444"
+                  },
+                  "padding": [
+                    10,
+                    14
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "OM34C",
+                      "fill": "#BBBBBB",
+                      "content": "Extend challenge to 15 weeks",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "x9ayO",
+                  "name": "opt3",
+                  "width": "fill_container",
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#444444"
+                  },
+                  "padding": [
+                    10,
+                    14
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "vJv9x",
+                      "fill": "#BBBBBB",
+                      "content": "Keep as stretch goal",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "XwUNE",
+              "name": "sp3",
+              "width": 1,
+              "height": "fill_container"
+            },
+            {
+              "type": "frame",
+              "id": "JgTdC",
+              "name": "nb3",
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#E63946",
+              "cornerRadius": 12,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "rfIVF",
+                  "fill": "#FFFFFF",
+                  "content": "Next",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "k5btI",
+      "x": 1320,
+      "y": 0,
+      "name": "SCR-ONBOARDING / Step 4 — Review",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "#1a1a2e",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "WTqvw",
+          "name": "Header",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 10,
+          "padding": [
+            44,
+            20,
+            12,
+            20
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "TAm6h",
+              "name": "br4",
+              "width": "fill_container",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "eyrJZ",
+                  "width": 24,
+                  "height": 24,
+                  "iconFontName": "arrow-left",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "e83Dyc",
+              "fill": "#FFFFFF",
+              "content": "Set Up Your Challenge",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "NVdCM",
+              "name": "dots4",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "QsDth",
+                  "fill": "#E63946",
+                  "width": 8,
+                  "height": 8
+                },
+                {
+                  "type": "ellipse",
+                  "id": "JAua6",
+                  "fill": "#E63946",
+                  "width": 8,
+                  "height": 8
+                },
+                {
+                  "type": "ellipse",
+                  "id": "e8Ga5",
+                  "fill": "#E63946",
+                  "width": 8,
+                  "height": 8
+                },
+                {
+                  "type": "ellipse",
+                  "id": "UVyx0",
+                  "fill": "#E63946",
+                  "width": 8,
+                  "height": 8
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "nAohK",
+          "name": "Body",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            24,
+            24,
+            48,
+            24
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "unb0C",
+              "fill": "#FFFFFF",
+              "content": "Review Your Goal",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "Z98Rq6",
+              "name": "summary",
+              "width": "fill_container",
+              "fill": "#252547",
+              "cornerRadius": 12,
+              "layout": "vertical",
+              "gap": 16,
+              "padding": 20,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "leYcf",
+                  "name": "row1",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "NbE8g",
+                      "fill": "#888888",
+                      "content": "Goal Method",
+                      "fontFamily": "Inter",
+                      "fontSize": 13
+                    },
+                    {
+                      "type": "text",
+                      "id": "DE8MW",
+                      "fill": "#FFFFFF",
+                      "content": "Target Weight",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "rectangle",
+                  "id": "YEEPq",
+                  "fill": "#333333",
+                  "width": "fill_container",
+                  "height": 1
+                },
+                {
+                  "type": "frame",
+                  "id": "kOJL5",
+                  "name": "row2",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "QvlRI",
+                      "fill": "#888888",
+                      "content": "Target Weight",
+                      "fontFamily": "Inter",
+                      "fontSize": 13
+                    },
+                    {
+                      "type": "text",
+                      "id": "VRUIC",
+                      "fill": "#FFFFFF",
+                      "content": "171 lb",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "rectangle",
+                  "id": "M9bU7q",
+                  "fill": "#333333",
+                  "width": "fill_container",
+                  "height": 1
+                },
+                {
+                  "type": "frame",
+                  "id": "KNLgX",
+                  "name": "row3",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "G9SmWV",
+                      "fill": "#888888",
+                      "content": "Total Loss",
+                      "fontFamily": "Inter",
+                      "fontSize": 13
+                    },
+                    {
+                      "type": "text",
+                      "id": "lTUma",
+                      "fill": "#FFFFFF",
+                      "content": "24.0 lb",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "rectangle",
+                  "id": "poBVE",
+                  "fill": "#333333",
+                  "width": "fill_container",
+                  "height": 1
+                },
+                {
+                  "type": "frame",
+                  "id": "i5Cne",
+                  "name": "row4",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "wRRd7",
+                      "fill": "#888888",
+                      "content": "Weekly Target",
+                      "fontFamily": "Inter",
+                      "fontSize": 13
+                    },
+                    {
+                      "type": "text",
+                      "id": "hs4Sk",
+                      "fill": "#FFFFFF",
+                      "content": "2.0 lb/wk",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "rectangle",
+                  "id": "l1uVC",
+                  "fill": "#333333",
+                  "width": "fill_container",
+                  "height": 1
+                },
+                {
+                  "type": "frame",
+                  "id": "NJBij",
+                  "name": "row5",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "YhU1T",
+                      "fill": "#888888",
+                      "content": "Challenge",
+                      "fontFamily": "Inter",
+                      "fontSize": 13
+                    },
+                    {
+                      "type": "text",
+                      "id": "X9kzc",
+                      "fill": "#FFFFFF",
+                      "content": "12 weeks",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "qYrh9",
+              "fill": "#888888",
+              "content": "This pace is locked for the entire challenge",
+              "fontFamily": "Inter",
+              "fontSize": 12
+            },
+            {
+              "type": "frame",
+              "id": "QUwSF",
+              "name": "sp4",
+              "width": 1,
+              "height": "fill_container"
+            },
+            {
+              "type": "frame",
+              "id": "kScqZ",
+              "name": "confirmBtn",
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#E63946",
+              "cornerRadius": 12,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "LrUee",
+                  "fill": "#FFFFFF",
+                  "content": "Confirm & Start",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "t6W3z",
+              "fill": "#888888",
+              "content": "Go Back",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "500"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "vFeYK",
+      "x": 0,
+      "y": 924,
+      "name": "SCR-ONBOARDING / Step 1 — Desktop",
+      "clip": true,
+      "width": 1440,
+      "height": 900,
+      "fill": "#1a1a2e",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "eP6wb",
+          "name": "Body",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 32,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "S11GX",
+              "name": "ddots1",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "U60fol",
+                  "fill": "#E63946",
+                  "width": 10,
+                  "height": 10
+                },
+                {
+                  "type": "ellipse",
+                  "id": "xC1af",
+                  "fill": "#444444",
+                  "width": 10,
+                  "height": 10
+                },
+                {
+                  "type": "ellipse",
+                  "id": "C8z82",
+                  "fill": "#444444",
+                  "width": 10,
+                  "height": 10
+                },
+                {
+                  "type": "ellipse",
+                  "id": "PdMNg",
+                  "fill": "#444444",
+                  "width": 10,
+                  "height": 10
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "sv3X4",
+              "fill": "#FFFFFF",
+              "content": "What's your height?",
+              "fontFamily": "Inter",
+              "fontSize": 28,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "GpULi",
+              "name": "dhr",
+              "gap": 20,
+              "alignItems": "end",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "gGdgr",
+                  "name": "dft",
+                  "width": 120,
+                  "height": 72,
+                  "fill": "#16162b",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#333333"
+                  },
+                  "gap": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "nAMXI",
+                      "fill": "#FFFFFF",
+                      "content": "5",
+                      "fontFamily": "Inter",
+                      "fontSize": 36,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "m8nAO",
+                      "fill": "#888888",
+                      "content": "ft",
+                      "fontFamily": "Inter",
+                      "fontSize": 18
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "M9O4UW",
+                  "name": "din",
+                  "width": 120,
+                  "height": 72,
+                  "fill": "#16162b",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#333333"
+                  },
+                  "gap": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "mciKY",
+                      "fill": "#FFFFFF",
+                      "content": "10",
+                      "fontFamily": "Inter",
+                      "fontSize": 36,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "lqfWm",
+                      "fill": "#888888",
+                      "content": "in",
+                      "fontFamily": "Inter",
+                      "fontSize": 18
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "LgMOh",
+              "fill": "#666666",
+              "content": "Used for safety checks only — never shared",
+              "fontFamily": "Inter",
+              "fontSize": 14
+            },
+            {
+              "type": "frame",
+              "id": "LG3GC",
+              "name": "dnb1",
+              "width": 320,
+              "height": 52,
+              "fill": "#E63946",
+              "cornerRadius": 12,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "JwKK2",
+                  "fill": "#FFFFFF",
+                  "content": "Next",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "SAgQe",
+      "x": 1520,
+      "y": 924,
+      "name": "SCR-ONBOARDING / Step 2 — Desktop",
+      "clip": true,
+      "width": 1440,
+      "height": 900,
+      "fill": "#1a1a2e",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "rqWf1",
+          "name": "Body",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 20,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "IgzzT",
+              "name": "ddots2",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "NQifU",
+                  "fill": "#E63946",
+                  "width": 10,
+                  "height": 10
+                },
+                {
+                  "type": "ellipse",
+                  "id": "fF5bN",
+                  "fill": "#E63946",
+                  "width": 10,
+                  "height": 10
+                },
+                {
+                  "type": "ellipse",
+                  "id": "RQJpm",
+                  "fill": "#444444",
+                  "width": 10,
+                  "height": 10
+                },
+                {
+                  "type": "ellipse",
+                  "id": "leVqf",
+                  "fill": "#444444",
+                  "width": 10,
+                  "height": 10
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "l9wEN",
+              "fill": "#FFFFFF",
+              "content": "How do you want to set your goal?",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "LiLtD",
+              "name": "cards",
+              "width": 420,
+              "layout": "vertical",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "NEHBk",
+                  "name": "dc1",
+                  "width": "fill_container",
+                  "fill": "#252547",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 2,
+                    "fill": "#E63946"
+                  },
+                  "layout": "vertical",
+                  "gap": 4,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "yoQn1",
+                      "fill": "#FFFFFF",
+                      "content": "I want to reach ___ lb",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Oy9E1",
+                      "fill": "#888888",
+                      "content": "Set a specific target weight",
+                      "fontFamily": "Inter",
+                      "fontSize": 12
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f7DwNv",
+                  "name": "dc2",
+                  "width": "fill_container",
+                  "fill": "#252547",
+                  "cornerRadius": 12,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "QiCKt",
+                      "fill": "#FFFFFF",
+                      "content": "I want to lose ___%",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "T70mR",
+                      "fill": "#888888",
+                      "content": "Percentage of body weight",
+                      "fontFamily": "Inter",
+                      "fontSize": 12
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "H8BFJ",
+                  "name": "dc3",
+                  "width": "fill_container",
+                  "fill": "#252547",
+                  "cornerRadius": 12,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Nh62h",
+                      "fill": "#FFFFFF",
+                      "content": "I want to hit BMI ___",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "xDP7G",
+                      "fill": "#888888",
+                      "content": "Target a specific BMI",
+                      "fontFamily": "Inter",
+                      "fontSize": 12
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "M5C3Zw",
+                  "name": "dc4",
+                  "width": "fill_container",
+                  "fill": "#252547",
+                  "cornerRadius": 12,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "oD8Q3",
+                      "fill": "#FFFFFF",
+                      "content": "I'll lose ___ lb/week",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "TKlSn",
+                      "fill": "#888888",
+                      "content": "Set your weekly pace",
+                      "fontFamily": "Inter",
+                      "fontSize": 12
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "NZgFv",
+                  "name": "dc5",
+                  "width": "fill_container",
+                  "fill": "#252547",
+                  "cornerRadius": 12,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "yTACW",
+                      "fill": "#FFFFFF",
+                      "content": "Use the suggested pace",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "EV1Ob",
+                      "fill": "#888888",
+                      "content": "1.5 lb/week — a steady, sustainable pace",
+                      "fontFamily": "Inter",
+                      "fontSize": 12
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "rjjSl",
+              "name": "dnb2",
+              "width": 420,
+              "height": 52,
+              "fill": "#E63946",
+              "cornerRadius": 12,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "DtQTE",
+                  "fill": "#FFFFFF",
+                  "content": "Next",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "iE0mf",
+      "x": 3040,
+      "y": 924,
+      "name": "SCR-ONBOARDING / Step 3 — Desktop",
+      "clip": true,
+      "width": 1440,
+      "height": 900,
+      "fill": "#1a1a2e",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "ufwhO",
+          "name": "Body",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 20,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "iujxT",
+              "name": "ddots3",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "xaj4w",
+                  "fill": "#E63946",
+                  "width": 10,
+                  "height": 10
+                },
+                {
+                  "type": "ellipse",
+                  "id": "i9N7b",
+                  "fill": "#E63946",
+                  "width": 10,
+                  "height": 10
+                },
+                {
+                  "type": "ellipse",
+                  "id": "mrUXG",
+                  "fill": "#E63946",
+                  "width": 10,
+                  "height": 10
+                },
+                {
+                  "type": "ellipse",
+                  "id": "A6CGY8",
+                  "fill": "#444444",
+                  "width": 10,
+                  "height": 10
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "ec9Q9",
+              "fill": "#888888",
+              "content": "Target Weight",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "500"
+            },
+            {
+              "type": "frame",
+              "id": "O76IWO",
+              "name": "dgi",
+              "gap": 8,
+              "alignItems": "end",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "jUvZP",
+                  "fill": "#FFFFFF",
+                  "content": "165",
+                  "fontFamily": "Inter",
+                  "fontSize": 56,
+                  "fontWeight": "900"
+                },
+                {
+                  "type": "text",
+                  "id": "sguIR",
+                  "fill": "#888888",
+                  "content": "lb",
+                  "fontFamily": "Inter",
+                  "fontSize": 24,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "r1d2ws",
+              "name": "dpv",
+              "layout": "vertical",
+              "gap": 4,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "kroKX",
+                  "fill": "#BBBBBB",
+                  "content": "Total loss: 30.0 lb",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "EVi7B",
+                  "fill": "#BBBBBB",
+                  "content": "Weekly pace: 2.5 lb/wk",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "oevU6",
+              "name": "Safety Rail",
+              "width": 440,
+              "fill": "#F59E0B15",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#F59E0B40"
+              },
+              "layout": "vertical",
+              "gap": 12,
+              "padding": 20,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "XqL7K",
+                  "name": "dah",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "mswA7",
+                      "width": 18,
+                      "height": 18,
+                      "iconFontName": "triangle-alert",
+                      "iconFontFamily": "lucide",
+                      "fill": "#F59E0B"
+                    },
+                    {
+                      "type": "text",
+                      "id": "QpFoF",
+                      "fill": "#F59E0B",
+                      "textGrowth": "fixed-width",
+                      "width": 370,
+                      "content": "That's 2.5 lb/wk — above the 2 lb/wk sustainable max.",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "CruSI",
+                  "name": "do1",
+                  "width": "fill_container",
+                  "fill": "#F59E0B10",
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#F59E0B"
+                  },
+                  "padding": [
+                    10,
+                    14
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "XUwpZ",
+                      "fill": "#FFFFFF",
+                      "content": "Lower goal to 171 lb",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "lz6Pd",
+                  "name": "do2",
+                  "width": "fill_container",
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#444444"
+                  },
+                  "padding": [
+                    10,
+                    14
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "GjYpG",
+                      "fill": "#BBBBBB",
+                      "content": "Extend challenge to 15 weeks",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "oXMlF",
+                  "name": "do3",
+                  "width": "fill_container",
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#444444"
+                  },
+                  "padding": [
+                    10,
+                    14
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "efMIO",
+                      "fill": "#BBBBBB",
+                      "content": "Keep as stretch goal",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "lJrXE",
+              "name": "dnb3",
+              "width": 440,
+              "height": 52,
+              "fill": "#E63946",
+              "cornerRadius": 12,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "qCEVB",
+                  "fill": "#FFFFFF",
+                  "content": "Next",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "b20DKi",
+      "x": 4560,
+      "y": 924,
+      "name": "SCR-ONBOARDING / Step 4 — Desktop",
+      "clip": true,
+      "width": 1440,
+      "height": 900,
+      "fill": "#1a1a2e",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "g9Y6Fl",
+          "name": "Body",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 24,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "e2rrm",
+              "name": "ddots4",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "T1aK76",
+                  "fill": "#E63946",
+                  "width": 10,
+                  "height": 10
+                },
+                {
+                  "type": "ellipse",
+                  "id": "pGHWG",
+                  "fill": "#E63946",
+                  "width": 10,
+                  "height": 10
+                },
+                {
+                  "type": "ellipse",
+                  "id": "oXltV",
+                  "fill": "#E63946",
+                  "width": 10,
+                  "height": 10
+                },
+                {
+                  "type": "ellipse",
+                  "id": "QIkYn",
+                  "fill": "#E63946",
+                  "width": 10,
+                  "height": 10
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "IiVYd",
+              "fill": "#FFFFFF",
+              "content": "Review Your Goal",
+              "fontFamily": "Inter",
+              "fontSize": 28,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "eF208",
+              "name": "ds",
+              "width": 440,
+              "fill": "#252547",
+              "cornerRadius": 12,
+              "layout": "vertical",
+              "gap": 16,
+              "padding": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "FSACd",
+                  "name": "dr1",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "CRCib",
+                      "fill": "#888888",
+                      "content": "Goal Method",
+                      "fontFamily": "Inter",
+                      "fontSize": 14
+                    },
+                    {
+                      "type": "text",
+                      "id": "r8cjzl",
+                      "fill": "#FFFFFF",
+                      "content": "Target Weight",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "rectangle",
+                  "id": "A6zGjA",
+                  "fill": "#333333",
+                  "width": "fill_container",
+                  "height": 1
+                },
+                {
+                  "type": "frame",
+                  "id": "n8woVl",
+                  "name": "dr2",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "dU6tj",
+                      "fill": "#888888",
+                      "content": "Target Weight",
+                      "fontFamily": "Inter",
+                      "fontSize": 14
+                    },
+                    {
+                      "type": "text",
+                      "id": "yQTa9",
+                      "fill": "#FFFFFF",
+                      "content": "171 lb",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "rectangle",
+                  "id": "Jax8R",
+                  "fill": "#333333",
+                  "width": "fill_container",
+                  "height": 1
+                },
+                {
+                  "type": "frame",
+                  "id": "KGg1N",
+                  "name": "dr3",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "k5pHZU",
+                      "fill": "#888888",
+                      "content": "Total Loss",
+                      "fontFamily": "Inter",
+                      "fontSize": 14
+                    },
+                    {
+                      "type": "text",
+                      "id": "grJp1",
+                      "fill": "#FFFFFF",
+                      "content": "24.0 lb",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "rectangle",
+                  "id": "HNmbP",
+                  "fill": "#333333",
+                  "width": "fill_container",
+                  "height": 1
+                },
+                {
+                  "type": "frame",
+                  "id": "rBa1W",
+                  "name": "dr4",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "mxG9q",
+                      "fill": "#888888",
+                      "content": "Weekly Target",
+                      "fontFamily": "Inter",
+                      "fontSize": 14
+                    },
+                    {
+                      "type": "text",
+                      "id": "R69YBh",
+                      "fill": "#FFFFFF",
+                      "content": "2.0 lb/wk",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "rectangle",
+                  "id": "Crx55",
+                  "fill": "#333333",
+                  "width": "fill_container",
+                  "height": 1
+                },
+                {
+                  "type": "frame",
+                  "id": "Atj4v",
+                  "name": "dr5",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "jesTH",
+                      "fill": "#888888",
+                      "content": "Challenge",
+                      "fontFamily": "Inter",
+                      "fontSize": 14
+                    },
+                    {
+                      "type": "text",
+                      "id": "Bqlvc",
+                      "fill": "#FFFFFF",
+                      "content": "12 weeks",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "m0Dzje",
+              "fill": "#888888",
+              "content": "This pace is locked for the entire challenge",
+              "fontFamily": "Inter",
+              "fontSize": 13
+            },
+            {
+              "type": "frame",
+              "id": "AcMqV",
+              "name": "dcb",
+              "width": 440,
+              "height": 52,
+              "fill": "#E63946",
+              "cornerRadius": 12,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "YnsgJ",
+                  "fill": "#FFFFFF",
+                  "content": "Confirm & Start",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "NmsXU",
+              "fill": "#888888",
+              "content": "Go Back",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "500"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -47,7 +47,7 @@ Valid code entered, showing challenge details before confirming.
   - Challenge name: "Office BigDogs Q3" — bold, white
   - Creator: "Created by Jeff" — muted
   - Duration: "12 weeks starting June 2"
-  - Participants: "2 of 4 joined" with small avatar circles
+  - Participants: "2 joined" with small avatar circles
   - Showdown badge if enabled
 - "Join This Challenge" button — accent color, full width, active
 - Small text: "You'll set your goal after joining"
@@ -63,7 +63,6 @@ Show various error conditions.
 - Code input has red border
 - Error message below input in red:
   - "Challenge not found" (invalid code)
-  - OR "This challenge is full" (4/4 participants)
   - OR "This challenge has already started"
 - Join button disabled
 
