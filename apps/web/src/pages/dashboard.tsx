@@ -1,8 +1,6 @@
 import { useNavigate } from 'react-router';
 import { useWeighIns } from '@/hooks/use-weigh-ins';
-import { useProfile } from '@/hooks/use-profile';
 import { useChallenges } from '@/hooks/use-challenges';
-import { avatarSrc } from '@/components/avatar-picker';
 import { Scale, ArrowDown, ArrowUp } from 'lucide-react';
 import { TrendChart } from '@/components/trend-chart';
 
@@ -16,7 +14,6 @@ function getWeekEntries(entries: { date: string; weight: number }[]) {
 
 export default function DashboardPage() {
   const navigate = useNavigate();
-  const { profile } = useProfile();
   const { today, entries, trend, streak, isLoading } = useWeighIns();
   const { activeChallenge, hasActiveChallenge } = useChallenges();
 
@@ -67,8 +64,8 @@ export default function DashboardPage() {
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <img src={avatarSrc(profile?.avatar ?? 'crimson')} alt="" className="w-6 h-6" />
-          <span className="text-sm font-extrabold tracking-widest uppercase">BigDogs</span>
+          <img src="/logo-white.svg" alt="" className="w-7 h-5" />
+          <span className="text-sm font-extrabold tracking-widest uppercase">Big Dogs</span>
         </div>
         <span className="text-sm text-muted-foreground">{formatDate()}</span>
       </div>
