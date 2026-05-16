@@ -35,6 +35,9 @@ jobs:
       - name: Build Web
         run: pnpm build:web
 
+      - name: Build Marketing
+        run: APP_URL=https://app.bigdogs.app pnpm build:marketing
+
   # E2E and integration jobs will be enabled when we have real tests
   # and proper CI Supabase key management (capture from `supabase status`)
   # See: apps/web/e2e/ and supabase/functions/_shared/__tests__/
