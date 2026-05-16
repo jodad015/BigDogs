@@ -34,10 +34,41 @@ export default function OnboardingPage() {
   const { id: challengeId } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { user } = useAuth();
-  const { profile, updateProfile } = useProfile();
+  const { profile, isLoading: profileLoading, updateProfile } = useProfile();
+
+  // Wait for profile to load before rendering
+  if (profileLoading) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   const hasHeight = !!profile?.height_inches;
-  const [step, setStep] = useState(hasHeight ? 1 : 0);
+  const initialStep = hasHeight ? 1 : 0;
+
+  return <OnboardingWizard
+    challengeId={challengeId}
+    navigate={navigate}
+    user={user}
+    profile={profile}
+    updateProfile={updateProfile}
+    hasHeight={hasHeight}
+    initialStep={initialStep}
+  />;
+}
+
+function OnboardingWizard({ challengeId, navigate, user, profile, updateProfile, hasHeight, initialStep }: {
+  challengeId: string | undefined;
+  navigate: ReturnType<typeof useNavigate>;
+  user: ReturnType<typeof useAuth>['user'];
+  profile: ReturnType<typeof useProfile>['profile'];
+  updateProfile: ReturnType<typeof useProfile>['updateProfile'];
+  hasHeight: boolean;
+  initialStep: number;
+}) {
+  const [step, setStep] = useState(initialStep);
   const [feet, setFeet] = useState(profile?.height_inches ? String(Math.floor(profile.height_inches / 12)) : '');
   const [inches, setInches] = useState(profile?.height_inches ? String(profile.height_inches % 12) : '');
   const [goalMethod, setGoalMethod] = useState<GoalMethod | null>(null);
