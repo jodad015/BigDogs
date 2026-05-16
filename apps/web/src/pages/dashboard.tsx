@@ -226,25 +226,40 @@ export default function DashboardPage() {
                 </div>
                 <ChevronRight className="w-4 h-4 text-muted-foreground" />
               </div>
-              {challengeStats && challengeStats.weeksPlayed > 0 && (
+              {challengeStats && (
                 <div className="flex justify-around pt-2 border-t border-border">
-                  <div className="text-center">
-                    <p className="text-xs text-muted-foreground">Place</p>
-                    <p className="text-lg font-extrabold">
-                      {challengeStats.placement === 1 ? '1st' :
-                       challengeStats.placement === 2 ? '2nd' :
-                       challengeStats.placement === 3 ? '3rd' :
-                       `${challengeStats.placement}th`}
-                    </p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-xs text-muted-foreground">Points</p>
-                    <p className="text-lg font-extrabold">{challengeStats.points}</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-xs text-muted-foreground">Weeks</p>
-                    <p className="text-lg font-extrabold">{challengeStats.weeksPlayed}</p>
-                  </div>
+                  {challengeStats.weeksPlayed > 0 ? (
+                    <>
+                      <div className="text-center">
+                        <p className="text-xs text-muted-foreground">Place</p>
+                        <p className="text-lg font-extrabold">
+                          {challengeStats.placement === 1 ? '1st' :
+                           challengeStats.placement === 2 ? '2nd' :
+                           challengeStats.placement === 3 ? '3rd' :
+                           `${challengeStats.placement}th`}
+                        </p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-xs text-muted-foreground">Points</p>
+                        <p className="text-lg font-extrabold">{challengeStats.points}</p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-xs text-muted-foreground">Weeks</p>
+                        <p className="text-lg font-extrabold">{challengeStats.weeksPlayed}</p>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="text-center">
+                        <p className="text-xs text-muted-foreground">Participants</p>
+                        <p className="text-lg font-extrabold">{challengeStats.totalParticipants}</p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-xs text-muted-foreground">Status</p>
+                        <p className="text-lg font-extrabold capitalize">{activeChallenge!.status}</p>
+                      </div>
+                    </>
+                  )}
                 </div>
               )}
             </div>
