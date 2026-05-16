@@ -138,13 +138,19 @@ export default function DashboardPage() {
       )}
 
       {/* Challenge CTAs */}
-      <div className="text-center space-y-2">
-        <p className="text-sm font-medium text-muted-foreground cursor-pointer hover:text-foreground transition-colors">
+      <div className="space-y-3">
+        <button
+          onClick={() => navigate('/challenge/create')}
+          className="w-full rounded-xl bg-primary py-3.5 text-primary-foreground font-bold hover:opacity-90 transition-opacity"
+        >
           Create a Challenge
-        </p>
-        <p className="text-sm text-muted-foreground cursor-pointer hover:text-foreground transition-colors">
+        </button>
+        <button
+          onClick={() => navigate('/join')}
+          className="w-full text-center text-sm text-muted-foreground hover:text-foreground transition-colors"
+        >
           Join a Challenge
-        </p>
+        </button>
       </div>
     </div>
   );

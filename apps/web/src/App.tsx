@@ -7,9 +7,15 @@ import { AppLayout } from '@/components/layout/app-layout';
 import { LoadingScreen } from '@/components/layout/loading-screen';
 
 const LoginPage = lazy(() => import('@/pages/login'));
+const SignupPage = lazy(() => import('@/pages/signup'));
 const DashboardPage = lazy(() => import('@/pages/dashboard'));
 const WeighInPage = lazy(() => import('@/pages/weigh-in'));
 const ProfilePage = lazy(() => import('@/pages/profile'));
+const CreateChallengePage = lazy(() => import('@/pages/create-challenge'));
+const JoinChallengePage = lazy(() => import('@/pages/join-challenge'));
+const OnboardingPage = lazy(() => import('@/pages/onboarding'));
+const LeaderboardPage = lazy(() => import('@/pages/leaderboard'));
+const TrendPage = lazy(() => import('@/pages/trend'));
 
 function App() {
   return (
@@ -19,6 +25,7 @@ function App() {
           <Routes>
             <Route element={<PublicOnlyRoute />}>
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/signup" element={<SignupPage />} />
             </Route>
 
             <Route element={<ProtectedRoute />}>
@@ -26,6 +33,11 @@ function App() {
                 <Route path="/" element={<DashboardPage />} />
                 <Route path="/weigh-in" element={<WeighInPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/leaderboard" element={<LeaderboardPage />} />
+                <Route path="/trend" element={<TrendPage />} />
+                <Route path="/challenge/create" element={<CreateChallengePage />} />
+                <Route path="/join" element={<JoinChallengePage />} />
+                <Route path="/challenge/:id/onboarding" element={<OnboardingPage />} />
               </Route>
             </Route>
 
