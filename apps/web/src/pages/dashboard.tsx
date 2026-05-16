@@ -1,6 +1,11 @@
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useWeighIns } from '@/hooks/use-weigh-ins';
-import { Scale, ArrowDown, ArrowUp } from 'lucide-react';
+import { useChallenges } from '@/hooks/use-challenges';
+import { useAuth } from '@/lib/auth';
+import { useTheme } from '@/lib/theme';
+import { supabase } from '@/lib/supabase';
+import { Scale, ArrowDown, ArrowUp, ChevronRight } from 'lucide-react';
 import { TrendChart } from '@/components/trend-chart';
 
 function getWeekEntries(entries: { date: string; weight: number }[]) {
@@ -13,7 +18,63 @@ function getWeekEntries(entries: { date: string; weight: number }[]) {
 
 export default function DashboardPage() {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const { today, entries, trend, streak, isLoading } = useWeighIns();
+  const { activeChallenge, hasActiveChallenge } = useChallenges();
+  const { theme } = useTheme();
+
+  // Challenge stats
+  const [challengeStats, setChallengeStats] = useState<{ points: number; placement: number; totalParticipants: number; weeksPlayed: number } | null>(null);
+  const statsMounted = useRef(true);
+
+  const fetchChallengeStats = useCallback(() => {
+    if (!user || !activeChallenge) return;
+    const cId = activeChallenge.challenge_id;
+
+    // Get all participants + their points
+    supabase
+      .from('participants')
+      .select('id, user_id')
+      .eq('challenge_id', cId)
+      .then(({ data: participants }) => {
+        if (!statsMounted.current || !participants) return;
+
+        supabase
+          .from('weekly_results')
+          .select('participant_id, placement_points')
+          .eq('challenge_id', cId)
+          .then(({ data: results }) => {
+            if (!statsMounted.current) return;
+
+            const pointsById: Record<string, number> = {};
+            const weeksById: Record<string, number> = {};
+            for (const r of results ?? []) {
+              pointsById[r.participant_id] = (pointsById[r.participant_id] ?? 0) + r.placement_points;
+              weeksById[r.participant_id] = (weeksById[r.participant_id] ?? 0) + 1;
+            }
+
+            const sorted = participants
+              .map((p) => ({ id: p.id, user_id: p.user_id, pts: pointsById[p.id] ?? 0 }))
+              .sort((a, b) => b.pts - a.pts);
+
+            const myIdx = sorted.findIndex((s) => s.user_id === user.id);
+            const me = participants.find((p) => p.user_id === user.id);
+
+            setChallengeStats({
+              points: me ? (pointsById[me.id] ?? 0) : 0,
+              placement: myIdx >= 0 ? myIdx + 1 : 0,
+              totalParticipants: participants.length,
+              weeksPlayed: me ? (weeksById[me.id] ?? 0) : 0,
+            });
+          });
+      });
+  }, [user, activeChallenge]);
+
+  useEffect(() => {
+    statsMounted.current = true;
+    fetchChallengeStats();
+    return () => { statsMounted.current = false; };
+  }, [fetchChallengeStats]);
 
   const weekEntries = getWeekEntries(entries);
   const weekChange =
@@ -47,10 +108,12 @@ export default function DashboardPage() {
         >
           Log Your Weight
         </button>
-        <div className="mt-6 space-y-2">
-          <p className="text-sm text-muted-foreground">Create a Challenge</p>
-          <p className="text-sm text-muted-foreground">Join a Challenge</p>
-        </div>
+        {!hasActiveChallenge && (
+          <div className="mt-6 space-y-2">
+            <p className="text-sm text-muted-foreground">Create a Challenge</p>
+            <p className="text-sm text-muted-foreground">Join a Challenge</p>
+          </div>
+        )}
       </div>
     );
   }
@@ -60,8 +123,8 @@ export default function DashboardPage() {
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <img src="/avatars/bigdog-crimson.svg" alt="" className="w-6 h-6" />
-          <span className="text-sm font-extrabold tracking-widest uppercase">BigDogs</span>
+          <img src={theme === 'dark' ? '/logo-white.svg' : '/logo-dark.svg'} alt="" className="w-7 h-5" />
+          <span className="text-sm font-extrabold tracking-widest uppercase">Big Dogs</span>
         </div>
         <span className="text-sm text-muted-foreground">{formatDate()}</span>
       </div>
@@ -137,15 +200,87 @@ export default function DashboardPage() {
         </button>
       )}
 
-      {/* Challenge CTAs */}
-      <div className="text-center space-y-2">
-        <p className="text-sm font-medium text-muted-foreground cursor-pointer hover:text-foreground transition-colors">
-          Create a Challenge
-        </p>
-        <p className="text-sm text-muted-foreground cursor-pointer hover:text-foreground transition-colors">
-          Join a Challenge
-        </p>
-      </div>
+      {/* Challenge Section */}
+      {hasActiveChallenge ? (
+        <div>
+          {activeChallenge!.status === 'onboarding' ? (
+            <div className="rounded-xl bg-card border border-primary/20 p-4">
+              <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Active Challenge</p>
+              <p className="font-bold">{activeChallenge!.challenge.name}</p>
+              <button
+                onClick={() => navigate(`/challenge/${activeChallenge!.challenge_id}/onboarding`)}
+                className="w-full mt-3 rounded-lg bg-primary py-2.5 text-primary-foreground text-sm font-semibold hover:opacity-90 transition-opacity"
+              >
+                Finish Setup — Set Your Goal
+              </button>
+            </div>
+          ) : (
+            <div
+              onClick={() => navigate('/leaderboard')}
+              className="rounded-xl bg-card border border-primary/20 p-4 cursor-pointer hover:bg-card/80 transition-colors"
+            >
+              <div className="flex items-center justify-between mb-3">
+                <div>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wide">Active Challenge</p>
+                  <p className="font-bold">{activeChallenge!.challenge.name}</p>
+                </div>
+                <ChevronRight className="w-4 h-4 text-muted-foreground" />
+              </div>
+              {challengeStats && (
+                <div className="flex justify-around pt-2 border-t border-border">
+                  {challengeStats.weeksPlayed > 0 ? (
+                    <>
+                      <div className="text-center">
+                        <p className="text-xs text-muted-foreground">Place</p>
+                        <p className="text-lg font-extrabold">
+                          {challengeStats.placement === 1 ? '1st' :
+                           challengeStats.placement === 2 ? '2nd' :
+                           challengeStats.placement === 3 ? '3rd' :
+                           `${challengeStats.placement}th`}
+                        </p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-xs text-muted-foreground">Points</p>
+                        <p className="text-lg font-extrabold">{challengeStats.points}</p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-xs text-muted-foreground">Weeks</p>
+                        <p className="text-lg font-extrabold">{challengeStats.weeksPlayed}</p>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="text-center">
+                        <p className="text-xs text-muted-foreground">Participants</p>
+                        <p className="text-lg font-extrabold">{challengeStats.totalParticipants}</p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-xs text-muted-foreground">Status</p>
+                        <p className="text-lg font-extrabold capitalize">{activeChallenge!.status}</p>
+                      </div>
+                    </>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      ) : (
+        <div className="space-y-3">
+          <button
+            onClick={() => navigate('/challenge/create')}
+            className="w-full rounded-xl bg-primary py-3.5 text-primary-foreground font-bold hover:opacity-90 transition-opacity"
+          >
+            Create a Challenge
+          </button>
+          <button
+            onClick={() => navigate('/join')}
+            className="w-full text-center text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Join a Challenge
+          </button>
+        </div>
+      )}
     </div>
   );
 }

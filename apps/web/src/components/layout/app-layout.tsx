@@ -1,14 +1,28 @@
 import { NavLink, Outlet } from 'react-router';
-import { Home, Scale, Trophy, User } from 'lucide-react';
+import { Home, Scale, Trophy } from 'lucide-react';
+import { useProfile } from '@/hooks/use-profile';
+import { useTheme } from '@/lib/theme';
+import { avatarSrc } from '@/components/avatar-picker';
 
 const NAV_ITEMS = [
   { to: '/', label: 'Home', icon: Home },
   { to: '/weigh-in', label: 'Weigh In', icon: Scale },
-  { to: '/leaderboard', label: 'Board', icon: Trophy },
-  { to: '/profile', label: 'Profile', icon: User },
+  { to: '/leaderboard', label: 'Challenge', icon: Trophy },
 ];
 
+function ProfileNavIcon({ isActive }: { isActive: boolean }) {
+  const { profile } = useProfile();
+  return (
+    <img
+      src={avatarSrc(profile?.avatar ?? 'crimson')}
+      alt="Profile"
+      className={`h-6 w-6 rounded-full transition-opacity ${isActive ? '' : 'opacity-50'}`}
+    />
+  );
+}
+
 function DesktopNav() {
+  const { theme } = useTheme();
   const today = new Date().toLocaleDateString('en-US', {
     month: 'short',
     day: 'numeric',
@@ -19,26 +33,36 @@ function DesktopNav() {
     <nav className="hidden md:flex items-center justify-between h-16 px-10 border-b border-border bg-nav">
       {/* Logo */}
       <div className="flex items-center gap-2.5">
-        <img src="/avatars/bigdog-crimson.svg" alt="" className="w-6 h-6" />
-        <span className="text-sm font-extrabold tracking-[0.2em] uppercase">BigDogs</span>
+        <img src={theme === 'dark' ? '/logo-white.svg' : '/logo-dark.svg'} alt="" className="w-7 h-5" />
+        <span className="text-sm font-extrabold tracking-[0.2em] uppercase">Big Dogs</span>
       </div>
 
-      {/* Nav links */}
-      <div className="flex items-center gap-8">
+      {/* Nav icons */}
+      <div className="flex items-center gap-6">
         {NAV_ITEMS.map((item) => (
           <NavLink
             key={item.to}
             to={item.to}
             end={item.to === '/'}
             className={({ isActive }) =>
-              `text-sm font-medium transition-colors ${
-                isActive ? 'text-primary font-semibold' : 'text-muted-foreground hover:text-foreground'
+              `p-2 rounded-lg transition-colors ${
+                isActive ? 'text-primary' : 'text-muted-foreground hover:text-foreground'
               }`
             }
+            title={item.label}
           >
-            {item.label}
+            {({ isActive }) => (
+              <item.icon className={`h-5 w-5 ${isActive ? 'text-primary' : ''}`} />
+            )}
           </NavLink>
         ))}
+        <NavLink
+          to="/profile"
+          className="p-1 rounded-lg"
+          title="Profile"
+        >
+          {({ isActive }) => <ProfileNavIcon isActive={isActive} />}
+        </NavLink>
       </div>
 
       {/* Date */}
@@ -63,13 +87,20 @@ function MobileNav() {
             }
           >
             {({ isActive }) => (
-              <>
-                <item.icon className={`h-5 w-5 ${isActive ? 'text-primary' : ''}`} />
-                <span>{item.label}</span>
-              </>
+              <item.icon className={`h-5 w-5 ${isActive ? 'text-primary' : ''}`} />
             )}
           </NavLink>
         ))}
+        <NavLink
+          to="/profile"
+          className={({ isActive }) =>
+            `flex flex-1 flex-col items-center gap-1 py-3 text-xs ${
+              isActive ? 'text-primary' : 'text-muted-foreground'
+            }`
+          }
+        >
+          {({ isActive }) => <ProfileNavIcon isActive={isActive} />}
+        </NavLink>
       </div>
     </nav>
   );

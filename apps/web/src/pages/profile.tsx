@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { useAuth } from '@/lib/auth';
+import { useTheme } from '@/lib/theme';
 import { useProfile, type ProfileUpdate } from '@/hooks/use-profile';
+import { useChallenges } from '@/hooks/use-challenges';
+import { AvatarPicker, avatarSrc } from '@/components/avatar-picker';
 import { User, Pencil } from 'lucide-react';
 
 function EditableField({
@@ -75,7 +78,11 @@ function formatHeight(inches: number | null): string {
 
 export default function ProfilePage() {
   const { signOut } = useAuth();
+  const { theme, setTheme } = useTheme();
   const { profile, isLoading, updateProfile } = useProfile();
+  const { activeChallenge, hasActiveChallenge, leaveChallenge } = useChallenges();
+  const [leaving, setLeaving] = useState(false);
+  const [showAvatarPicker, setShowAvatarPicker] = useState(false);
 
   if (isLoading || !profile) {
     return (
@@ -98,11 +105,30 @@ export default function ProfilePage() {
 
       {/* Avatar + Identity */}
       <div className="flex flex-col items-center mb-6">
-        <img
-          src="/avatars/bigdog-crimson.svg"
-          alt=""
-          className="w-16 h-16 rounded-full mb-3"
-        />
+        <button
+          onClick={() => setShowAvatarPicker(!showAvatarPicker)}
+          className="relative group mb-3"
+        >
+          <img
+            src={avatarSrc(profile.avatar)}
+            alt=""
+            className="w-16 h-16 rounded-full"
+          />
+          <div className="absolute inset-0 rounded-full bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+            <Pencil className="w-4 h-4 text-white" />
+          </div>
+        </button>
+        {showAvatarPicker && (
+          <div className="mb-3">
+            <AvatarPicker
+              selected={profile.avatar}
+              onSelect={(name) => {
+                updateProfile({ avatar: name });
+                setShowAvatarPicker(false);
+              }}
+            />
+          </div>
+        )}
         <div className="flex items-center gap-1.5">
           <p className="text-lg font-bold">{profile.display_name}</p>
           <Pencil className="w-3.5 h-3.5 text-muted-foreground" />
@@ -131,22 +157,52 @@ export default function ProfilePage() {
         />
       </div>
 
-      {/* No Active Challenge */}
-      <div className="rounded-xl bg-card px-4 py-4 text-center mb-5">
-        <p className="text-sm text-muted-foreground mb-1">No active challenge</p>
-        <p className="text-sm font-semibold text-primary cursor-pointer hover:underline">
-          Start a Challenge
-        </p>
-      </div>
+      {/* Challenge Section */}
+      {hasActiveChallenge ? (
+        <div className="rounded-xl bg-card px-4 py-4 mb-5">
+          <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Active Challenge</p>
+          <p className="font-bold">{activeChallenge!.challenge.name}</p>
+          <p className="text-xs text-muted-foreground mt-0.5 capitalize">{activeChallenge!.status}</p>
+          <button
+            onClick={async () => {
+              if (!confirm('Leave this challenge? This cannot be undone.')) return;
+              setLeaving(true);
+              await leaveChallenge();
+              setLeaving(false);
+            }}
+            disabled={leaving}
+            className="mt-3 text-xs text-destructive hover:underline disabled:opacity-50"
+          >
+            {leaving ? 'Leaving...' : 'Leave Challenge'}
+          </button>
+        </div>
+      ) : (
+        <div className="rounded-xl bg-card px-4 py-4 text-center mb-5">
+          <p className="text-sm text-muted-foreground mb-1">No active challenge</p>
+          <p className="text-sm font-semibold text-primary cursor-pointer hover:underline">
+            Start a Challenge
+          </p>
+        </div>
+      )}
 
       {/* Appearance */}
       <div className="rounded-xl bg-card px-4 py-3.5 flex items-center justify-between mb-5">
         <span className="text-sm text-muted-foreground">Appearance</span>
         <div className="flex rounded-lg bg-input overflow-hidden">
-          <button className="px-3 py-1.5 text-xs font-semibold bg-primary text-primary-foreground rounded-lg">
+          <button
+            onClick={() => setTheme('dark')}
+            className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
+              theme === 'dark' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground'
+            }`}
+          >
             Dark
           </button>
-          <button className="px-3 py-1.5 text-xs font-medium text-muted-foreground">
+          <button
+            onClick={() => setTheme('light')}
+            className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
+              theme === 'light' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground'
+            }`}
+          >
             Light
           </button>
         </div>

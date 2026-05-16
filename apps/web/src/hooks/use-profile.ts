@@ -6,6 +6,7 @@ export interface Profile {
   id: string;
   email: string;
   display_name: string;
+  avatar: string;
   height_inches: number | null;
   age: number | null;
   personal_target_weight: number | null;
@@ -14,8 +15,14 @@ export interface Profile {
 }
 
 export type ProfileUpdate = Partial<
-  Pick<Profile, 'display_name' | 'height_inches' | 'age' | 'personal_target_weight'>
+  Pick<Profile, 'display_name' | 'height_inches' | 'age' | 'personal_target_weight' | 'avatar'>
 >;
+
+// Shared event so all useProfile instances stay in sync
+const listeners = new Set<() => void>();
+function notifyProfileChanged() {
+  listeners.forEach((fn) => fn());
+}
 
 export function useProfile() {
   const { user } = useAuth();
@@ -46,7 +53,13 @@ export function useProfile() {
   useEffect(() => {
     mounted.current = true;
     fetchProfile();
-    return () => { mounted.current = false; };
+
+    // Re-fetch when any instance updates the profile
+    listeners.add(fetchProfile);
+    return () => {
+      mounted.current = false;
+      listeners.delete(fetchProfile);
+    };
   }, [fetchProfile]);
 
   const updateProfile = async (updates: ProfileUpdate) => {
@@ -57,7 +70,7 @@ export function useProfile() {
       .eq('id', user.id);
 
     if (err) return { error: err.message };
-    fetchProfile();
+    notifyProfileChanged();
     return { error: null };
   };
 
