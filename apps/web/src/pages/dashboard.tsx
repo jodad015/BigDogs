@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router';
 import { useWeighIns } from '@/hooks/use-weigh-ins';
 import { useChallenges } from '@/hooks/use-challenges';
+import { useTheme } from '@/lib/theme';
 import { Scale, ArrowDown, ArrowUp } from 'lucide-react';
 import { TrendChart } from '@/components/trend-chart';
 
@@ -16,6 +17,7 @@ export default function DashboardPage() {
   const navigate = useNavigate();
   const { today, entries, trend, streak, isLoading } = useWeighIns();
   const { activeChallenge, hasActiveChallenge } = useChallenges();
+  const { theme } = useTheme();
 
   const weekEntries = getWeekEntries(entries);
   const weekChange =
@@ -64,7 +66,7 @@ export default function DashboardPage() {
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <img src="/logo-white.svg" alt="" className="w-7 h-5" />
+          <img src={theme === 'dark' ? '/logo-white.svg' : '/logo-dark.svg'} alt="" className="w-7 h-5" />
           <span className="text-sm font-extrabold tracking-widest uppercase">Big Dogs</span>
         </div>
         <span className="text-sm text-muted-foreground">{formatDate()}</span>

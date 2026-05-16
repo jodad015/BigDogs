@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router';
 import { AuthProvider } from '@/lib/auth';
+import { ThemeProvider } from '@/lib/theme';
 import { ProtectedRoute } from '@/components/layout/protected-route';
 import { PublicOnlyRoute } from '@/components/layout/public-only-route';
 import { AppLayout } from '@/components/layout/app-layout';
@@ -22,9 +23,10 @@ const PublicChallengePage = lazy(() => import('@/pages/public-challenge'));
 
 function App() {
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <Suspense fallback={<LoadingScreen />}>
+    <ThemeProvider>
+      <BrowserRouter>
+        <AuthProvider>
+          <Suspense fallback={<LoadingScreen />}>
           <Routes>
             <Route element={<PublicOnlyRoute />}>
               <Route path="/login" element={<LoginPage />} />
@@ -51,9 +53,10 @@ function App() {
 
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
-        </Suspense>
-      </AuthProvider>
-    </BrowserRouter>
+          </Suspense>
+        </AuthProvider>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 

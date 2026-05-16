@@ -1,6 +1,7 @@
 import { NavLink, Outlet } from 'react-router';
 import { Home, Scale, Trophy } from 'lucide-react';
 import { useProfile } from '@/hooks/use-profile';
+import { useTheme } from '@/lib/theme';
 import { avatarSrc } from '@/components/avatar-picker';
 
 const NAV_ITEMS = [
@@ -21,6 +22,7 @@ function ProfileNavIcon({ isActive }: { isActive: boolean }) {
 }
 
 function DesktopNav() {
+  const { theme } = useTheme();
   const today = new Date().toLocaleDateString('en-US', {
     month: 'short',
     day: 'numeric',
@@ -31,7 +33,7 @@ function DesktopNav() {
     <nav className="hidden md:flex items-center justify-between h-16 px-10 border-b border-border bg-nav">
       {/* Logo */}
       <div className="flex items-center gap-2.5">
-        <img src="/logo-white.svg" alt="" className="w-7 h-5" />
+        <img src={theme === 'dark' ? '/logo-white.svg' : '/logo-dark.svg'} alt="" className="w-7 h-5" />
         <span className="text-sm font-extrabold tracking-[0.2em] uppercase">Big Dogs</span>
       </div>
 

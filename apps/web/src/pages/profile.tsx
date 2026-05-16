@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '@/lib/auth';
+import { useTheme } from '@/lib/theme';
 import { useProfile, type ProfileUpdate } from '@/hooks/use-profile';
 import { useChallenges } from '@/hooks/use-challenges';
 import { AvatarPicker, avatarSrc } from '@/components/avatar-picker';
@@ -77,6 +78,7 @@ function formatHeight(inches: number | null): string {
 
 export default function ProfilePage() {
   const { signOut } = useAuth();
+  const { theme, setTheme } = useTheme();
   const { profile, isLoading, updateProfile } = useProfile();
   const { activeChallenge, hasActiveChallenge, leaveChallenge } = useChallenges();
   const [leaving, setLeaving] = useState(false);
@@ -187,10 +189,20 @@ export default function ProfilePage() {
       <div className="rounded-xl bg-card px-4 py-3.5 flex items-center justify-between mb-5">
         <span className="text-sm text-muted-foreground">Appearance</span>
         <div className="flex rounded-lg bg-input overflow-hidden">
-          <button className="px-3 py-1.5 text-xs font-semibold bg-primary text-primary-foreground rounded-lg">
+          <button
+            onClick={() => setTheme('dark')}
+            className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
+              theme === 'dark' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground'
+            }`}
+          >
             Dark
           </button>
-          <button className="px-3 py-1.5 text-xs font-medium text-muted-foreground">
+          <button
+            onClick={() => setTheme('light')}
+            className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
+              theme === 'light' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground'
+            }`}
+          >
             Light
           </button>
         </div>
