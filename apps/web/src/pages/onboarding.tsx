@@ -113,7 +113,7 @@ export default function OnboardingPage() {
       setError(err.message);
       setSubmitting(false);
     } else {
-      navigate('/');
+      navigate('/leaderboard');
     }
   };
 
