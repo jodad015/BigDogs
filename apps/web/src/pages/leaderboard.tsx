@@ -52,7 +52,7 @@ export default function LeaderboardPage() {
 
     supabase
       .from('participants')
-      .select('challenge_id, challenges(id, name, status, duration_weeks, start_date)')
+      .select('challenge_id, status, challenges(id, name, status, duration_weeks, start_date)')
       .eq('user_id', user.id)
       .in('status', ['active', 'spinup', 'onboarding'])
       .limit(1)
@@ -69,7 +69,7 @@ export default function LeaderboardPage() {
         const c = row.challenges as unknown as ChallengeInfo & { id: string };
         setChallenge(c);
         setChallengeId(c.id);
-        setMyStatus((row as unknown as { status: string }).status);
+        setMyStatus(row.status as string);
 
         // Calculate current week
         if (c.start_date) {
