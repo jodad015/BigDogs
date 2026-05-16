@@ -6,6 +6,7 @@ export interface Profile {
   id: string;
   email: string;
   display_name: string;
+  avatar: string;
   height_inches: number | null;
   age: number | null;
   personal_target_weight: number | null;
@@ -14,7 +15,7 @@ export interface Profile {
 }
 
 export type ProfileUpdate = Partial<
-  Pick<Profile, 'display_name' | 'height_inches' | 'age' | 'personal_target_weight'>
+  Pick<Profile, 'display_name' | 'height_inches' | 'age' | 'personal_target_weight' | 'avatar'>
 >;
 
 export function useProfile() {

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '@/lib/auth';
 import { useProfile, type ProfileUpdate } from '@/hooks/use-profile';
+import { AvatarPicker, avatarSrc } from '@/components/avatar-picker';
 import { User, Pencil } from 'lucide-react';
 
 function EditableField({
@@ -97,12 +98,19 @@ export default function ProfilePage() {
       <h1 className="text-xl font-bold text-center mb-5">Profile</h1>
 
       {/* Avatar + Identity */}
-      <div className="flex flex-col items-center mb-6">
+      <div className="flex flex-col items-center mb-4">
         <img
-          src="/avatars/bigdog-crimson.svg"
+          src={avatarSrc(profile.avatar)}
           alt=""
           className="w-16 h-16 rounded-full mb-3"
         />
+        <AvatarPicker
+          selected={profile.avatar}
+          onSelect={(name) => updateProfile({ avatar: name })}
+        />
+      </div>
+
+      <div className="flex flex-col items-center mb-6">
         <div className="flex items-center gap-1.5">
           <p className="text-lg font-bold">{profile.display_name}</p>
           <Pencil className="w-3.5 h-3.5 text-muted-foreground" />
