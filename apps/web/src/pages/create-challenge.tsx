@@ -7,7 +7,7 @@ const DURATIONS = [10, 12, 14, 16] as const;
 
 export default function CreateChallengePage() {
   const navigate = useNavigate();
-  const { createChallenge } = useChallenges();
+  const { createChallenge, hasActiveChallenge, isLoading: challengeLoading } = useChallenges();
 
   const [name, setName] = useState('');
   const [duration, setDuration] = useState<number | null>(null);
@@ -19,6 +19,12 @@ export default function CreateChallengePage() {
   const [error, setError] = useState('');
   const [created, setCreated] = useState<Challenge | null>(null);
   const [copied, setCopied] = useState(false);
+
+  // Redirect if already in a challenge
+  if (!challengeLoading && hasActiveChallenge && !created) {
+    navigate('/', { replace: true });
+    return null;
+  }
 
   const canSubmit = name.trim() && duration && startDate;
 

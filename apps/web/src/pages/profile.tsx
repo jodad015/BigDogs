@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '@/lib/auth';
 import { useProfile, type ProfileUpdate } from '@/hooks/use-profile';
+import { useChallenges } from '@/hooks/use-challenges';
 import { AvatarPicker, avatarSrc } from '@/components/avatar-picker';
 import { User, Pencil } from 'lucide-react';
 
@@ -77,6 +78,8 @@ function formatHeight(inches: number | null): string {
 export default function ProfilePage() {
   const { signOut } = useAuth();
   const { profile, isLoading, updateProfile } = useProfile();
+  const { activeChallenge, hasActiveChallenge, leaveChallenge } = useChallenges();
+  const [leaving, setLeaving] = useState(false);
 
   if (isLoading || !profile) {
     return (
@@ -139,13 +142,33 @@ export default function ProfilePage() {
         />
       </div>
 
-      {/* No Active Challenge */}
-      <div className="rounded-xl bg-card px-4 py-4 text-center mb-5">
-        <p className="text-sm text-muted-foreground mb-1">No active challenge</p>
-        <p className="text-sm font-semibold text-primary cursor-pointer hover:underline">
-          Start a Challenge
-        </p>
-      </div>
+      {/* Challenge Section */}
+      {hasActiveChallenge ? (
+        <div className="rounded-xl bg-card px-4 py-4 mb-5">
+          <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Active Challenge</p>
+          <p className="font-bold">{activeChallenge!.challenge.name}</p>
+          <p className="text-xs text-muted-foreground mt-0.5 capitalize">{activeChallenge!.status}</p>
+          <button
+            onClick={async () => {
+              if (!confirm('Leave this challenge? This cannot be undone.')) return;
+              setLeaving(true);
+              await leaveChallenge();
+              setLeaving(false);
+            }}
+            disabled={leaving}
+            className="mt-3 text-xs text-destructive hover:underline disabled:opacity-50"
+          >
+            {leaving ? 'Leaving...' : 'Leave Challenge'}
+          </button>
+        </div>
+      ) : (
+        <div className="rounded-xl bg-card px-4 py-4 text-center mb-5">
+          <p className="text-sm text-muted-foreground mb-1">No active challenge</p>
+          <p className="text-sm font-semibold text-primary cursor-pointer hover:underline">
+            Start a Challenge
+          </p>
+        </div>
+      )}
 
       {/* Appearance */}
       <div className="rounded-xl bg-card px-4 py-3.5 flex items-center justify-between mb-5">

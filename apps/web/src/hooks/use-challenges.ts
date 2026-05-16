@@ -18,6 +18,12 @@ export interface Challenge {
   created_at: string;
 }
 
+export interface ActiveParticipant {
+  challenge_id: string;
+  challenge: Challenge;
+  status: string;
+}
+
 export interface CreateChallengeInput {
   name: string;
   duration_weeks: number;
@@ -38,31 +44,45 @@ function generateInviteCode(): string {
 
 export function useChallenges() {
   const { user } = useAuth();
-  const [challenges, setChallenges] = useState<Challenge[]>([]);
+  const [activeChallenge, setActiveChallenge] = useState<ActiveParticipant | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const mounted = useRef(true);
 
-  const fetchChallenges = useCallback(() => {
+  const fetchActive = useCallback(() => {
     if (!user) return;
     supabase
-      .from('challenges')
-      .select('*')
-      .order('created_at', { ascending: false })
-      .then(({ data, error }) => {
+      .from('participants')
+      .select('challenge_id, status, challenges(*)')
+      .eq('user_id', user.id)
+      .in('status', ['onboarding', 'spinup', 'active', 'maintenance'])
+      .limit(1)
+      .then(({ data }) => {
         if (!mounted.current) return;
-        if (!error) setChallenges(data ?? []);
+        const row = data?.[0];
+        if (row) {
+          setActiveChallenge({
+            challenge_id: row.challenge_id,
+            challenge: row.challenges as unknown as Challenge,
+            status: row.status,
+          });
+        } else {
+          setActiveChallenge(null);
+        }
         setIsLoading(false);
       });
   }, [user]);
 
   useEffect(() => {
     mounted.current = true;
-    fetchChallenges();
+    fetchActive();
     return () => { mounted.current = false; };
-  }, [fetchChallenges]);
+  }, [fetchActive]);
+
+  const hasActiveChallenge = activeChallenge !== null;
 
   const createChallenge = async (input: CreateChallengeInput) => {
     if (!user) return { data: null, error: 'Not authenticated' };
+    if (hasActiveChallenge) return { data: null, error: 'You are already in a challenge' };
 
     const spinupStart = new Date(input.start_date);
     spinupStart.setDate(spinupStart.getDate() - 7);
@@ -78,7 +98,7 @@ export function useChallenges() {
         is_public: input.is_public,
         timezone: input.timezone,
         start_date: input.start_date,
-        spinup_start_date: spinupStart.toISOString().split('T')[0],
+        spinup_start_date: spinupStart.toISOString().split('T')[0]!,
         status: 'setup',
       })
       .select()
@@ -86,14 +106,13 @@ export function useChallenges() {
 
     if (error) return { data: null, error: error.message };
 
-    // Auto-join as participant
     await supabase.from('participants').insert({
       challenge_id: data.id,
       user_id: user.id,
       status: 'onboarding',
     });
 
-    fetchChallenges();
+    fetchActive();
     return { data, error: null };
   };
 
@@ -110,6 +129,7 @@ export function useChallenges() {
 
   const joinChallenge = async (challengeId: string) => {
     if (!user) return { error: 'Not authenticated' };
+    if (hasActiveChallenge) return { error: 'You are already in a challenge' };
 
     const { error } = await supabase.from('participants').insert({
       challenge_id: challengeId,
@@ -118,9 +138,32 @@ export function useChallenges() {
     });
 
     if (error) return { error: error.message };
-    fetchChallenges();
+    fetchActive();
     return { error: null };
   };
 
-  return { challenges, isLoading, createChallenge, lookupChallenge, joinChallenge, refetch: fetchChallenges };
+  const leaveChallenge = async () => {
+    if (!user || !activeChallenge) return { error: 'No active challenge' };
+
+    const { error } = await supabase
+      .from('participants')
+      .delete()
+      .eq('challenge_id', activeChallenge.challenge_id)
+      .eq('user_id', user.id);
+
+    if (error) return { error: error.message };
+    fetchActive();
+    return { error: null };
+  };
+
+  return {
+    activeChallenge,
+    hasActiveChallenge,
+    isLoading,
+    createChallenge,
+    lookupChallenge,
+    joinChallenge,
+    leaveChallenge,
+    refetch: fetchActive,
+  };
 }

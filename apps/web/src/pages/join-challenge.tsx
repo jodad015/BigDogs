@@ -5,13 +5,19 @@ import { ChevronLeft, Trophy } from 'lucide-react';
 
 export default function JoinChallengePage() {
   const navigate = useNavigate();
-  const { lookupChallenge, joinChallenge } = useChallenges();
+  const { lookupChallenge, joinChallenge, hasActiveChallenge, isLoading: challengeLoading } = useChallenges();
 
   const [code, setCode] = useState('');
   const [preview, setPreview] = useState<Challenge | null>(null);
   const [error, setError] = useState('');
   const [looking, setLooking] = useState(false);
   const [joining, setJoining] = useState(false);
+
+  // Redirect if already in a challenge
+  if (!challengeLoading && hasActiveChallenge) {
+    navigate('/', { replace: true });
+    return null;
+  }
 
   const handleLookup = async (e: React.FormEvent) => {
     e.preventDefault();

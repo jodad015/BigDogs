@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router';
 import { useWeighIns } from '@/hooks/use-weigh-ins';
 import { useProfile } from '@/hooks/use-profile';
+import { useChallenges } from '@/hooks/use-challenges';
 import { avatarSrc } from '@/components/avatar-picker';
 import { Scale, ArrowDown, ArrowUp } from 'lucide-react';
 import { TrendChart } from '@/components/trend-chart';
@@ -17,6 +18,7 @@ export default function DashboardPage() {
   const navigate = useNavigate();
   const { profile } = useProfile();
   const { today, entries, trend, streak, isLoading } = useWeighIns();
+  const { activeChallenge, hasActiveChallenge } = useChallenges();
 
   const weekEntries = getWeekEntries(entries);
   const weekChange =
@@ -50,10 +52,12 @@ export default function DashboardPage() {
         >
           Log Your Weight
         </button>
-        <div className="mt-6 space-y-2">
-          <p className="text-sm text-muted-foreground">Create a Challenge</p>
-          <p className="text-sm text-muted-foreground">Join a Challenge</p>
-        </div>
+        {!hasActiveChallenge && (
+          <div className="mt-6 space-y-2">
+            <p className="text-sm text-muted-foreground">Create a Challenge</p>
+            <p className="text-sm text-muted-foreground">Join a Challenge</p>
+          </div>
+        )}
       </div>
     );
   }
@@ -140,21 +144,29 @@ export default function DashboardPage() {
         </button>
       )}
 
-      {/* Challenge CTAs */}
-      <div className="space-y-3">
-        <button
-          onClick={() => navigate('/challenge/create')}
-          className="w-full rounded-xl bg-primary py-3.5 text-primary-foreground font-bold hover:opacity-90 transition-opacity"
-        >
-          Create a Challenge
-        </button>
-        <button
-          onClick={() => navigate('/join')}
-          className="w-full text-center text-sm text-muted-foreground hover:text-foreground transition-colors"
-        >
-          Join a Challenge
-        </button>
-      </div>
+      {/* Challenge Section */}
+      {hasActiveChallenge ? (
+        <div className="rounded-xl bg-card border border-primary/20 p-4">
+          <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Active Challenge</p>
+          <p className="font-bold">{activeChallenge!.challenge.name}</p>
+          <p className="text-xs text-muted-foreground mt-1 capitalize">{activeChallenge!.status}</p>
+        </div>
+      ) : (
+        <div className="space-y-3">
+          <button
+            onClick={() => navigate('/challenge/create')}
+            className="w-full rounded-xl bg-primary py-3.5 text-primary-foreground font-bold hover:opacity-90 transition-opacity"
+          >
+            Create a Challenge
+          </button>
+          <button
+            onClick={() => navigate('/join')}
+            className="w-full text-center text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Join a Challenge
+          </button>
+        </div>
+      )}
     </div>
   );
 }
