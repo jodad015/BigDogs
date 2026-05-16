@@ -28,15 +28,20 @@ export default function WeighInPage() {
   const isValid = numericWeight > 50 && numericWeight < 999;
 
   const handleKey = (key: string) => {
-    const current = activeDigits;
-    if (key === 'backspace') {
-      setDigits(current.slice(0, -1));
+    // First keypress clears the prefilled value — start fresh
+    if (digits === null) {
+      if (key === 'backspace') return;
+      setDigits(key);
       return;
     }
-    if (key === '.' && current.includes('.')) return;
-    if (current.includes('.') && (current.split('.')[1]?.length ?? 0) >= 1) return;
-    if (current.length >= 5) return;
-    setDigits(current + key);
+    if (key === 'backspace') {
+      setDigits(digits.slice(0, -1) || '');
+      return;
+    }
+    if (key === '.' && digits.includes('.')) return;
+    if (digits.includes('.') && (digits.split('.')[1]?.length ?? 0) >= 1) return;
+    if (digits.length >= 5) return;
+    setDigits(digits + key);
   };
 
   const handleSubmit = async () => {
