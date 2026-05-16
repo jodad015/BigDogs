@@ -55,10 +55,10 @@ export default function ParticipantPage() {
   const fetchData = useCallback(() => {
     if (!challengeId || !userId) return;
 
-    // Participant + profile
+    // Participant + profile (also get participants.id for weekly_results join)
     supabase
       .from('participants')
-      .select('starting_weight, target_weight, weekly_target, total_loss, status, profiles(display_name, avatar)')
+      .select('id, starting_weight, target_weight, weekly_target, total_loss, status, profiles(display_name, avatar)')
       .eq('challenge_id', challengeId)
       .eq('user_id', userId)
       .single()
@@ -74,22 +74,22 @@ export default function ParticipantPage() {
           total_loss: data.total_loss,
           status: data.status,
         });
-      });
 
-    // Weekly results
-    supabase
-      .from('weekly_results')
-      .select('week_number, weekly_loss, weekly_score, placement, placement_points, is_showdown, is_maintenance')
-      .eq('challenge_id', challengeId)
-      .eq('participant_id', userId)
-      .order('week_number', { ascending: false })
-      .then(({ data }) => {
-        if (!mounted.current) return;
-        const results = data ?? [];
-        setWeeks(results);
-        const pts = results.reduce((sum, r) => sum + r.placement_points, 0);
-        setTotalPoints(pts);
-        setBestWeek(results.length > 0 ? Math.max(...results.map((r) => r.placement_points)) : 0);
+        // Weekly results — use participants.id, not user_id
+        supabase
+          .from('weekly_results')
+          .select('week_number, weekly_loss, weekly_score, placement, placement_points, is_showdown, is_maintenance')
+          .eq('challenge_id', challengeId)
+          .eq('participant_id', data.id)
+          .order('week_number', { ascending: false })
+          .then(({ data: results }) => {
+            if (!mounted.current) return;
+            const rows = results ?? [];
+            setWeeks(rows);
+            const pts = rows.reduce((sum, r) => sum + r.placement_points, 0);
+            setTotalPoints(pts);
+            setBestWeek(rows.length > 0 ? Math.max(...rows.map((r) => r.placement_points)) : 0);
+          });
       });
 
     // Weigh-ins for trend chart
