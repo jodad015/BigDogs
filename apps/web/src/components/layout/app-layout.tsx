@@ -4,7 +4,7 @@ import { Home, Scale, Trophy, User } from 'lucide-react';
 const NAV_ITEMS = [
   { to: '/', label: 'Home', icon: Home },
   { to: '/weigh-in', label: 'Weigh In', icon: Scale },
-  { to: '/leaderboard', label: 'Board', icon: Trophy },
+  { to: '/leaderboard', label: 'Challenge', icon: Trophy },
   { to: '/profile', label: 'Profile', icon: User },
 ];
 
