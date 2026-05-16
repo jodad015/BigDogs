@@ -80,6 +80,7 @@ export default function ProfilePage() {
   const { profile, isLoading, updateProfile } = useProfile();
   const { activeChallenge, hasActiveChallenge, leaveChallenge } = useChallenges();
   const [leaving, setLeaving] = useState(false);
+  const [showAvatarPicker, setShowAvatarPicker] = useState(false);
 
   if (isLoading || !profile) {
     return (
@@ -101,19 +102,31 @@ export default function ProfilePage() {
       <h1 className="text-xl font-bold text-center mb-5">Profile</h1>
 
       {/* Avatar + Identity */}
-      <div className="flex flex-col items-center mb-4">
-        <img
-          src={avatarSrc(profile.avatar)}
-          alt=""
-          className="w-16 h-16 rounded-full mb-3"
-        />
-        <AvatarPicker
-          selected={profile.avatar}
-          onSelect={(name) => updateProfile({ avatar: name })}
-        />
-      </div>
-
       <div className="flex flex-col items-center mb-6">
+        <button
+          onClick={() => setShowAvatarPicker(!showAvatarPicker)}
+          className="relative group mb-3"
+        >
+          <img
+            src={avatarSrc(profile.avatar)}
+            alt=""
+            className="w-16 h-16 rounded-full"
+          />
+          <div className="absolute inset-0 rounded-full bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+            <Pencil className="w-4 h-4 text-white" />
+          </div>
+        </button>
+        {showAvatarPicker && (
+          <div className="mb-3">
+            <AvatarPicker
+              selected={profile.avatar}
+              onSelect={(name) => {
+                updateProfile({ avatar: name });
+                setShowAvatarPicker(false);
+              }}
+            />
+          </div>
+        )}
         <div className="flex items-center gap-1.5">
           <p className="text-lg font-bold">{profile.display_name}</p>
           <Pencil className="w-3.5 h-3.5 text-muted-foreground" />
