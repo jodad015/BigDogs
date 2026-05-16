@@ -36,7 +36,8 @@ export default function OnboardingPage() {
   const { user } = useAuth();
   const { profile, updateProfile } = useProfile();
 
-  const [step, setStep] = useState(0);
+  const hasHeight = !!profile?.height_inches;
+  const [step, setStep] = useState(hasHeight ? 1 : 0);
   const [feet, setFeet] = useState(profile?.height_inches ? String(Math.floor(profile.height_inches / 12)) : '');
   const [inches, setInches] = useState(profile?.height_inches ? String(profile.height_inches % 12) : '');
   const [goalMethod, setGoalMethod] = useState<GoalMethod | null>(null);
@@ -46,7 +47,9 @@ export default function OnboardingPage() {
 
   // Assume starting weight ~195 if we don't know yet (will be set during spinup)
   const estimatedStart = 195;
-  const heightInches = (parseInt(feet) || 0) * 12 + (parseInt(inches) || 0);
+  const heightInches = hasHeight ? profile!.height_inches! : (parseInt(feet) || 0) * 12 + (parseInt(inches) || 0);
+  const totalSteps = hasHeight ? 3 : 4;
+  const displayStep = hasHeight ? step - 1 : step;
   const goalValue = parseFloat(goalInput) || 0;
 
   const computedValues = (() => {
@@ -118,7 +121,8 @@ export default function OnboardingPage() {
   };
 
   const handleBack = () => {
-    if (step === 0) {
+    const firstStep = hasHeight ? 1 : 0;
+    if (step === firstStep) {
       navigate('/');
     } else {
       setStep(step - 1);
@@ -135,7 +139,7 @@ export default function OnboardingPage() {
         <h1 className="text-lg font-bold">Set Up Your Challenge</h1>
       </div>
 
-      <ProgressDots current={step} total={4} />
+      <ProgressDots current={displayStep} total={totalSteps} />
 
       <div className="flex-1">
         {/* Step 1: Height */}
