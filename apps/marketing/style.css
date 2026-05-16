@@ -1,0 +1,249 @@
+/* Reset */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #1a1a2e;
+  --bg-alt: #0f0f1a;
+  --card: #252547;
+  --foreground: #ffffff;
+  --muted: #999999;
+  --accent: #E63946;
+  --border: #2a2a4a;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--foreground);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography */
+h1, h2, h3 { line-height: 1.2; font-weight: 800; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Layout */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 140px 24px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: auto;
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero h1,
+.hero .tagline,
+.hero .btn {
+  position: relative;
+  z-index: 1;
+}
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  letter-spacing: 0.3em;
+  margin-bottom: 16px;
+}
+.hero .tagline {
+  font-size: 1.25rem;
+  color: var(--muted);
+  margin-bottom: 32px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 1.125rem;
+  font-weight: 700;
+  padding: 16px 40px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.btn:hover { opacity: 0.9; text-decoration: none; }
+.btn-full { display: block; width: 100%; text-align: center; }
+
+/* Sections */
+section { padding: 64px 24px; }
+section.alt { background: var(--bg-alt); }
+.section-title {
+  font-size: 1.75rem;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+/* What is BigDogs */
+.what-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+.what-content p {
+  color: var(--muted);
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+/* Steps */
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.step {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.step-num {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  background: var(--accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.125rem;
+  line-height: 1;
+}
+.step-text h3 {
+  font-size: 1.0625rem;
+  margin-bottom: 4px;
+}
+.step-text p {
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+/* Features */
+.features-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.feature-card {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+}
+section.alt .feature-card {
+  background: var(--bg);
+}
+.feature-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  color: var(--accent);
+}
+.feature-card h3 {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.feature-card p {
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+/* Footer CTA */
+.footer-cta {
+  text-align: center;
+  padding: 80px 24px 64px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.footer-cta h2 {
+  font-size: 2rem;
+  margin-bottom: 24px;
+}
+.footer-cta .sub {
+  color: #666;
+  font-size: 0.875rem;
+  margin-top: 20px;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 24px;
+  color: #555;
+  font-size: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  .hero { padding: 160px 40px 100px; }
+  .hero-bg { width: 900px; }
+  .hero h1 { font-size: 4rem; }
+  .hero .tagline { font-size: 1.5rem; }
+  .hero .btn { width: 300px; }
+
+  section { padding: 80px 40px; }
+  .section-title { font-size: 2rem; }
+
+  .steps {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 900px;
+  }
+  .step {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 24px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    max-width: 1000px;
+  }
+  .feature-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-cta h2 { font-size: 2.5rem; }
+  .footer-cta .btn { width: 300px; }
+}
