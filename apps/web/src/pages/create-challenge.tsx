@@ -95,10 +95,16 @@ export default function CreateChallengePage() {
         <p className="text-xs text-muted-foreground mb-6">Share this code to invite others</p>
 
         <button
+          onClick={() => navigate(`/challenge/${created.id}/onboarding`)}
+          className="w-full max-w-xs rounded-xl bg-primary py-3.5 text-primary-foreground font-semibold hover:opacity-90 transition-opacity mb-3"
+        >
+          Set Your Goal
+        </button>
+        <button
           onClick={() => navigate('/')}
           className="text-sm text-muted-foreground hover:text-foreground transition-colors"
         >
-          Go to Dashboard
+          Skip for now
         </button>
       </div>
     );
