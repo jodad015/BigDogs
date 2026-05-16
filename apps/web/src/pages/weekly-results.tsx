@@ -1,11 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { supabase } from '@/lib/supabase';
+import { avatarSrc } from '@/components/avatar-picker';
 import { ChevronLeft, ChevronRight, Zap } from 'lucide-react';
 
 interface WeekResult {
   participant_id: string;
   display_name: string;
+  avatar: string;
+  weekly_target: number;
   weekly_loss: number;
   performance_factor: number;
   weekly_score: number;
@@ -42,7 +45,7 @@ export default function WeeklyResultsPage() {
 
     supabase
       .from('weekly_results')
-      .select('participant_id, weekly_loss, performance_factor, weekly_score, placement, placement_points, is_showdown, is_maintenance, week_start_date, week_end_date, participants(user_id, profiles(display_name))')
+      .select('participant_id, weekly_loss, performance_factor, weekly_score, placement, placement_points, is_showdown, is_maintenance, week_start_date, week_end_date, participants(user_id, weekly_target, profiles(display_name, avatar))')
       .eq('challenge_id', cId)
       .eq('week_number', week)
       .order('placement', { ascending: true })
@@ -54,10 +57,12 @@ export default function WeeklyResultsPage() {
           const end = new Date(first.week_end_date + 'T12:00:00');
           setWeekDates(`${start.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} – ${end.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`);
           setResults(data.map((r) => {
-            const p = r.participants as unknown as { user_id: string; profiles: { display_name: string } };
+            const p = r.participants as unknown as { user_id: string; weekly_target: number; profiles: { display_name: string; avatar: string } };
             return {
               participant_id: r.participant_id,
               display_name: p?.profiles?.display_name ?? 'Unknown',
+              avatar: p?.profiles?.avatar ?? 'crimson',
+              weekly_target: p?.weekly_target ?? 0,
               weekly_loss: r.weekly_loss,
               performance_factor: r.performance_factor,
               weekly_score: r.weekly_score,
@@ -157,6 +162,7 @@ export default function WeeklyResultsPage() {
                       {r.placement}
                     </div>
                   )}
+                  <img src={avatarSrc(r.avatar)} alt="" className="w-7 h-7 rounded-full" />
                   <span className="font-bold">{r.display_name}</span>
                 </div>
                 <span className={`font-extrabold ${
@@ -174,6 +180,9 @@ export default function WeeklyResultsPage() {
                       r.weekly_loss < 0 ? 'text-success' : r.weekly_loss > 0 ? 'text-destructive' : ''
                     }`}>
                       {r.weekly_loss > 0 ? '+' : ''}{r.weekly_loss.toFixed(1)} lb
+                    </p>
+                    <p className="text-[10px] text-muted-foreground">
+                      goal: {r.weekly_target.toFixed(1)}/wk
                     </p>
                   </div>
                   <div>

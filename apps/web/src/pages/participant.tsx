@@ -234,6 +234,9 @@ export default function ParticipantPage() {
                     w.weekly_loss < 0 ? 'text-success' : w.weekly_loss > 0 ? 'text-destructive' : 'text-muted-foreground'
                   }`}>
                     {w.weekly_loss > 0 ? '+' : ''}{w.weekly_loss.toFixed(1)} lb
+                    {participant?.weekly_target ? (
+                      <span className="text-muted-foreground"> / {participant.weekly_target} goal</span>
+                    ) : null}
                   </p>
                 )}
               </div>
