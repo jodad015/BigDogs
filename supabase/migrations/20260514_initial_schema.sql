@@ -72,17 +72,7 @@ create index idx_challenges_status on public.challenges(status);
 
 alter table public.challenges enable row level security;
 
-create policy "Challenge participants can read"
-  on public.challenges for select
-  using (
-    auth.uid() = created_by
-    or exists (
-      select 1 from public.participants
-      where participants.challenge_id = challenges.id
-      and participants.user_id = auth.uid()
-    )
-  );
-
+-- Policies that don't reference other tables
 create policy "Public challenges are readable by anyone"
   on public.challenges for select
   using (is_public = true);
@@ -94,6 +84,9 @@ create policy "Creator can insert challenges"
 create policy "Creator can update challenge in setup"
   on public.challenges for update
   using (auth.uid() = created_by and status = 'setup');
+
+-- NOTE: "Challenge participants can read" policy is created below,
+-- after the participants table exists.
 
 -- ============================================================
 -- PARTICIPANTS
@@ -139,6 +132,18 @@ create policy "Users can join challenges"
 create policy "Participants can update own record"
   on public.participants for update
   using (auth.uid() = user_id);
+
+-- Deferred from challenges section (requires participants table)
+create policy "Challenge participants can read"
+  on public.challenges for select
+  using (
+    auth.uid() = created_by
+    or exists (
+      select 1 from public.participants
+      where participants.challenge_id = challenges.id
+      and participants.user_id = auth.uid()
+    )
+  );
 
 -- ============================================================
 -- WEIGH-INS
