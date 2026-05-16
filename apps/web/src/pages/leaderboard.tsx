@@ -41,6 +41,7 @@ export default function LeaderboardPage() {
   const [standings, setStandings] = useState<Standing[]>([]);
   const [challenge, setChallenge] = useState<ChallengeInfo | null>(null);
   const [challengeId, setChallengeId] = useState<string | null>(null);
+  const [myStatus, setMyStatus] = useState<string | null>(null);
   const [currentWeek, setCurrentWeek] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [hasChallenge, setHasChallenge] = useState(true);
@@ -68,6 +69,7 @@ export default function LeaderboardPage() {
         const c = row.challenges as unknown as ChallengeInfo & { id: string };
         setChallenge(c);
         setChallengeId(c.id);
+        setMyStatus((row as unknown as { status: string }).status);
 
         // Calculate current week
         if (c.start_date) {
@@ -179,6 +181,17 @@ export default function LeaderboardPage() {
       <p className="text-sm text-muted-foreground text-center">
         {challenge?.name} — {isComplete ? 'Complete' : `Week ${currentWeek} of ${challenge?.duration_weeks}`}
       </p>
+
+      {/* Onboarding banner */}
+      {myStatus === 'onboarding' && challengeId && (
+        <button
+          onClick={() => navigate(`/challenge/${challengeId}/onboarding`)}
+          className="w-full mt-3 rounded-xl bg-warning/15 border border-warning/30 p-4 text-center"
+        >
+          <p className="text-sm font-semibold text-warning">You haven't set your goal yet</p>
+          <p className="text-xs text-muted-foreground mt-1">Tap to complete setup and start competing</p>
+        </button>
+      )}
 
       {/* Winner banner */}
       {winner && (
