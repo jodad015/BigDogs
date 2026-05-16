@@ -40,6 +40,7 @@ export default function LeaderboardPage() {
   const navigate = useNavigate();
   const [standings, setStandings] = useState<Standing[]>([]);
   const [challenge, setChallenge] = useState<ChallengeInfo | null>(null);
+  const [challengeId, setChallengeId] = useState<string | null>(null);
   const [currentWeek, setCurrentWeek] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [hasChallenge, setHasChallenge] = useState(true);
@@ -66,6 +67,7 @@ export default function LeaderboardPage() {
 
         const c = row.challenges as unknown as ChallengeInfo & { id: string };
         setChallenge(c);
+        setChallengeId(c.id);
 
         // Calculate current week
         if (c.start_date) {
@@ -196,7 +198,8 @@ export default function LeaderboardPage() {
           return (
             <div
               key={s.user_id}
-              className={`rounded-xl bg-card p-4 ${
+              onClick={() => challengeId && navigate(`/challenge/${challengeId}/participant/${s.user_id}`)}
+              className={`rounded-xl bg-card p-4 cursor-pointer hover:bg-card/80 transition-colors ${
                 s.user_id === user?.id ? 'border border-primary/30' : ''
               } ${i === 0 && isComplete ? 'border border-gold/40' : ''}`}
             >
