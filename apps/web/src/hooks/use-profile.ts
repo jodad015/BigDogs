@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/lib/auth';
 
@@ -22,38 +22,42 @@ export function useProfile() {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const mounted = useRef(true);
 
-  const fetchProfile = useCallback(async () => {
+  const fetchProfile = useCallback(() => {
     if (!user) return;
-    setIsLoading(true);
-    const { data, error } = await supabase
+    supabase
       .from('profiles')
       .select('*')
       .eq('id', user.id)
-      .single();
-
-    if (error) {
-      setError(error.message);
-    } else {
-      setProfile(data);
-      setError(null);
-    }
-    setIsLoading(false);
+      .single()
+      .then(({ data, error: err }) => {
+        if (!mounted.current) return;
+        if (err) {
+          setError(err.message);
+        } else {
+          setProfile(data);
+          setError(null);
+        }
+        setIsLoading(false);
+      });
   }, [user]);
 
   useEffect(() => {
+    mounted.current = true;
     fetchProfile();
+    return () => { mounted.current = false; };
   }, [fetchProfile]);
 
   const updateProfile = async (updates: ProfileUpdate) => {
     if (!user) return { error: 'Not authenticated' };
-    const { error } = await supabase
+    const { error: err } = await supabase
       .from('profiles')
       .update({ ...updates, updated_at: new Date().toISOString() })
       .eq('id', user.id);
 
-    if (error) return { error: error.message };
-    await fetchProfile();
+    if (err) return { error: err.message };
+    fetchProfile();
     return { error: null };
   };
 

@@ -1,18 +1,21 @@
 import { useNavigate } from 'react-router';
 import { useWeighIns } from '@/hooks/use-weigh-ins';
-import { useProfile } from '@/hooks/use-profile';
-import { Scale, Flame, ArrowDown, ArrowUp } from 'lucide-react';
+import { Scale, ArrowDown, ArrowUp } from 'lucide-react';
 import { TrendChart } from '@/components/trend-chart';
+
+function getWeekEntries(entries: { date: string; weight: number }[]) {
+  const now = Date.now();
+  return entries.filter((e) => {
+    const diff = (now - new Date(e.date).getTime()) / (1000 * 60 * 60 * 24);
+    return diff <= 7;
+  });
+}
 
 export default function DashboardPage() {
   const navigate = useNavigate();
-  const { profile } = useProfile();
   const { today, entries, trend, streak, isLoading } = useWeighIns();
 
-  const weekEntries = entries.filter((e) => {
-    const diff = (Date.now() - new Date(e.date).getTime()) / (1000 * 60 * 60 * 24);
-    return diff <= 7;
-  });
+  const weekEntries = getWeekEntries(entries);
   const weekChange =
     weekEntries.length >= 2
       ? Math.round((weekEntries[0].weight - weekEntries[weekEntries.length - 1].weight) * 10) / 10

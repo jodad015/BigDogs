@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useWeighIns } from '@/hooks/use-weigh-ins';
 import { X, Check, Delete } from 'lucide-react';
@@ -8,18 +8,14 @@ type ViewState = 'entry' | 'success';
 export default function WeighInPage() {
   const navigate = useNavigate();
   const { today, entries, trend, logWeight } = useWeighIns();
-  const [digits, setDigits] = useState('');
+  const [digits, setDigits] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [view, setView] = useState<ViewState>('entry');
   const [savedWeight, setSavedWeight] = useState<number | null>(null);
 
   const alreadyLogged = !!today;
-
-  useEffect(() => {
-    if (today && !digits) {
-      setDigits(String(today.weight));
-    }
-  }, [today]);
+  // If user hasn't typed yet, show today's weight (or empty)
+  const activeDigits = digits ?? (today ? String(today.weight) : '');
 
   const yesterday = entries.find((e) => {
     const d = new Date();
@@ -27,19 +23,20 @@ export default function WeighInPage() {
     return e.date === d.toISOString().split('T')[0];
   });
 
-  const displayWeight = digits || '0';
-  const numericWeight = parseFloat(digits) || 0;
+  const displayWeight = activeDigits || '0';
+  const numericWeight = parseFloat(activeDigits) || 0;
   const isValid = numericWeight > 50 && numericWeight < 999;
 
   const handleKey = (key: string) => {
+    const current = activeDigits;
     if (key === 'backspace') {
-      setDigits((d) => d.slice(0, -1));
+      setDigits(current.slice(0, -1));
       return;
     }
-    if (key === '.' && digits.includes('.')) return;
-    if (digits.includes('.') && digits.split('.')[1]?.length >= 1) return;
-    if (digits.length >= 5) return;
-    setDigits((d) => d + key);
+    if (key === '.' && current.includes('.')) return;
+    if (current.includes('.') && current.split('.')[1]?.length >= 1) return;
+    if (current.length >= 5) return;
+    setDigits(current + key);
   };
 
   const handleSubmit = async () => {
@@ -53,6 +50,7 @@ export default function WeighInPage() {
     }
     setSubmitting(false);
   };
+
 
   const todayFormatted = new Date().toLocaleDateString('en-US', {
     weekday: 'long',
@@ -95,7 +93,7 @@ export default function WeighInPage() {
         <div className="w-9" />
       </div>
 
-      {alreadyLogged && !digits.length && (
+      {alreadyLogged && digits === null && (
         <p className="text-center text-sm text-success mb-1">Already logged today</p>
       )}
 

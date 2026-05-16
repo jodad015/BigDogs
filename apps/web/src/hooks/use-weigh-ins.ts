@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/lib/auth';
 
@@ -13,8 +13,6 @@ export interface WeighIn {
 
 function computeTrend(entries: WeighIn[]): number | null {
   if (entries.length === 0) return null;
-  // Simple 7-day exponential moving average
-  // Weight newer entries more heavily
   const sorted = [...entries].sort((a, b) => a.date.localeCompare(b.date));
   const alpha = 2 / (Math.min(sorted.length, 7) + 1);
   let ema = sorted[0].weight;
@@ -33,28 +31,32 @@ export function useWeighIns(limit = 30) {
   const [entries, setEntries] = useState<WeighIn[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const mounted = useRef(true);
 
-  const fetchEntries = useCallback(async () => {
+  const fetchEntries = useCallback(() => {
     if (!user) return;
-    setIsLoading(true);
-    const { data, error } = await supabase
+    supabase
       .from('weigh_ins')
       .select('id, user_id, date, weight, trend_weight, created_at')
       .eq('user_id', user.id)
       .order('date', { ascending: false })
-      .limit(limit);
-
-    if (error) {
-      setError(error.message);
-    } else {
-      setEntries(data ?? []);
-      setError(null);
-    }
-    setIsLoading(false);
+      .limit(limit)
+      .then(({ data, error: err }) => {
+        if (!mounted.current) return;
+        if (err) {
+          setError(err.message);
+        } else {
+          setEntries(data ?? []);
+          setError(null);
+        }
+        setIsLoading(false);
+      });
   }, [user, limit]);
 
   useEffect(() => {
+    mounted.current = true;
     fetchEntries();
+    return () => { mounted.current = false; };
   }, [fetchEntries]);
 
   const today = entries.find((e) => e.date === todayStr()) ?? null;
@@ -81,11 +83,10 @@ export function useWeighIns(limit = 30) {
     if (!user) return { error: 'Not authenticated' };
     const dateStr = date ?? todayStr();
 
-    // Compute trend from existing entries + new one
     const allForTrend = [...entries.filter((e) => e.date !== dateStr), { weight, date: dateStr } as WeighIn];
     const trendWeight = computeTrend(allForTrend);
 
-    const { error } = await supabase.from('weigh_ins').upsert(
+    const { error: err } = await supabase.from('weigh_ins').upsert(
       {
         user_id: user.id,
         date: dateStr,
@@ -96,15 +97,15 @@ export function useWeighIns(limit = 30) {
       { onConflict: 'user_id,date' }
     );
 
-    if (error) return { error: error.message };
-    await fetchEntries();
+    if (err) return { error: err.message };
+    fetchEntries();
     return { error: null };
   };
 
   const deleteEntry = async (id: string) => {
-    const { error } = await supabase.from('weigh_ins').delete().eq('id', id);
-    if (error) return { error: error.message };
-    await fetchEntries();
+    const { error: err } = await supabase.from('weigh_ins').delete().eq('id', id);
+    if (err) return { error: err.message };
+    fetchEntries();
     return { error: null };
   };
 
