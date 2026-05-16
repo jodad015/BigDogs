@@ -149,6 +149,14 @@ export default function DashboardPage() {
           <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Active Challenge</p>
           <p className="font-bold">{activeChallenge!.challenge.name}</p>
           <p className="text-xs text-muted-foreground mt-1 capitalize">{activeChallenge!.status}</p>
+          {activeChallenge!.status === 'onboarding' && (
+            <button
+              onClick={() => navigate(`/challenge/${activeChallenge!.challenge_id}/onboarding`)}
+              className="w-full mt-3 rounded-lg bg-primary py-2.5 text-primary-foreground text-sm font-semibold hover:opacity-90 transition-opacity"
+            >
+              Finish Setup — Set Your Goal
+            </button>
+          )}
         </div>
       ) : (
         <div className="space-y-3">
