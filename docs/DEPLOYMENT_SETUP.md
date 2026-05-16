@@ -134,10 +134,43 @@ supabase functions deploy entity-load --import-map supabase/functions/import_map
 
 ---
 
+## Marketing Site
+
+The marketing site (`apps/marketing/`) is a static HTML/CSS page deployed
+separately from the web app.
+
+| App | Domain | Cloudflare Pages Project | Source |
+|-----|--------|--------------------------|--------|
+| Marketing | bigdogs.app | `bigdogs-marketing` | `apps/marketing/dist/` |
+| Web App | app.bigdogs.app | `bigdogs` | `apps/web/dist/` |
+
+### Setup
+
+1. In Cloudflare Dashboard → Pages → Create project:
+   - **Project name:** `bigdogs-marketing`
+   - Choose "Direct Upload" (CI handles deploys via Wrangler)
+2. In the project → Custom domains → Add `bigdogs.app`
+3. No new GitHub secrets needed — reuses existing `CLOUDFLARE_API_TOKEN`
+   and `CLOUDFLARE_ACCOUNT_ID`
+
+### Local Development
+
+```bash
+pnpm dev:marketing    # Serves on localhost:3001
+pnpm dev              # Web app on localhost:5173
+```
+
+Marketing "Get Started" links point to `http://localhost:5173` in dev mode.
+
+---
+
 ## What You Need To Do
 
 - [x] Create Supabase cloud project and note credentials
-- [ ] Create Cloudflare Pages project named `bigdogs`
+- [ ] Create Cloudflare Pages project named `bigdogs` (web app)
+- [ ] Create Cloudflare Pages project named `bigdogs-marketing` (marketing site)
+- [ ] Add custom domain `bigdogs.app` to `bigdogs-marketing` project
+- [ ] Add custom domain `app.bigdogs.app` to `bigdogs` project
 - [ ] Create Cloudflare API token with Pages edit permission
 - [ ] Add all 7 GitHub secrets to the repo (5 Supabase + 2 Cloudflare)
 - [ ] Test the pipeline with a PR → merge cycle

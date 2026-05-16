@@ -9,9 +9,11 @@
   "scripts": {
     "dev": "pnpm --filter @bigdogs/web dev",
     "dev:web": "pnpm --filter @bigdogs/web dev",
+    "dev:marketing": "pnpm --filter @bigdogs/marketing dev",
     "build": "pnpm --filter @bigdogs/shared build && pnpm --filter @bigdogs/web build",
     "build:shared": "pnpm --filter @bigdogs/shared build",
     "build:web": "pnpm --filter @bigdogs/web build",
+    "build:marketing": "pnpm --filter @bigdogs/marketing build",
     "test": "pnpm --filter @bigdogs/shared test",
     "test:functions": "deno test --config supabase/functions/deno.json supabase/functions/_shared/__tests__/",
     "test:e2e": "pnpm --filter @bigdogs/web test:e2e",

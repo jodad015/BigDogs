@@ -45,8 +45,19 @@
       "problemMatcher": []
     },
     {
+      "label": "Marketing Site",
+      "type": "shell",
+      "command": "pnpm dev:marketing",
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": {
+        "group": "dev",
+        "reveal": "always"
+      }
+    },
+    {
       "label": "Start All",
-      "dependsOn": ["Supabase Functions", "Web App"],
+      "dependsOn": ["Supabase Functions", "Web App", "Marketing Site"],
       "problemMatcher": []
     },
     {

@@ -1,0 +1,9 @@
+{
+  "name": "@bigdogs/marketing",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "APP_URL=http://localhost:5180 bash build.sh && npx serve dist -l 5181",
+    "build": "bash build.sh"
+  }
+}
