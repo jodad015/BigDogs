@@ -8,6 +8,8 @@ import { LoadingScreen } from '@/components/layout/loading-screen';
 
 const LoginPage = lazy(() => import('@/pages/login'));
 const DashboardPage = lazy(() => import('@/pages/dashboard'));
+const WeighInPage = lazy(() => import('@/pages/weigh-in'));
+const ProfilePage = lazy(() => import('@/pages/profile'));
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
             <Route element={<ProtectedRoute />}>
               <Route element={<AppLayout />}>
                 <Route path="/" element={<DashboardPage />} />
+                <Route path="/weigh-in" element={<WeighInPage />} />
+                <Route path="/profile" element={<ProfilePage />} />
               </Route>
             </Route>
 
