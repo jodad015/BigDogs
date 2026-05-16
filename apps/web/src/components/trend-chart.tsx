@@ -16,9 +16,9 @@ export function TrendChart({ entries }: TrendChartProps) {
   const max = Math.max(...allValues);
   const range = max - min || 1;
 
-  const padding = { top: 16, right: 12, bottom: 28, left: 12 };
+  const padding = { top: 20, right: 36, bottom: 32, left: 28 };
   const width = 400;
-  const height = 140;
+  const height = 150;
   const chartW = width - padding.left - padding.right;
   const chartH = height - padding.top - padding.bottom;
 

@@ -212,7 +212,11 @@ export default function ParticipantPage() {
       ) : (
         <div className="space-y-2">
           {weeks.map((w) => (
-            <div key={w.week_number} className="flex items-center gap-3 rounded-xl bg-card px-4 py-3">
+            <div
+              key={w.week_number}
+              onClick={() => challengeId && navigate(`/challenge/${challengeId}/week?w=${w.week_number}`)}
+              className="flex items-center gap-3 rounded-xl bg-card px-4 py-3 cursor-pointer hover:bg-card/80 transition-colors"
+            >
               {/* Placement badge */}
               <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-extrabold ${
                 BADGE_COLORS[w.placement] ?? 'bg-muted text-muted-foreground'

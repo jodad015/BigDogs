@@ -234,9 +234,19 @@ export default function LeaderboardPage() {
         })}
       </div>
 
+      {/* Weekly Results Link */}
+      {challengeId && currentWeek > 0 && (
+        <button
+          onClick={() => navigate(`/challenge/${challengeId}/week`)}
+          className="w-full mt-4 py-3 rounded-xl border border-border text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+        >
+          View Weekly Results
+        </button>
+      )}
+
       {/* Share (complete state) */}
       {isComplete && (
-        <button className="w-full flex items-center justify-center gap-2 mt-6 py-3 rounded-xl border border-border text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+        <button className="w-full flex items-center justify-center gap-2 mt-3 py-3 rounded-xl border border-border text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
           Share Results
         </button>
       )}
