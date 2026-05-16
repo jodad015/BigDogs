@@ -53,7 +53,7 @@ export default function LeaderboardPage() {
         // Get all participants + their total points
         supabase
           .from('participants')
-          .select('user_id, profiles(display_name)')
+          .select('id, user_id, profiles(display_name)')
           .eq('challenge_id', challenge.id)
           .then(({ data: participants }) => {
             if (!mounted.current || !participants) {
@@ -69,23 +69,20 @@ export default function LeaderboardPage() {
               .then(({ data: results }) => {
                 if (!mounted.current) return;
 
-                const pointsByUser: Record<string, number> = {};
-                const weeksByUser: Record<string, number> = {};
+                // Map participant_id (participants.id) → points
+                const pointsById: Record<string, number> = {};
+                const weeksById: Record<string, number> = {};
 
                 for (const r of results ?? []) {
-                  const p = participants.find((p) => p.user_id === r.participant_id) ??
-                    participants.find(() => true); // fallback
-                  if (p) {
-                    pointsByUser[p.user_id] = (pointsByUser[p.user_id] ?? 0) + r.placement_points;
-                    weeksByUser[p.user_id] = (weeksByUser[p.user_id] ?? 0) + 1;
-                  }
+                  pointsById[r.participant_id] = (pointsById[r.participant_id] ?? 0) + r.placement_points;
+                  weeksById[r.participant_id] = (weeksById[r.participant_id] ?? 0) + 1;
                 }
 
                 const s: Standing[] = participants.map((p, i) => ({
                   user_id: p.user_id,
                   display_name: (p.profiles as unknown as { display_name: string })?.display_name ?? 'Unknown',
-                  total_points: pointsByUser[p.user_id] ?? 0,
-                  weeks_played: weeksByUser[p.user_id] ?? 0,
+                  total_points: pointsById[p.id] ?? 0,
+                  weeks_played: weeksById[p.id] ?? 0,
                   placement: i + 1,
                 }));
 
