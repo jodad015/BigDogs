@@ -15,15 +15,15 @@ function computeTrend(entries: WeighIn[]): number | null {
   if (entries.length === 0) return null;
   const sorted = [...entries].sort((a, b) => a.date.localeCompare(b.date));
   const alpha = 2 / (Math.min(sorted.length, 7) + 1);
-  let ema = sorted[0].weight;
+  let ema = sorted[0]!.weight;
   for (let i = 1; i < sorted.length; i++) {
-    ema = alpha * sorted[i].weight + (1 - alpha) * ema;
+    ema = alpha * sorted[i]!.weight + (1 - alpha) * ema;
   }
   return Math.round(ema * 10) / 10;
 }
 
 function todayStr(): string {
-  return new Date().toISOString().split('T')[0];
+  return new Date().toISOString().split('T')[0]!;
 }
 
 export function useWeighIns(limit = 30) {

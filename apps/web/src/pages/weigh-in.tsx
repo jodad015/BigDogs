@@ -34,7 +34,7 @@ export default function WeighInPage() {
       return;
     }
     if (key === '.' && current.includes('.')) return;
-    if (current.includes('.') && current.split('.')[1]?.length >= 1) return;
+    if (current.includes('.') && (current.split('.')[1]?.length ?? 0) >= 1) return;
     if (current.length >= 5) return;
     setDigits(current + key);
   };

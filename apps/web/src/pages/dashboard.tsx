@@ -18,7 +18,7 @@ export default function DashboardPage() {
   const weekEntries = getWeekEntries(entries);
   const weekChange =
     weekEntries.length >= 2
-      ? Math.round((weekEntries[0].weight - weekEntries[weekEntries.length - 1].weight) * 10) / 10
+      ? Math.round((weekEntries[0]!.weight - weekEntries[weekEntries.length - 1]!.weight) * 10) / 10
       : null;
 
   const formatDate = () =>

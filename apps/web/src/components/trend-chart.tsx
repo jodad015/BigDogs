@@ -109,7 +109,7 @@ export function TrendChart({ entries }: TrendChartProps) {
             fill="var(--color-muted-foreground)"
             fontSize="10"
           >
-            {formatLabel(sorted[idx].date)}
+            {formatLabel(sorted[idx]!.date)}
           </text>
         ))}
 
