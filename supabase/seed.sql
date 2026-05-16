@@ -49,3 +49,27 @@ INSERT INTO auth.identities (
   jsonb_build_object('sub', 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 'email', 'bob@bigdogs.app'),
   'email', now(), now(), now()
 );
+
+-- Update Bob's profile with height/age/target
+UPDATE public.profiles SET
+  height_inches = 70,
+  age = 34,
+  personal_target_weight = 175.0
+WHERE id = 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb';
+
+-- Bob's weigh-in history (14 days, starting ~195 trending down)
+INSERT INTO public.weigh_ins (user_id, date, weight, trend_weight) VALUES
+  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 13, 195.8, 195.8),
+  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 12, 195.2, 195.6),
+  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 11, 196.0, 195.7),
+  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 10, 194.8, 195.5),
+  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 9,  194.4, 195.2),
+  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 8,  195.0, 195.2),
+  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 7,  194.2, 195.0),
+  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 6,  193.6, 194.7),
+  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 5,  194.0, 194.5),
+  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 4,  193.2, 194.2),
+  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 3,  192.8, 193.9),
+  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 2,  193.4, 193.8),
+  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 1,  192.6, 193.5),
+  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date,      192.2, 193.2);
