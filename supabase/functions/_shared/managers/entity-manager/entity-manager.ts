@@ -4,6 +4,7 @@ import type { ResultBase } from '../../types/result-base.ts';
 import { ManagerBase } from '../manager-base.ts';
 import { ValidationEngine } from '../../engines/validation/validation-engine.ts';
 import { ErrorCode } from '../../enums/error-code.ts';
+import { weighInStoreHandler } from './handlers/weigh-in-store-handler.ts';
 
 export class EntityManager extends ManagerBase {
   constructor(db: SupabaseClient, contexts: ContextBase[]) {
@@ -27,12 +28,10 @@ export class EntityManager extends ManagerBase {
   }
 
   protected getSchemas() {
-    // Zod schemas will be added per request type
     return null;
   }
 
   protected getMapper() {
-    // Mapper will be added when validation criteria are defined
     return null;
   }
 
@@ -44,9 +43,14 @@ export class EntityManager extends ManagerBase {
         };
       },
       store: async (criteria: any): Promise<ResultBase> => {
-        return {
-          errors: [{ code: ErrorCode.NotImplemented, message: `EntityManager.store: ${criteria.type} not implemented` }],
-        };
+        switch (criteria.type) {
+          case 'WeighInStore':
+            return weighInStoreHandler(this.db, this.contexts, criteria);
+          default:
+            return {
+              errors: [{ code: ErrorCode.NotImplemented, message: `EntityManager.store: ${criteria.type} not implemented` }],
+            };
+        }
       },
       delete: async (criteria: any): Promise<ResultBase> => {
         return {

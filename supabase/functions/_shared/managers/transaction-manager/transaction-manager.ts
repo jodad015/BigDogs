@@ -4,6 +4,7 @@ import type { ResultBase } from '../../types/result-base.ts';
 import { ManagerBase } from '../manager-base.ts';
 import { ValidationEngine } from '../../engines/validation/validation-engine.ts';
 import { ErrorCode } from '../../enums/error-code.ts';
+import { computeWeeklyScoresHandler } from './handlers/compute-weekly-scores-handler.ts';
 
 export class TransactionManager extends ManagerBase {
   constructor(db: SupabaseClient, contexts: ContextBase[]) {
@@ -38,9 +39,14 @@ export class TransactionManager extends ManagerBase {
         };
       },
       execute: async (criteria: any): Promise<ResultBase> => {
-        return {
-          errors: [{ code: ErrorCode.NotImplemented, message: `TransactionManager.execute: ${criteria.type} not implemented` }],
-        };
+        switch (criteria.type) {
+          case 'ComputeWeeklyScores':
+            return computeWeeklyScoresHandler(this.db, this.contexts, criteria);
+          default:
+            return {
+              errors: [{ code: ErrorCode.NotImplemented, message: `TransactionManager.execute: ${criteria.type} not implemented` }],
+            };
+        }
       },
     };
   }
