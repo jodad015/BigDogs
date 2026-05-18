@@ -37,9 +37,18 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="w-full max-w-sm">
-        <h1 className="mb-8 text-center text-3xl font-bold text-foreground">BigDogs</h1>
+    <div className="relative flex min-h-screen items-center justify-center bg-background px-4 overflow-hidden">
+      {/* Watermark logo */}
+      <img
+        src="/logo-white.svg"
+        alt=""
+        aria-hidden="true"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] opacity-[0.04] pointer-events-none"
+      />
+
+      <div className="relative z-10 w-full max-w-sm">
+        <h1 className="mb-8 text-center text-3xl font-black tracking-[0.15em] uppercase text-foreground">BIGDOGS</h1>
+        <p className="text-center text-muted-foreground mb-8 -mt-4">Prove it on the scale.</p>
 
         {!enableEmailAuth && (
           <button
