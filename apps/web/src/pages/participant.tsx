@@ -179,6 +179,28 @@ export default function ParticipantPage() {
         </div>
       </div>
 
+      {/* Goal Info */}
+      {participant.target_weight && (
+        <div className="flex justify-around rounded-xl bg-card p-3 mb-4">
+          {participant.starting_weight && (
+            <div className="text-center">
+              <p className="text-[10px] text-muted-foreground uppercase tracking-wide">Start</p>
+              <p className="text-sm font-bold">{participant.starting_weight} lb</p>
+            </div>
+          )}
+          <div className="text-center">
+            <p className="text-[10px] text-muted-foreground uppercase tracking-wide">Goal</p>
+            <p className="text-sm font-bold">{participant.target_weight} lb</p>
+          </div>
+          {participant.weekly_target && (
+            <div className="text-center">
+              <p className="text-[10px] text-muted-foreground uppercase tracking-wide">Pace</p>
+              <p className="text-sm font-bold">{participant.weekly_target} lb/wk</p>
+            </div>
+          )}
+        </div>
+      )}
+
       {/* Stats Row */}
       <div className="flex justify-around mb-5">
         <div className="text-center">
