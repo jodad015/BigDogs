@@ -76,7 +76,7 @@ a:hover { text-decoration: underline; }
 .hero .hero-sub {
   font-size: 1rem;
   color: #777;
-  margin-bottom: 32px;
+  margin-bottom: 48px;
   max-width: 420px;
   margin-left: auto;
   margin-right: auto;
@@ -263,7 +263,7 @@ section.alt .feature-card {
 .footer-cta .footer-sub {
   color: var(--muted);
   font-size: 1rem;
-  margin-bottom: 24px;
+  margin-bottom: 40px;
 }
 .footer-cta .sub {
   color: #666;
