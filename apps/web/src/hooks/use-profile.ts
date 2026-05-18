@@ -30,6 +30,9 @@ export function useProfile() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const mounted = useRef(true);
+  const retryCount = useRef(0);
+  const fetchRef = useRef<() => void>(undefined);
+  const MAX_RETRIES = 3;
 
   const fetchProfile = useCallback(() => {
     if (!user) return;
@@ -40,11 +43,9 @@ export function useProfile() {
       .single()
       .then(({ data, error: err }) => {
         if (!mounted.current) return;
-        if (err && err.code === 'PGRST116') {
-          // No profile row found — may happen briefly after Google OAuth signup
-          // before the trigger creates the row. Will retry via effect.
-          setProfile(null);
-          setError(null);
+        if (err && err.code === 'PGRST116' && retryCount.current < MAX_RETRIES) {
+          retryCount.current += 1;
+          setTimeout(() => { if (mounted.current) fetchRef.current?.(); }, 1500);
           return;
         }
         if (err) {
@@ -52,17 +53,13 @@ export function useProfile() {
         } else {
           setProfile(data);
           setError(null);
+          retryCount.current = 0;
         }
         setIsLoading(false);
       });
   }, [user]);
 
-  // Retry if profile is missing (Google OAuth race condition)
-  useEffect(() => {
-    if (!user || profile || isLoading || error) return;
-    const timer = setTimeout(() => { fetchProfile(); }, 1500);
-    return () => clearTimeout(timer);
-  });
+  useEffect(() => { fetchRef.current = fetchProfile; }, [fetchProfile]);
 
   useEffect(() => {
     mounted.current = true;
