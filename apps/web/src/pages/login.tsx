@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router';
 import { useAuth } from '@/lib/auth';
 
 const enableEmailAuth = import.meta.env.VITE_ENABLE_EMAIL_AUTH === 'true';
@@ -129,6 +130,13 @@ export default function LoginPage() {
         )}
 
         {error && <p className="mt-4 text-center text-sm text-destructive">{error}</p>}
+
+        <p className="mt-6 text-center text-sm text-muted-foreground">
+          Don't have an account?{' '}
+          <Link to="/signup" className="text-primary font-medium hover:underline">
+            Sign up
+          </Link>
+        </p>
       </div>
     </div>
   );

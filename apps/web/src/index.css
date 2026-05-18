@@ -1,23 +1,14 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-background: #f5f5f5;
-  --color-foreground: #1a1a2e;
-  --color-primary: #e94560;
+  /* Dark mode (default) — set via CSS below */
+  --color-primary: #E63946;
   --color-primary-foreground: #ffffff;
-  --color-muted: #e5e5e5;
-  --color-muted-foreground: #7f7f7f;
-  --color-accent: #e94560;
+  --color-accent: #E63946;
   --color-accent-foreground: #ffffff;
-  --color-destructive: #dc2626;
-  --color-success: #16a34a;
+  --color-destructive: #ef4444;
+  --color-success: #22c55e;
   --color-warning: #f59e0b;
-  --color-card: #ffffff;
-  --color-card-foreground: #1a1a2e;
-  --color-border: #e5e5e5;
-  --color-input: #ffffff;
-  --color-ring: #e94560;
-  --color-placeholder: #a3a3a3;
 
   --color-on-pace: #16a34a;
   --color-slightly-under: #f59e0b;
@@ -36,6 +27,47 @@
   --radius-xl: 1.25rem;
 
   --font-sans: 'Inter', system-ui, sans-serif;
+
+  /* Theme-switched colors — defaults are dark */
+  --color-background: var(--bg);
+  --color-foreground: var(--fg);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-fg);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-fg);
+  --color-border: var(--border-c);
+  --color-input: var(--input-c);
+  --color-ring: #E63946;
+  --color-placeholder: var(--placeholder-c);
+  --color-nav: var(--nav-c);
+}
+
+/* Dark theme (default) */
+:root {
+  --bg: #1a1a2e;
+  --fg: #f5f5f5;
+  --muted: #2a2a4a;
+  --muted-fg: #888888;
+  --card: #252547;
+  --card-fg: #f5f5f5;
+  --border-c: #2a2a4a;
+  --input-c: #16162b;
+  --placeholder-c: #666666;
+  --nav-c: #12122a;
+}
+
+/* Light theme */
+[data-theme="light"] {
+  --bg: #f5f0eb;
+  --fg: #1a1a2e;
+  --muted: #e5e0da;
+  --muted-fg: #6b6b6b;
+  --card: #ffffff;
+  --card-fg: #1a1a2e;
+  --border-c: #d4d0ca;
+  --input-c: #ffffff;
+  --placeholder-c: #a3a3a3;
+  --nav-c: #ffffff;
 }
 
 body {
