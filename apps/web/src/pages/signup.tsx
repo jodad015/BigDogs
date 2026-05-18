@@ -64,7 +64,7 @@ export default function SignupPage() {
         {/* Brand Header */}
         <div className="text-center mb-10">
           <img src="/avatars/bigdog-crimson.svg" alt="" className="w-24 h-24 mx-auto mb-4" />
-          <h1 className="text-3xl font-black tracking-[0.15em] uppercase">Big Dogs</h1>
+          <h1 className="text-3xl font-black tracking-[0.15em] uppercase">BigDogs</h1>
           <p className="text-muted-foreground mt-1">Prove it on the scale.</p>
         </div>
 

@@ -34,7 +34,7 @@ function DesktopNav() {
       {/* Logo */}
       <div className="flex items-center gap-2.5">
         <img src={theme === 'dark' ? '/logo-white.svg' : '/logo-dark.svg'} alt="" className="w-7 h-5" />
-        <span className="text-sm font-extrabold tracking-[0.2em] uppercase">Big Dogs</span>
+        <span className="text-sm font-extrabold tracking-[0.2em] uppercase">BigDogs</span>
       </div>
 
       {/* Nav icons */}
