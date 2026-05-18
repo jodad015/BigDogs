@@ -40,6 +40,13 @@ export function useProfile() {
       .single()
       .then(({ data, error: err }) => {
         if (!mounted.current) return;
+        if (err && err.code === 'PGRST116') {
+          // No profile row found — may happen briefly after Google OAuth signup
+          // before the trigger creates the row. Will retry via effect.
+          setProfile(null);
+          setError(null);
+          return;
+        }
         if (err) {
           setError(err.message);
         } else {
@@ -49,6 +56,13 @@ export function useProfile() {
         setIsLoading(false);
       });
   }, [user]);
+
+  // Retry if profile is missing (Google OAuth race condition)
+  useEffect(() => {
+    if (!user || profile || isLoading || error) return;
+    const timer = setTimeout(() => { fetchProfile(); }, 1500);
+    return () => clearTimeout(timer);
+  });
 
   useEffect(() => {
     mounted.current = true;
