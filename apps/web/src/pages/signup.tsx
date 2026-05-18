@@ -59,12 +59,19 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="w-full max-w-sm">
+    <div className="relative flex min-h-screen items-center justify-center bg-background px-4 overflow-hidden">
+      {/* Watermark logo */}
+      <img
+        src="/logo-white.svg"
+        alt=""
+        aria-hidden="true"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] opacity-[0.04] pointer-events-none"
+      />
+
+      <div className="relative z-10 w-full max-w-sm">
         {/* Brand Header */}
         <div className="text-center mb-10">
-          <img src="/avatars/bigdog-crimson.svg" alt="" className="w-24 h-24 mx-auto mb-4" />
-          <h1 className="text-3xl font-black tracking-[0.15em] uppercase">BigDogs</h1>
+          <h1 className="text-3xl font-black tracking-[0.15em] uppercase">BIGDOGS</h1>
           <p className="text-muted-foreground mt-1">Prove it on the scale.</p>
         </div>
 
