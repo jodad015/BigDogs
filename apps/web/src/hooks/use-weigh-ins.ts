@@ -83,21 +83,17 @@ export function useWeighIns(limit = 30) {
     if (!user) return { error: 'Not authenticated' };
     const dateStr = date ?? todayStr();
 
-    const allForTrend = [...entries.filter((e) => e.date !== dateStr), { weight, date: dateStr } as WeighIn];
-    const trendWeight = computeTrend(allForTrend);
-
-    const { error: err } = await supabase.from('weigh_ins').upsert(
-      {
-        user_id: user.id,
+    const { data, error: err } = await supabase.functions.invoke('entity-store', {
+      body: {
+        type: 'WeighInStore',
+        userId: user.id,
         date: dateStr,
         weight,
-        trend_weight: trendWeight,
-        updated_at: new Date().toISOString(),
       },
-      { onConflict: 'user_id,date' }
-    );
+    });
 
     if (err) return { error: err.message };
+    if (data?.errors?.length) return { error: data.errors[0].message };
     fetchEntries();
     return { error: null };
   };
