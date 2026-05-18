@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Big Dogs — Prove it on the scale.</title>
-  <meta name="description" content="A competitive weight loss challenge app. Challenge your friends, track your progress, and win with consistency.">
+  <title>BigDogs — Prove it on the scale.</title>
+  <meta name="description" content="A competitive weight loss challenge app. Challenge your friends, track your progress, and win with consistency — not crash diets.">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,16 +17,26 @@
   <!-- Hero -->
   <section class="hero">
     <img src="/logo.svg" alt="" class="hero-bg" aria-hidden="true">
-    <h1>BIG DOGS</h1>
+    <h1>BIGDOGS</h1>
     <p class="tagline">Prove it on the scale.</p>
-    <a href="__APP_URL__/signup" class="btn">Get Started</a>
+    <p class="hero-sub">The weight loss competition that rewards consistency over crash diets.</p>
+    <a href="__APP_URL__/signup" class="btn">Get Started Free</a>
+    <div class="avatar-strip">
+      <img src="/avatars/bigdog-crimson.svg" alt="" class="avatar-mini">
+      <img src="/avatars/bigdog-sky.svg" alt="" class="avatar-mini">
+      <img src="/avatars/bigdog-gold.svg" alt="" class="avatar-mini">
+      <img src="/avatars/bigdog-mint.svg" alt="" class="avatar-mini">
+      <img src="/avatars/bigdog-plum.svg" alt="" class="avatar-mini">
+      <span class="avatar-label">Join the pack</span>
+    </div>
   </section>
 
   <!-- What is BigDogs? -->
   <section class="alt">
     <div class="container what-content">
-      <h2 class="section-title">A Weight Loss Competition</h2>
-      <p>Challenge your friends. Track your progress. Win with consistency &mdash; not crash diets. BigDogs rewards hitting your pace, not racing to the bottom.</p>
+      <h2 class="section-title">This Isn't a Diet App</h2>
+      <p>BigDogs is a <strong>competitive weight loss challenge</strong> you run with friends, coworkers, or anyone brave enough to step on the scale. Set a personal goal, weigh in daily, and let the scoreboard do the talking.</p>
+      <p class="mt">The secret? You're not scored on how much you lose &mdash; you're scored on <strong>hitting your own pace</strong>. Someone losing 1 lb/week at their target beats someone crashing 3 lbs unsustainably. Consistency wins.</p>
     </div>
   </section>
 
@@ -38,29 +48,60 @@
         <div class="step">
           <div class="step-num">1</div>
           <div class="step-text">
-            <h3>Set Your Pace</h3>
-            <p>Pick a goal. The app computes your weekly target.</p>
+            <h3>Create or Join</h3>
+            <p>Start a challenge and share your invite code. Friends join in seconds.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">2</div>
           <div class="step-text">
-            <h3>Weigh In Daily</h3>
-            <p>Step on the scale each morning. Your 7-day trend does the rest.</p>
+            <h3>Set Your Goal</h3>
+            <p>Pick a target weight, weekly pace, or let us suggest one. The app builds your plan with safety rails built in.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">3</div>
           <div class="step-text">
-            <h3>Compete Weekly</h3>
-            <p>Every Friday, scores drop. Stay on pace to climb the board.</p>
+            <h3>Weigh In Daily</h3>
+            <p>Step on the scale each morning. A 7-day rolling average smooths the noise so one bad day doesn't tank you.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">4</div>
           <div class="step-text">
-            <h3>Win the Challenge</h3>
-            <p>Most placement points at the end takes the crown.</p>
+            <h3>Compete Weekly</h3>
+            <p>Each week, everyone gets scored on how close they hit their target. Placements earn points. Most points at the end wins.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scoring -->
+  <section class="alt">
+    <div class="container what-content">
+      <h2 class="section-title">Scoring That Keeps It Fair</h2>
+      <p>Everyone sets their own pace. Your <strong>performance factor</strong> measures how well you hit your weekly target &mdash; not how much you lost in absolute terms. That means someone with 10 lbs to lose competes on equal footing with someone with 50.</p>
+      <div class="scoring-grid">
+        <div class="scoring-item">
+          <div class="scoring-icon on-pace"></div>
+          <div>
+            <strong>On Pace</strong>
+            <p>Hit your weekly target and score high</p>
+          </div>
+        </div>
+        <div class="scoring-item">
+          <div class="scoring-icon under-pace"></div>
+          <div>
+            <strong>Under Pace</strong>
+            <p>Fell short this week &mdash; lower score, but still earning points</p>
+          </div>
+        </div>
+        <div class="scoring-item">
+          <div class="scoring-icon showdown"></div>
+          <div>
+            <strong>Showdown Weeks</strong>
+            <p>End of each month + final week. Double points. High stakes.</p>
           </div>
         </div>
       </div>
@@ -68,7 +109,7 @@
   </section>
 
   <!-- Features -->
-  <section class="alt">
+  <section>
     <div class="container">
       <h2 class="section-title">Built for Competition</h2>
       <div class="features-grid">
@@ -76,42 +117,42 @@
           <i data-lucide="trending-down" class="feature-icon"></i>
           <div>
             <h3>Trend Tracking</h3>
-            <p>7-day rolling average smooths the noise</p>
+            <p>7-day rolling average so daily fluctuations don't mess with your head</p>
           </div>
         </div>
         <div class="feature-card">
           <i data-lucide="zap" class="feature-icon"></i>
           <div>
             <h3>Showdown Weeks</h3>
-            <p>Last Friday of the month. Double points.</p>
+            <p>End-of-month and final week showdowns with 2x points</p>
           </div>
         </div>
         <div class="feature-card">
-          <i data-lucide="user" class="feature-icon"></i>
+          <i data-lucide="target" class="feature-icon"></i>
           <div>
-            <h3>Solo Mode</h3>
-            <p>Track your weight without a challenge</p>
+            <h3>Smart Goal Setting</h3>
+            <p>Target weight, % loss, BMI, or weekly pace &mdash; pick your method</p>
           </div>
         </div>
         <div class="feature-card">
           <i data-lucide="trophy" class="feature-icon"></i>
           <div>
-            <h3>Public Leaderboard</h3>
-            <p>Let spectators follow along &mdash; no weight numbers exposed</p>
+            <h3>Live Leaderboard</h3>
+            <p>Track standings, placements, and points in real time</p>
           </div>
         </div>
         <div class="feature-card">
           <i data-lucide="shield-check" class="feature-icon"></i>
           <div>
             <h3>Safety Rails</h3>
-            <p>Smart guardrails keep goals healthy and sustainable</p>
+            <p>Pace limits and healthy floor checks keep goals sustainable</p>
           </div>
         </div>
         <div class="feature-card">
-          <i data-lucide="eye" class="feature-icon"></i>
+          <i data-lucide="link" class="feature-icon"></i>
           <div>
-            <h3>Public Challenges</h3>
-            <p>Share a link so anyone can follow your group's progress</p>
+            <h3>Invite Codes</h3>
+            <p>Share a code, friends join instantly. No weight numbers shared publicly.</p>
           </div>
         </div>
       </div>
@@ -121,7 +162,8 @@
   <!-- Footer CTA -->
   <section class="footer-cta">
     <h2>Ready to step up?</h2>
-    <a href="__APP_URL__/signup" class="btn">Get Started</a>
+    <p class="footer-sub">Start a challenge with your crew. It takes 30 seconds.</p>
+    <a href="__APP_URL__/signup" class="btn">Get Started Free</a>
     <p class="sub">Free to use. No ads. No nonsense.</p>
   </section>
 

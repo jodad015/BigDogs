@@ -124,7 +124,7 @@ export default function DashboardPage() {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <img src={theme === 'dark' ? '/logo-white.svg' : '/logo-dark.svg'} alt="" className="w-7 h-5" />
-          <span className="text-sm font-extrabold tracking-widest uppercase">Big Dogs</span>
+          <span className="text-sm font-extrabold tracking-widest uppercase">BigDogs</span>
         </div>
         <span className="text-sm text-muted-foreground">{formatDate()}</span>
       </div>
