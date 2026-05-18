@@ -20,6 +20,21 @@ feature/* ──► develop ──► main (production)
 
 PR checks (lint, typecheck, test, build) run on all PRs to `main` or `develop`.
 
+### Merge Strategy
+
+| Merge | Method | Why |
+|-------|--------|-----|
+| feature → develop | **Squash merge** | Keeps develop history clean, one commit per feature |
+| develop → main | **Merge commit** (not squash) | Keeps histories linked so branches stay in sync |
+
+**Do not squash-merge develop → main.** Squash creates a new commit with a
+different SHA, causing develop and main to diverge. Git won't recognize the
+changes as the same, leading to phantom diffs, conflicts on clean merges,
+and "X ahead, Y behind" drift.
+
+In the GitHub PR UI for release PRs (develop → main), select
+**"Create a merge commit"** instead of "Squash and merge".
+
 ---
 
 ## Step 1: Create Supabase Cloud Project
