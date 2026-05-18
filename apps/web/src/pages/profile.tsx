@@ -83,6 +83,11 @@ export default function ProfilePage() {
   const { activeChallenge, hasActiveChallenge, leaveChallenge } = useChallenges();
   const [leaving, setLeaving] = useState(false);
   const [showAvatarPicker, setShowAvatarPicker] = useState(false);
+  const [editingName, setEditingName] = useState(false);
+  const [draftName, setDraftName] = useState('');
+  const [editingHeight, setEditingHeight] = useState(false);
+  const [heightFeet, setHeightFeet] = useState('');
+  const [heightInches, setHeightInches] = useState('');
 
   if (isLoading || !profile) {
     return (
@@ -129,21 +134,98 @@ export default function ProfilePage() {
             />
           </div>
         )}
-        <div className="flex items-center gap-1.5">
-          <p className="text-lg font-bold">{profile.display_name}</p>
-          <Pencil className="w-3.5 h-3.5 text-muted-foreground" />
-        </div>
+        {editingName ? (
+          <div className="flex items-center gap-2">
+            <input
+              type="text"
+              value={draftName}
+              onChange={(e) => setDraftName(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && draftName.trim()) {
+                  updateProfile({ display_name: draftName.trim() });
+                  setEditingName(false);
+                }
+              }}
+              autoFocus
+              className="text-lg font-bold text-center bg-input border border-border rounded-lg px-3 py-1 focus:outline-none focus:ring-2 focus:ring-ring"
+            />
+            <button
+              onClick={() => {
+                if (draftName.trim()) updateProfile({ display_name: draftName.trim() });
+                setEditingName(false);
+              }}
+              className="text-xs font-semibold text-primary"
+            >
+              Save
+            </button>
+            <button onClick={() => setEditingName(false)} className="text-xs text-muted-foreground">
+              Cancel
+            </button>
+          </div>
+        ) : (
+          <button
+            onClick={() => { setDraftName(profile.display_name); setEditingName(true); }}
+            className="flex items-center gap-1.5 hover:text-primary transition-colors"
+          >
+            <p className="text-lg font-bold">{profile.display_name}</p>
+            <Pencil className="w-3.5 h-3.5 text-muted-foreground" />
+          </button>
+        )}
         <p className="text-sm text-muted-foreground">{profile.email}</p>
       </div>
 
       {/* Personal Info Card */}
       <div className="rounded-xl bg-card px-4 divide-y divide-border mb-5">
-        <EditableField
-          label="Height"
-          value={profile.height_inches ? String(profile.height_inches) : ''}
-          displayValue={formatHeight(profile.height_inches)}
-          onSave={saveField('height_inches')}
-        />
+        {/* Height — feet + inches editor */}
+        <div className="flex items-center justify-between py-3.5">
+          <span className="text-sm text-muted-foreground">Height</span>
+          {editingHeight ? (
+            <div className="flex items-center gap-2">
+              <input
+                type="number"
+                min="3"
+                max="8"
+                value={heightFeet}
+                onChange={(e) => setHeightFeet(e.target.value)}
+                autoFocus
+                className="w-12 rounded-md border border-border bg-input px-2 py-1 text-sm text-center focus:outline-none focus:ring-2 focus:ring-ring"
+              />
+              <span className="text-xs text-muted-foreground">ft</span>
+              <input
+                type="number"
+                min="0"
+                max="11"
+                value={heightInches}
+                onChange={(e) => setHeightInches(e.target.value)}
+                className="w-12 rounded-md border border-border bg-input px-2 py-1 text-sm text-center focus:outline-none focus:ring-2 focus:ring-ring"
+              />
+              <span className="text-xs text-muted-foreground">in</span>
+              <button
+                onClick={async () => {
+                  const total = (parseInt(heightFeet) || 0) * 12 + (parseInt(heightInches) || 0);
+                  if (total > 0) await updateProfile({ height_inches: total });
+                  setEditingHeight(false);
+                }}
+                className="text-xs font-semibold text-primary"
+              >Save</button>
+              <button onClick={() => setEditingHeight(false)} className="text-xs text-muted-foreground">Cancel</button>
+            </div>
+          ) : (
+            <button
+              onClick={() => {
+                const ft = profile.height_inches ? Math.floor(profile.height_inches / 12) : 0;
+                const inc = profile.height_inches ? profile.height_inches % 12 : 0;
+                setHeightFeet(ft ? String(ft) : '');
+                setHeightInches(inc ? String(inc) : '');
+                setEditingHeight(true);
+              }}
+              className="flex items-center gap-2 text-sm font-semibold hover:text-primary transition-colors"
+            >
+              {formatHeight(profile.height_inches)}
+              <Pencil className="w-3 h-3 text-muted-foreground" />
+            </button>
+          )}
+        </div>
         <EditableField
           label="Age"
           value={profile.age ? String(profile.age) : ''}
