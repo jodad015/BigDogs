@@ -120,8 +120,8 @@ export default function DashboardPage() {
 
   return (
     <div className="px-4 pt-2 pb-4 max-w-md mx-auto">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-4">
+      {/* Header — mobile only, desktop has top nav */}
+      <div className="flex items-center justify-between mb-4 md:hidden">
         <div className="flex items-center gap-2">
           <img src={theme === 'dark' ? '/logo-white.svg' : '/logo-dark.svg'} alt="" className="w-7 h-5" />
           <span className="text-sm font-extrabold tracking-widest uppercase">BigDogs</span>
