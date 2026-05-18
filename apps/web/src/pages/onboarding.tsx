@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { useProfile } from '@/hooks/use-profile';
+import { useWeighIns } from '@/hooks/use-weigh-ins';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/lib/auth';
 import { ChevronLeft } from 'lucide-react';
@@ -35,9 +36,10 @@ export default function OnboardingPage() {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { profile, isLoading: profileLoading, updateProfile } = useProfile();
+  const { entries, isLoading: weighInsLoading } = useWeighIns(1);
 
-  // Wait for profile to load before rendering
-  if (profileLoading) {
+  // Wait for profile + weigh-ins to load before rendering
+  if (profileLoading || weighInsLoading) {
     return (
       <div className="flex items-center justify-center h-64">
         <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin" />
@@ -46,6 +48,7 @@ export default function OnboardingPage() {
   }
 
   const hasHeight = !!profile?.height_inches;
+  const latestWeight = entries.length > 0 ? entries[0]!.weight : null;
   const initialStep = hasHeight ? 1 : 0;
 
   return <OnboardingWizard
@@ -56,10 +59,11 @@ export default function OnboardingPage() {
     updateProfile={updateProfile}
     hasHeight={hasHeight}
     initialStep={initialStep}
+    latestWeight={latestWeight}
   />;
 }
 
-function OnboardingWizard({ challengeId, navigate, user, profile, updateProfile, hasHeight, initialStep }: {
+function OnboardingWizard({ challengeId, navigate, user, profile, updateProfile, hasHeight, initialStep, latestWeight }: {
   challengeId: string | undefined;
   navigate: ReturnType<typeof useNavigate>;
   user: ReturnType<typeof useAuth>['user'];
@@ -67,41 +71,47 @@ function OnboardingWizard({ challengeId, navigate, user, profile, updateProfile,
   updateProfile: ReturnType<typeof useProfile>['updateProfile'];
   hasHeight: boolean;
   initialStep: number;
+  latestWeight: number | null;
 }) {
   const [step, setStep] = useState(initialStep);
   const [feet, setFeet] = useState(profile?.height_inches ? String(Math.floor(profile.height_inches / 12)) : '');
   const [inches, setInches] = useState(profile?.height_inches ? String(profile.height_inches % 12) : '');
+  const [currentWeight, setCurrentWeight] = useState(latestWeight ? String(latestWeight) : '');
   const [goalMethod, setGoalMethod] = useState<GoalMethod | null>(null);
   const [goalInput, setGoalInput] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
 
-  // Assume starting weight ~195 if we don't know yet (will be set during spinup)
-  const estimatedStart = 195;
+  const startingWeight = parseFloat(currentWeight) || 0;
+  const hasWeight = !!latestWeight;
   const heightInches = hasHeight ? profile!.height_inches! : (parseInt(feet) || 0) * 12 + (parseInt(inches) || 0);
-  const totalSteps = hasHeight ? 3 : 4;
-  const displayStep = hasHeight ? step - 1 : step;
+
+  // Steps: height (0) → current weight (1) → goal method (2) → goal input (3) → review (4)
+  // Skip height if profile has it, skip weight if they have weigh-ins
+  const skippedSteps = (hasHeight ? 1 : 0) + (hasWeight ? 1 : 0);
+  const totalSteps = 5 - skippedSteps;
+  const displayStep = step - (hasHeight ? 1 : 0) - (hasWeight && step > 1 ? 1 : 0);
   const goalValue = parseFloat(goalInput) || 0;
 
   const computedValues = (() => {
     if (goalMethod === 'suggested_default') {
-      return { weeklyPace: 1.5, totalLoss: 1.5 * 12, targetWeight: estimatedStart - 1.5 * 12 };
+      return { weeklyPace: 1.5, totalLoss: 1.5 * 12, targetWeight: startingWeight - 1.5 * 12 };
     }
     if (goalMethod === 'target_weight' && goalValue > 0) {
-      const totalLoss = estimatedStart - goalValue;
+      const totalLoss = startingWeight - goalValue;
       return { weeklyPace: Math.round((totalLoss / 12) * 10) / 10, totalLoss, targetWeight: goalValue };
     }
     if (goalMethod === 'percent_loss' && goalValue > 0) {
-      const totalLoss = Math.round(estimatedStart * (goalValue / 100) * 10) / 10;
-      return { weeklyPace: Math.round((totalLoss / 12) * 10) / 10, totalLoss, targetWeight: estimatedStart - totalLoss };
+      const totalLoss = Math.round(startingWeight * (goalValue / 100) * 10) / 10;
+      return { weeklyPace: Math.round((totalLoss / 12) * 10) / 10, totalLoss, targetWeight: startingWeight - totalLoss };
     }
     if (goalMethod === 'weekly_pace' && goalValue > 0) {
       const totalLoss = goalValue * 12;
-      return { weeklyPace: goalValue, totalLoss, targetWeight: estimatedStart - totalLoss };
+      return { weeklyPace: goalValue, totalLoss, targetWeight: startingWeight - totalLoss };
     }
     if (goalMethod === 'target_bmi' && goalValue > 0 && heightInches > 0) {
       const targetWeight = Math.round(goalValue * (heightInches * heightInches) / 703);
-      const totalLoss = estimatedStart - targetWeight;
+      const totalLoss = startingWeight - targetWeight;
       return { weeklyPace: Math.round((totalLoss / 12) * 10) / 10, totalLoss, targetWeight };
     }
     return null;
@@ -111,8 +121,9 @@ function OnboardingWizard({ challengeId, navigate, user, profile, updateProfile,
 
   const canNext = (() => {
     if (step === 0) return heightInches >= 48 && heightInches <= 96;
-    if (step === 1) return goalMethod !== null;
-    if (step === 2) return goalMethod === 'suggested_default' || (computedValues !== null && goalValue > 0);
+    if (step === 1) return startingWeight >= 50 && startingWeight <= 999;
+    if (step === 2) return goalMethod !== null;
+    if (step === 3) return goalMethod === 'suggested_default' || (computedValues !== null && goalValue > 0);
     return true;
   })();
 
@@ -120,12 +131,15 @@ function OnboardingWizard({ challengeId, navigate, user, profile, updateProfile,
     if (step === 0 && heightInches) {
       await updateProfile({ height_inches: heightInches });
     }
-    if (step < 3) {
-      setStep(step + 1);
+    if (step < 4) {
+      // Skip weight step if we already have weigh-ins
+      let nextStep = step + 1;
+      if (nextStep === 1 && hasWeight) nextStep = 2;
+      setStep(nextStep);
       return;
     }
 
-    // Step 3: Confirm — save participant data
+    // Step 4: Confirm — save participant data
     if (!user || !challengeId || !computedValues) return;
     setSubmitting(true);
     setError('');
@@ -133,6 +147,7 @@ function OnboardingWizard({ challengeId, navigate, user, profile, updateProfile,
     const { error: err } = await supabase
       .from('participants')
       .update({
+        starting_weight: startingWeight,
         goal_method: goalMethod,
         goal_input: goalMethod === 'suggested_default' ? 1.5 : goalValue,
         target_weight: computedValues.targetWeight,
@@ -152,11 +167,14 @@ function OnboardingWizard({ challengeId, navigate, user, profile, updateProfile,
   };
 
   const handleBack = () => {
-    const firstStep = hasHeight ? 1 : 0;
+    const firstStep = hasHeight ? (hasWeight ? 2 : 1) : 0;
     if (step === firstStep) {
       navigate('/');
     } else {
-      setStep(step - 1);
+      let prevStep = step - 1;
+      // Skip weight step going back if we have weigh-ins
+      if (prevStep === 1 && hasWeight) prevStep = 0;
+      setStep(prevStep);
     }
   };
 
@@ -205,8 +223,29 @@ function OnboardingWizard({ challengeId, navigate, user, profile, updateProfile,
           </div>
         )}
 
-        {/* Step 2: Goal Method */}
+        {/* Step 1: Current Weight */}
         {step === 1 && (
+          <div>
+            <h2 className="text-2xl font-bold mb-6">What's your current weight?</h2>
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <input
+                type="number"
+                step="0.1"
+                min="50"
+                max="999"
+                value={currentWeight}
+                onChange={(e) => setCurrentWeight(e.target.value)}
+                autoFocus
+                className="w-32 rounded-lg border border-border bg-input px-4 py-3 text-2xl font-bold text-center focus:outline-none focus:ring-2 focus:ring-ring"
+              />
+              <span className="text-muted-foreground text-lg">lb</span>
+            </div>
+            <p className="text-xs text-muted-foreground text-center">Used to calculate your goal — you can update this later</p>
+          </div>
+        )}
+
+        {/* Step 2: Goal Method */}
+        {step === 2 && (
           <div>
             <h2 className="text-2xl font-bold mb-6">How do you want to set your goal?</h2>
             <div className="space-y-3">
@@ -229,7 +268,7 @@ function OnboardingWizard({ challengeId, navigate, user, profile, updateProfile,
         )}
 
         {/* Step 3: Goal Input */}
-        {step === 2 && (
+        {step === 3 && (
           <div>
             <h2 className="text-2xl font-bold mb-2">Set your target</h2>
             <p className="text-sm text-muted-foreground mb-6">
@@ -276,7 +315,7 @@ function OnboardingWizard({ challengeId, navigate, user, profile, updateProfile,
         )}
 
         {/* Step 4: Review */}
-        {step === 3 && computedValues && (
+        {step === 4 && computedValues && (
           <div>
             <h2 className="text-2xl font-bold mb-6">Review Your Goal</h2>
             <div className="rounded-xl bg-card p-5 space-y-3 mb-6">
@@ -313,10 +352,10 @@ function OnboardingWizard({ challengeId, navigate, user, profile, updateProfile,
         disabled={!canNext || submitting}
         className="w-full rounded-xl bg-primary py-3.5 text-primary-foreground font-semibold hover:opacity-90 transition-opacity disabled:opacity-40 mt-4"
       >
-        {submitting ? 'Saving...' : step === 3 ? 'Confirm & Start' : 'Next'}
+        {submitting ? 'Saving...' : step === 4 ? 'Confirm & Start' : 'Next'}
       </button>
 
-      {step === 3 && (
+      {step === 4 && (
         <button
           onClick={handleBack}
           className="w-full text-center text-sm text-muted-foreground mt-3 hover:text-foreground transition-colors"
