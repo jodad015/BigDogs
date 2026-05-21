@@ -4,6 +4,7 @@ import { useTheme } from '@/lib/theme';
 import { useProfile, type ProfileUpdate } from '@/hooks/use-profile';
 import { useChallenges } from '@/hooks/use-challenges';
 import { AvatarPicker, avatarSrc } from '@/components/avatar-picker';
+import { useNavigate } from 'react-router';
 import { User, Pencil } from 'lucide-react';
 
 function EditableField({
@@ -77,6 +78,7 @@ function formatHeight(inches: number | null): string {
 }
 
 export default function ProfilePage() {
+  const navigate = useNavigate();
   const { signOut } = useAuth();
   const { theme, setTheme } = useTheme();
   const { profile, isLoading, updateProfile } = useProfile();
@@ -260,10 +262,13 @@ export default function ProfilePage() {
         </div>
       ) : (
         <div className="rounded-xl bg-card px-4 py-4 text-center mb-5">
-          <p className="text-sm text-muted-foreground mb-1">No active challenge</p>
-          <p className="text-sm font-semibold text-primary cursor-pointer hover:underline">
+          <p className="text-sm text-muted-foreground mb-2">No active challenge</p>
+          <button
+            onClick={() => navigate('/challenge/create')}
+            className="text-sm font-semibold text-primary hover:underline"
+          >
             Start a Challenge
-          </p>
+          </button>
         </div>
       )}
 

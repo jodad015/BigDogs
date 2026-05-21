@@ -7,13 +7,17 @@ import type { WeighIn } from '@/hooks/use-weigh-ins';
 import { ChevronLeft } from 'lucide-react';
 
 interface ParticipantData {
+  participant_id: string;
   display_name: string;
   avatar: string;
   starting_weight: number | null;
+  starting_trend_weight: number | null;
   target_weight: number | null;
   weekly_target: number | null;
   total_loss: number | null;
   status: string;
+  challenge_start_date: string | null;
+  has_started: boolean;
 }
 
 interface WeekSummary {
@@ -40,6 +44,11 @@ const STATUS_STYLES: Record<string, string> = {
   complete: 'bg-muted text-muted-foreground',
 };
 
+function formatStartDate(iso: string): string {
+  const d = new Date(iso + 'T12:00:00');
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+
 export default function ParticipantPage() {
   const { challengeId, userId } = useParams<{ challengeId: string; userId: string }>();
   const navigate = useNavigate();
@@ -52,72 +61,92 @@ export default function ParticipantPage() {
   const [isLoading, setIsLoading] = useState(true);
   const mounted = useRef(true);
 
-  const fetchData = useCallback(() => {
+  const fetchData = useCallback(async () => {
     if (!challengeId || !userId) return;
 
-    // Participant + profile (also get participants.id for weekly_results join)
-    supabase
+    const { data } = await supabase
       .from('participants')
-      .select('id, starting_weight, target_weight, weekly_target, total_loss, status, profiles(display_name, avatar)')
+      .select('id, starting_weight, starting_trend_weight, target_weight, weekly_target, total_loss, status, profiles(display_name, avatar), challenges(start_date, status)')
       .eq('challenge_id', challengeId)
       .eq('user_id', userId)
-      .single()
-      .then(({ data }) => {
-        if (!mounted.current || !data) return;
-        const profile = data.profiles as unknown as { display_name: string; avatar: string };
-        setParticipant({
-          display_name: profile?.display_name ?? 'Unknown',
-          avatar: profile?.avatar ?? 'crimson',
-          starting_weight: data.starting_weight,
-          target_weight: data.target_weight,
-          weekly_target: data.weekly_target,
-          total_loss: data.total_loss,
-          status: data.status,
+      .single();
+
+    if (!mounted.current || !data) return;
+
+    const profile = data.profiles as unknown as { display_name: string; avatar: string };
+    const challenge = data.challenges as unknown as { start_date: string | null; status: string };
+
+    const todayStr = new Date().toISOString().split('T')[0]!;
+    const hasStarted = challenge.start_date !== null && challenge.start_date <= todayStr;
+
+    let startingTrend = data.starting_trend_weight as number | null;
+
+    if (hasStarted && startingTrend === null) {
+      await supabase.rpc('ensure_starting_trend_weight', { p_participant_id: data.id });
+      const { data: refreshed } = await supabase
+        .from('participants')
+        .select('starting_trend_weight')
+        .eq('id', data.id)
+        .single();
+      if (mounted.current && refreshed) {
+        startingTrend = refreshed.starting_trend_weight;
+      }
+    }
+
+    setParticipant({
+      participant_id: data.id,
+      display_name: profile?.display_name ?? 'Unknown',
+      avatar: profile?.avatar ?? 'crimson',
+      starting_weight: data.starting_weight,
+      starting_trend_weight: startingTrend,
+      target_weight: data.target_weight,
+      weekly_target: data.weekly_target,
+      total_loss: data.total_loss,
+      status: data.status,
+      challenge_start_date: challenge.start_date,
+      has_started: hasStarted,
+    });
+
+    if (hasStarted) {
+      supabase
+        .from('weekly_results')
+        .select('week_number, weekly_loss, weekly_score, placement, placement_points, is_showdown, is_maintenance')
+        .eq('challenge_id', challengeId)
+        .eq('participant_id', data.id)
+        .order('week_number', { ascending: false })
+        .then(({ data: results }) => {
+          if (!mounted.current) return;
+          const rows = results ?? [];
+          setWeeks(rows);
+          const pts = rows.reduce((sum, r) => sum + r.placement_points, 0);
+          setTotalPoints(pts);
+          setBestWeek(rows.length > 0 ? Math.max(...rows.map((r) => r.placement_points)) : 0);
         });
+    }
 
-        // Weekly results — use participants.id, not user_id
-        supabase
-          .from('weekly_results')
-          .select('week_number, weekly_loss, weekly_score, placement, placement_points, is_showdown, is_maintenance')
-          .eq('challenge_id', challengeId)
-          .eq('participant_id', data.id)
-          .order('week_number', { ascending: false })
-          .then(({ data: results }) => {
-            if (!mounted.current) return;
-            const rows = results ?? [];
-            setWeeks(rows);
-            const pts = rows.reduce((sum, r) => sum + r.placement_points, 0);
-            setTotalPoints(pts);
-            setBestWeek(rows.length > 0 ? Math.max(...rows.map((r) => r.placement_points)) : 0);
-          });
-      });
-
-    // Weigh-ins for trend chart
-    supabase
+    const { data: weighInRows } = await supabase
       .from('weigh_ins')
       .select('id, user_id, date, weight, trend_weight, created_at')
       .eq('user_id', userId)
       .order('date', { ascending: false })
-      .limit(60)
-      .then(({ data }) => {
-        if (!mounted.current) return;
-        setWeighIns(data ?? []);
+      .limit(60);
 
-        // Calculate streak
-        let count = 0;
-        const sorted = [...(data ?? [])].sort((a, b) => b.date.localeCompare(a.date));
-        const d = new Date();
-        for (const entry of sorted) {
-          if (entry.date === d.toISOString().split('T')[0]) {
-            count++;
-            d.setDate(d.getDate() - 1);
-          } else {
-            break;
-          }
-        }
-        setStreak(count);
-        setIsLoading(false);
-      });
+    if (!mounted.current) return;
+    setWeighIns(weighInRows ?? []);
+
+    let count = 0;
+    const sorted = [...(weighInRows ?? [])].sort((a, b) => b.date.localeCompare(a.date));
+    const d = new Date();
+    for (const entry of sorted) {
+      if (entry.date === d.toISOString().split('T')[0]) {
+        count++;
+        d.setDate(d.getDate() - 1);
+      } else {
+        break;
+      }
+    }
+    setStreak(count);
+    setIsLoading(false);
   }, [challengeId, userId]);
 
   useEffect(() => {
@@ -134,14 +163,18 @@ export default function ParticipantPage() {
     );
   }
 
-  // Progress toward goal
-  const currentWeight = weighIns.length > 0 ? weighIns[0]!.weight : participant.starting_weight;
-  const progressPct = participant.starting_weight && participant.target_weight && currentWeight
+  const baseline = participant.starting_trend_weight ?? participant.starting_weight;
+  const currentWeight = weighIns.length > 0 ? weighIns[0]!.weight : baseline;
+  const progressPct = baseline && participant.target_weight && currentWeight
     ? Math.min(100, Math.round(
-        ((participant.starting_weight - currentWeight) /
-          (participant.starting_weight - participant.target_weight)) * 100
+        ((baseline - currentWeight) /
+          (baseline - participant.target_weight)) * 100
       ))
     : 0;
+
+  const startsLabel = participant.challenge_start_date
+    ? formatStartDate(participant.challenge_start_date)
+    : null;
 
   return (
     <div className="px-4 pt-2 pb-4 max-w-md mx-auto">
@@ -160,35 +193,75 @@ export default function ParticipantPage() {
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-1">
             <span className="font-bold text-lg">{participant.display_name}</span>
-            <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full capitalize ${
-              STATUS_STYLES[participant.status] ?? 'bg-muted text-muted-foreground'
-            }`}>
-              {participant.status}
-            </span>
+            {participant.has_started ? (
+              <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full capitalize ${
+                STATUS_STYLES[participant.status] ?? 'bg-muted text-muted-foreground'
+              }`}>
+                {participant.status}
+              </span>
+            ) : (
+              startsLabel && (
+                <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-muted text-muted-foreground">
+                  Starts {startsLabel}
+                </span>
+              )
+            )}
           </div>
-          {/* Progress bar */}
-          <div className="h-2 rounded-full bg-muted overflow-hidden mb-1">
-            <div
-              className="h-full rounded-full bg-primary transition-all"
-              style={{ width: `${Math.max(0, progressPct)}%` }}
-            />
-          </div>
-          <p className="text-xs text-muted-foreground">
-            {progressPct > 0 ? `${progressPct}% toward goal` : 'Getting started'}
-          </p>
+          {participant.has_started ? (
+            <>
+              <div className="h-2 rounded-full bg-muted overflow-hidden mb-1">
+                <div
+                  className="h-full rounded-full bg-primary transition-all"
+                  style={{ width: `${Math.max(0, progressPct)}%` }}
+                />
+              </div>
+              <p className="text-xs text-muted-foreground">
+                {progressPct > 0 ? `${progressPct}% toward goal` : 'Getting started'}
+              </p>
+            </>
+          ) : (
+            <p className="text-xs text-muted-foreground">
+              Challenge hasn't started yet
+            </p>
+          )}
         </div>
       </div>
 
-      {/* Stats Row */}
+      {/* Goal block (always shown — set during onboarding) */}
+      {(participant.target_weight || participant.weekly_target) && (
+        <div className="rounded-xl bg-card p-4 mb-5">
+          <p className="text-xs text-muted-foreground uppercase tracking-wide mb-2">Goal</p>
+          <div className="flex items-baseline gap-4">
+            {participant.target_weight && (
+              <div>
+                <span className="text-2xl font-extrabold">{participant.target_weight}</span>
+                <span className="text-sm text-muted-foreground ml-1">lb target</span>
+              </div>
+            )}
+            {participant.weekly_target && (
+              <div>
+                <span className="text-2xl font-extrabold">-{participant.weekly_target}</span>
+                <span className="text-sm text-muted-foreground ml-1">lb/wk</span>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Stats Row — challenge stats only after start; streak always */}
       <div className="flex justify-around mb-5">
-        <div className="text-center">
-          <p className="text-xs text-muted-foreground uppercase tracking-wide">Total Pts</p>
-          <p className="text-2xl font-extrabold">{totalPoints}</p>
-        </div>
-        <div className="text-center">
-          <p className="text-xs text-muted-foreground uppercase tracking-wide">Best Week</p>
-          <p className="text-2xl font-extrabold">{bestWeek} pts</p>
-        </div>
+        {participant.has_started && (
+          <>
+            <div className="text-center">
+              <p className="text-xs text-muted-foreground uppercase tracking-wide">Total Pts</p>
+              <p className="text-2xl font-extrabold">{totalPoints}</p>
+            </div>
+            <div className="text-center">
+              <p className="text-xs text-muted-foreground uppercase tracking-wide">Best Week</p>
+              <p className="text-2xl font-extrabold">{bestWeek} pts</p>
+            </div>
+          </>
+        )}
         <div className="text-center">
           <p className="text-xs text-muted-foreground uppercase tracking-wide">Streak</p>
           <p className="text-2xl font-extrabold">{streak} days</p>
@@ -202,54 +275,55 @@ export default function ParticipantPage() {
         </div>
       )}
 
-      {/* Weekly Scores */}
-      <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">
-        Weekly Scores
-      </h2>
+      {/* Weekly Scores — only after challenge starts */}
+      {participant.has_started && (
+        <>
+          <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">
+            Weekly Scores
+          </h2>
 
-      {weeks.length === 0 ? (
-        <p className="text-sm text-muted-foreground">No scored weeks yet</p>
-      ) : (
-        <div className="space-y-2">
-          {weeks.map((w) => (
-            <div
-              key={w.week_number}
-              onClick={() => challengeId && navigate(`/challenge/${challengeId}/week?w=${w.week_number}`)}
-              className="flex items-center gap-3 rounded-xl bg-card px-4 py-3 cursor-pointer hover:bg-card/80 transition-colors"
-            >
-              {/* Placement badge */}
-              <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-extrabold ${
-                BADGE_COLORS[w.placement] ?? 'bg-muted text-muted-foreground'
-              }`}>
-                {w.placement}
-              </span>
-
-              {/* Week info */}
-              <div className="flex-1">
-                <p className="text-sm font-semibold">Week {w.week_number}</p>
-                {w.is_maintenance ? (
-                  <p className="text-xs text-maintenance">Within ±2 lb</p>
-                ) : (
-                  <p className={`text-xs ${
-                    w.weekly_loss < 0 ? 'text-success' : w.weekly_loss > 0 ? 'text-destructive' : 'text-muted-foreground'
+          {weeks.length === 0 ? (
+            <p className="text-sm text-muted-foreground">No scored weeks yet</p>
+          ) : (
+            <div className="space-y-2">
+              {weeks.map((w) => (
+                <div
+                  key={w.week_number}
+                  onClick={() => challengeId && navigate(`/challenge/${challengeId}/week?w=${w.week_number}`)}
+                  className="flex items-center gap-3 rounded-xl bg-card px-4 py-3 cursor-pointer hover:bg-card/80 transition-colors"
+                >
+                  <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-extrabold ${
+                    BADGE_COLORS[w.placement] ?? 'bg-muted text-muted-foreground'
                   }`}>
-                    {w.weekly_loss > 0 ? '+' : ''}{w.weekly_loss.toFixed(1)} lb
-                    {participant?.weekly_target ? (
-                      <span className="text-muted-foreground"> / {participant.weekly_target} goal</span>
-                    ) : null}
-                  </p>
-                )}
-              </div>
+                    {w.placement}
+                  </span>
 
-              {/* Points */}
-              <span className={`text-sm font-bold ${
-                w.placement <= 2 ? 'text-primary' : 'text-muted-foreground'
-              }`}>
-                +{w.placement_points} pts
-              </span>
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold">Week {w.week_number}</p>
+                    {w.is_maintenance ? (
+                      <p className="text-xs text-maintenance">Within ±2 lb</p>
+                    ) : (
+                      <p className={`text-xs ${
+                        w.weekly_loss < 0 ? 'text-success' : w.weekly_loss > 0 ? 'text-destructive' : 'text-muted-foreground'
+                      }`}>
+                        {w.weekly_loss > 0 ? '+' : ''}{w.weekly_loss.toFixed(1)} lb
+                        {participant?.weekly_target ? (
+                          <span className="text-muted-foreground"> / {participant.weekly_target} goal</span>
+                        ) : null}
+                      </p>
+                    )}
+                  </div>
+
+                  <span className={`text-sm font-bold ${
+                    w.placement <= 2 ? 'text-primary' : 'text-muted-foreground'
+                  }`}>
+                    +{w.placement_points} pts
+                  </span>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          )}
+        </>
       )}
     </div>
   );

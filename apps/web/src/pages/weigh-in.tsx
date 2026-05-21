@@ -65,12 +65,19 @@ export default function WeighInPage() {
 
   // Success view
   if (view === 'success' && savedWeight) {
+    const diff = yesterday ? Math.round((savedWeight - yesterday.weight) * 10) / 10 : null;
+
     return (
       <div className="flex flex-col items-center justify-center min-h-[calc(100vh-6rem)] px-4">
         <div className="w-16 h-16 rounded-full bg-success/20 flex items-center justify-center mb-6">
           <Check className="w-8 h-8 text-success" />
         </div>
         <p className="text-4xl font-extrabold mb-2">{savedWeight} lb</p>
+        {diff !== null && (
+          <p className={`text-sm font-semibold mb-1 ${diff <= 0 ? 'text-success' : 'text-destructive'}`}>
+            {diff <= 0 ? '' : '+'}{diff} lb from yesterday
+          </p>
+        )}
         {trend && (
           <p className="text-muted-foreground mb-1">
             Trend: <span className="font-semibold text-foreground">{trend} lb</span>

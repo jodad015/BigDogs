@@ -13,6 +13,7 @@ interface Standing {
   max_possible_points: number;
   weeks_played: number;
   placement: number;
+  status: string;
 }
 
 interface ChallengeInfo {
@@ -71,17 +72,17 @@ export default function LeaderboardPage() {
         setChallengeId(c.id);
         setMyStatus(row.status as string);
 
-        // Calculate current week
+        // Calculate current week — 0 if challenge hasn't started yet
         if (c.start_date) {
           const start = new Date(c.start_date + 'T12:00:00');
           const now = new Date();
           const diffDays = Math.floor((now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
-          setCurrentWeek(Math.max(1, Math.min(Math.ceil(diffDays / 7), c.duration_weeks)));
+          setCurrentWeek(diffDays < 0 ? 0 : Math.max(1, Math.min(Math.ceil(diffDays / 7), c.duration_weeks)));
         }
 
         supabase
           .from('participants')
-          .select('id, user_id, profiles(display_name, avatar)')
+          .select('id, user_id, status, profiles(display_name, avatar)')
           .eq('challenge_id', c.id)
           .then(({ data: participants }) => {
             if (!mounted.current || !participants) {
@@ -118,6 +119,7 @@ export default function LeaderboardPage() {
                     max_possible_points: maxPossible,
                     weeks_played: weeksById[p.id] ?? 0,
                     placement: 0,
+                    status: p.status as string,
                   };
                 });
 
@@ -171,15 +173,24 @@ export default function LeaderboardPage() {
 
   const isComplete = challenge?.status === 'complete';
   const winner = isComplete && standings.length > 0 ? standings[0] : null;
+  const todayStr = new Date().toISOString().split('T')[0]!;
+  const hasStarted = challenge?.start_date !== null && challenge?.start_date !== undefined && challenge.start_date <= todayStr;
+  const startsLabel = challenge?.start_date
+    ? new Date(challenge.start_date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+    : null;
 
   return (
     <div className="px-4 pt-2 pb-4 max-w-md mx-auto">
       {/* Header */}
       <h1 className="text-xl font-bold text-center mb-0.5">
-        {isComplete ? 'Final Standings' : 'Leaderboard'}
+        {isComplete ? 'Final Standings' : hasStarted ? 'Leaderboard' : 'Participants'}
       </h1>
       <p className="text-sm text-muted-foreground text-center">
-        {challenge?.name} — {isComplete ? 'Complete' : `Week ${currentWeek} of ${challenge?.duration_weeks}`}
+        {challenge?.name} — {
+          isComplete ? 'Complete' :
+          hasStarted ? `Week ${currentWeek} of ${challenge?.duration_weeks}` :
+          startsLabel ? `Starts ${startsLabel}` : 'Not yet started'
+        }
       </p>
 
       {/* Onboarding banner */}
@@ -207,6 +218,7 @@ export default function LeaderboardPage() {
           const barPct = s.max_possible_points > 0
             ? Math.round((s.total_points / s.max_possible_points) * 100)
             : 0;
+          const readyLabel = s.status === 'onboarding' ? 'Setting goal' : 'Ready';
 
           return (
             <div
@@ -216,39 +228,48 @@ export default function LeaderboardPage() {
                 s.user_id === user?.id ? 'border border-primary/30' : ''
               } ${i === 0 && isComplete ? 'border border-gold/40' : ''}`}
             >
-              <div className="flex items-center gap-3 mb-3">
-                {/* Placement badge */}
-                <span className={`text-[10px] font-extrabold px-1.5 py-0.5 rounded ${
-                  BADGE_COLORS[s.placement] ?? 'bg-muted text-muted-foreground'
-                }`}>
-                  {s.placement === 1 ? '1st' : s.placement === 2 ? '2nd' : s.placement === 3 ? '3rd' : `${s.placement}th`}
-                </span>
+              <div className={`flex items-center gap-3 ${hasStarted ? 'mb-3' : ''}`}>
+                {hasStarted && (
+                  <span className={`text-[10px] font-extrabold px-1.5 py-0.5 rounded ${
+                    BADGE_COLORS[s.placement] ?? 'bg-muted text-muted-foreground'
+                  }`}>
+                    {s.placement === 1 ? '1st' : s.placement === 2 ? '2nd' : s.placement === 3 ? '3rd' : `${s.placement}th`}
+                  </span>
+                )}
 
-                {/* Avatar */}
                 <img src={avatarSrc(s.avatar)} alt="" className="w-8 h-8 rounded-full" />
 
-                {/* Name */}
                 <span className="font-bold flex-1">{s.display_name}</span>
 
-                {/* Points */}
-                <span className="text-2xl font-extrabold">{s.total_points}</span>
-                <span className="text-xs text-muted-foreground">pts</span>
+                {hasStarted ? (
+                  <>
+                    <span className="text-2xl font-extrabold">{s.total_points}</span>
+                    <span className="text-xs text-muted-foreground">pts</span>
+                  </>
+                ) : (
+                  <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${
+                    s.status === 'onboarding' ? 'bg-warning/20 text-warning' : 'bg-success/20 text-success'
+                  }`}>
+                    {readyLabel}
+                  </span>
+                )}
               </div>
 
-              {/* Progress bar */}
-              <div className="h-2 rounded-full bg-muted overflow-hidden">
-                <div
-                  className={`h-full rounded-full transition-all ${BAR_COLORS[s.placement] ?? 'bg-muted-foreground'}`}
-                  style={{ width: `${barPct}%` }}
-                />
-              </div>
+              {hasStarted && (
+                <div className="h-2 rounded-full bg-muted overflow-hidden">
+                  <div
+                    className={`h-full rounded-full transition-all ${BAR_COLORS[s.placement] ?? 'bg-muted-foreground'}`}
+                    style={{ width: `${barPct}%` }}
+                  />
+                </div>
+              )}
             </div>
           );
         })}
       </div>
 
       {/* Weekly Results Link */}
-      {challengeId && currentWeek > 0 && (
+      {challengeId && hasStarted && currentWeek > 0 && (
         <button
           onClick={() => navigate(`/challenge/${challengeId}/week`)}
           className="w-full mt-4 py-3 rounded-xl border border-border text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
