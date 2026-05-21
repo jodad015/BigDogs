@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/lib/auth';
 import { avatarSrc } from '@/components/avatar-picker';
-import { Trophy } from 'lucide-react';
+import { Trophy, Copy, Check } from 'lucide-react';
 
 interface Standing {
   user_id: string;
@@ -18,6 +18,7 @@ interface Standing {
 
 interface ChallengeInfo {
   name: string;
+  invite_code: string;
   status: string;
   duration_weeks: number;
   start_date: string | null;
@@ -46,6 +47,7 @@ export default function LeaderboardPage() {
   const [currentWeek, setCurrentWeek] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [hasChallenge, setHasChallenge] = useState(true);
+  const [copied, setCopied] = useState(false);
   const mounted = useRef(true);
 
   const fetchStandings = useCallback(() => {
@@ -53,7 +55,7 @@ export default function LeaderboardPage() {
 
     supabase
       .from('participants')
-      .select('challenge_id, status, challenges(id, name, status, duration_weeks, start_date)')
+      .select('challenge_id, status, challenges(id, name, invite_code, status, duration_weeks, start_date)')
       .eq('user_id', user.id)
       .in('status', ['active', 'spinup', 'onboarding'])
       .limit(1)
@@ -179,19 +181,56 @@ export default function LeaderboardPage() {
     ? new Date(challenge.start_date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
     : null;
 
+  // Calculate timeframe
+  const startFormatted = challenge?.start_date
+    ? new Date(challenge.start_date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+    : null;
+  const endDate = challenge?.start_date && challenge?.duration_weeks
+    ? new Date(new Date(challenge.start_date + 'T12:00:00').getTime() + challenge.duration_weeks * 7 * 86400000)
+    : null;
+  const endFormatted = endDate
+    ? endDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+    : null;
+
+  // Is it currently spinup week?
+  const isSpinup = (() => {
+    if (!challenge?.start_date) return false;
+    const start = new Date(challenge.start_date + 'T12:00:00');
+    const now = new Date();
+    const daysBefore = Math.floor((start.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+    return daysBefore >= 0 && daysBefore < 7;
+  })();
+
+  const handleCopyInvite = async () => {
+    if (!challenge) return;
+    const msg = `🐕 Think you can keep up? Join my BigDogs challenge "${challenge.name}" — a ${challenge.duration_weeks}-week weight loss competition.\n\nInvite code: ${challenge.invite_code}\n\nJoin at app.bigdogs.app`;
+    await navigator.clipboard.writeText(msg);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <div className="px-4 pt-2 pb-4 max-w-md mx-auto">
       {/* Header */}
       <h1 className="text-xl font-bold text-center mb-0.5">
-        {isComplete ? 'Final Standings' : hasStarted ? 'Leaderboard' : 'Participants'}
+        {isComplete ? 'Final Standings' : challenge?.name}
       </h1>
       <p className="text-sm text-muted-foreground text-center">
-        {challenge?.name} — {
-          isComplete ? 'Complete' :
-          hasStarted ? `Week ${currentWeek} of ${challenge?.duration_weeks}` :
-          startsLabel ? `Starts ${startsLabel}` : 'Not yet started'
-        }
+        {isComplete
+          ? 'Complete'
+          : hasStarted
+            ? `Week ${currentWeek} of ${challenge?.duration_weeks}`
+            : isSpinup
+              ? 'Baseline Week — scoring starts soon'
+              : startsLabel
+                ? `Starts ${startsLabel}`
+                : 'Not yet started'}
       </p>
+      {startFormatted && endFormatted && (
+        <p className="text-xs text-muted-foreground text-center mt-1">
+          {startFormatted} — {endFormatted}
+        </p>
+      )}
 
       {/* Onboarding banner */}
       {myStatus === 'onboarding' && challengeId && (
@@ -276,6 +315,21 @@ export default function LeaderboardPage() {
         >
           View Weekly Results
         </button>
+      )}
+
+      {/* Invite Code */}
+      {challenge && !isComplete && (
+        <div className="mt-4 rounded-xl bg-card p-4 text-center">
+          <p className="text-xs text-muted-foreground uppercase tracking-wide mb-2">Invite Code</p>
+          <p className="text-2xl font-mono font-bold tracking-widest mb-3">{challenge.invite_code}</p>
+          <button
+            onClick={handleCopyInvite}
+            className="flex items-center justify-center gap-2 mx-auto rounded-lg border border-border px-4 py-2 text-sm font-medium hover:bg-muted/50 transition-colors"
+          >
+            {copied ? <Check className="w-4 h-4 text-success" /> : <Copy className="w-4 h-4" />}
+            {copied ? 'Copied!' : 'Share Invite'}
+          </button>
+        </div>
       )}
 
       {/* Share (complete state) */}

@@ -227,26 +227,32 @@ export default function ParticipantPage() {
         </div>
       </div>
 
-      {/* Goal block (always shown — set during onboarding) */}
-      {(participant.target_weight || participant.weekly_target) && (
-        <div className="rounded-xl bg-card p-4 mb-5">
-          <p className="text-xs text-muted-foreground uppercase tracking-wide mb-2">Goal</p>
-          <div className="flex items-baseline gap-4">
-            {participant.target_weight && (
-              <div>
-                <span className="text-2xl font-extrabold">{participant.target_weight}</span>
-                <span className="text-sm text-muted-foreground ml-1">lb target</span>
+      {/* Goal Info — post-start uses the official starting_trend_weight baseline */}
+      {participant.target_weight && (() => {
+        const startValue = participant.has_started
+          ? participant.starting_trend_weight
+          : participant.starting_weight;
+        return (
+          <div className="flex justify-around rounded-xl bg-card p-3 mb-4">
+            {startValue && (
+              <div className="text-center">
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wide">Start</p>
+                <p className="text-sm font-bold">{startValue} lb</p>
               </div>
             )}
+            <div className="text-center">
+              <p className="text-[10px] text-muted-foreground uppercase tracking-wide">Goal</p>
+              <p className="text-sm font-bold">{participant.target_weight} lb</p>
+            </div>
             {participant.weekly_target && (
-              <div>
-                <span className="text-2xl font-extrabold">-{participant.weekly_target}</span>
-                <span className="text-sm text-muted-foreground ml-1">lb/wk</span>
+              <div className="text-center">
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wide">Pace</p>
+                <p className="text-sm font-bold">{participant.weekly_target} lb/wk</p>
               </div>
             )}
           </div>
-        </div>
-      )}
+        );
+      })()}
 
       {/* Stats Row — challenge stats only after start; streak always */}
       <div className="flex justify-around mb-5">
