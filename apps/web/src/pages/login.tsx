@@ -53,7 +53,7 @@ export default function LoginPage() {
         {!enableEmailAuth && (
           <button
             onClick={handleGoogleSignIn}
-            className="flex w-full items-center justify-center gap-3 rounded-md border border-border bg-card px-4 py-3 text-sm font-medium text-foreground hover:bg-muted"
+            className="flex w-full items-center justify-center gap-3 rounded-xl border border-border bg-card px-4 py-3.5 text-sm font-medium hover:bg-muted/50 transition-colors"
           >
             <svg className="h-5 w-5" viewBox="0 0 24 24">
               <path
@@ -89,7 +89,7 @@ export default function LoginPage() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full rounded-md border border-border bg-input px-3 py-2 text-sm"
+                  className="w-full rounded-lg border border-border bg-input px-4 py-3 text-sm placeholder:text-placeholder focus:outline-none focus:ring-2 focus:ring-ring"
                   required
                 />
               </div>
@@ -103,7 +103,7 @@ export default function LoginPage() {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full rounded-md border border-border bg-input px-3 py-2 text-sm"
+                  className="w-full rounded-lg border border-border bg-input px-4 py-3 text-sm placeholder:text-placeholder focus:outline-none focus:ring-2 focus:ring-ring"
                   required
                 />
               </div>
@@ -111,7 +111,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground disabled:opacity-50"
+                className="w-full rounded-xl bg-primary py-3.5 text-primary-foreground font-semibold hover:opacity-90 transition-opacity disabled:opacity-40"
               >
                 {isLoading ? 'Signing in...' : 'Sign In'}
               </button>
@@ -128,7 +128,7 @@ export default function LoginPage() {
                       setPassword(account.password);
                       setError('');
                     }}
-                    className="flex-1 rounded-md border border-border bg-card px-3 py-2 text-sm text-foreground hover:bg-muted"
+                    className="flex-1 rounded-lg border border-border bg-card px-3 py-2 text-sm text-foreground hover:bg-muted/50 transition-colors"
                   >
                     {account.label}
                   </button>

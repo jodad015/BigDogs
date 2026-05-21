@@ -50,6 +50,19 @@ export function TrendChart({ entries }: TrendChartProps) {
 
   return (
     <div className="rounded-xl bg-card overflow-hidden">
+      {/* Legend */}
+      <div className="flex items-center justify-end gap-4 px-4 pt-3 pb-1">
+        <div className="flex items-center gap-1.5">
+          <div className="w-2.5 h-2.5 rounded-full bg-muted-foreground opacity-50" />
+          <span className="text-[10px] text-muted-foreground">Daily</span>
+        </div>
+        {trends.length >= 2 && (
+          <div className="flex items-center gap-1.5">
+            <div className="w-2.5 h-2.5 rounded-full bg-primary" />
+            <span className="text-[10px] text-muted-foreground">Trend</span>
+          </div>
+        )}
+      </div>
       <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto" preserveAspectRatio="xMidYMid meet">
         {/* Gridlines */}
         {[0.25, 0.5, 0.75].map((pct) => (

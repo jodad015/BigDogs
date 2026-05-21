@@ -100,6 +100,7 @@ export default function WeeklyResultsPage() {
         <button onClick={() => navigate('/leaderboard')} className="p-1 -ml-1">
           <ChevronLeft className="w-5 h-5 text-muted-foreground" />
         </button>
+        <h1 className="text-xl font-bold">Weekly Results</h1>
       </div>
 
       {/* Week Nav */}

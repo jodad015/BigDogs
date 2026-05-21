@@ -81,6 +81,12 @@ export async function computeWeeklyScoresHandler(
   const weekStartStr = weekStart.toISOString().split('T')[0]!;
   const weekEndStr = weekEnd.toISOString().split('T')[0]!;
 
+  // Refuse to score a week whose end date is still in the future.
+  const todayStr = new Date().toISOString().split('T')[0]!;
+  if (weekEndStr > todayStr) {
+    return { errors: [{ code: ErrorCode.ValidationError, message: 'Week has not yet ended' }] };
+  }
+
   // Load participants
   const participantResult = (await accessor.load({
     type: SystemCriteriaType.ParticipantLoad,
