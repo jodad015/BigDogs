@@ -109,9 +109,19 @@ export default function DashboardPage() {
           Log Your Weight
         </button>
         {!hasActiveChallenge && (
-          <div className="mt-6 space-y-2">
-            <p className="text-sm text-muted-foreground">Create a Challenge</p>
-            <p className="text-sm text-muted-foreground">Join a Challenge</p>
+          <div className="mt-6 space-y-3 w-full max-w-xs">
+            <button
+              onClick={() => navigate('/challenge/create')}
+              className="w-full text-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Create a Challenge
+            </button>
+            <button
+              onClick={() => navigate('/join')}
+              className="w-full text-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Join a Challenge
+            </button>
           </div>
         )}
       </div>
@@ -131,7 +141,8 @@ export default function DashboardPage() {
 
       {/* Today's Status Card */}
       <div
-        className={`rounded-xl bg-card p-4 mb-4 border-l-4 ${
+        onClick={() => navigate('/weigh-in')}
+        className={`rounded-xl bg-card p-4 mb-4 border-l-4 cursor-pointer hover:bg-card/80 transition-colors ${
           today ? 'border-l-success' : 'border-l-warning'
         }`}
       >
@@ -255,8 +266,26 @@ export default function DashboardPage() {
                         <p className="text-lg font-extrabold">{challengeStats.totalParticipants}</p>
                       </div>
                       <div className="text-center">
-                        <p className="text-xs text-muted-foreground">Status</p>
-                        <p className="text-lg font-extrabold capitalize">{activeChallenge!.status}</p>
+                        {(() => {
+                          const startDate = activeChallenge!.challenge.start_date;
+                          const todayStr = new Date().toISOString().split('T')[0]!;
+                          const notStarted = startDate !== null && startDate > todayStr;
+                          if (notStarted && startDate) {
+                            const label = new Date(startDate + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                            return (
+                              <>
+                                <p className="text-xs text-muted-foreground">Starts</p>
+                                <p className="text-lg font-extrabold">{label}</p>
+                              </>
+                            );
+                          }
+                          return (
+                            <>
+                              <p className="text-xs text-muted-foreground">Status</p>
+                              <p className="text-lg font-extrabold capitalize">{activeChallenge!.status}</p>
+                            </>
+                          );
+                        })()}
                       </div>
                     </>
                   )}

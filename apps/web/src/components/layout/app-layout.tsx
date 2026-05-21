@@ -30,14 +30,14 @@ function DesktopNav() {
   });
 
   return (
-    <nav className="hidden md:flex items-center justify-between h-16 px-10 border-b border-border bg-nav">
-      {/* Logo */}
-      <div className="flex items-center gap-2.5">
+    <nav className="hidden md:flex items-center h-16 px-10 border-b border-border bg-nav">
+      {/* Logo (left, flex-1 so center stays centered) */}
+      <div className="flex-1 flex items-center gap-2.5">
         <img src={theme === 'dark' ? '/logo-white.svg' : '/logo-dark.svg'} alt="" className="w-7 h-5" />
         <span className="text-sm font-extrabold tracking-[0.2em] uppercase">BigDogs</span>
       </div>
 
-      {/* Nav icons */}
+      {/* Nav icons (true center) */}
       <div className="flex items-center gap-6">
         {NAV_ITEMS.map((item) => (
           <NavLink
@@ -65,15 +65,17 @@ function DesktopNav() {
         </NavLink>
       </div>
 
-      {/* Date */}
-      <span className="text-sm text-muted-foreground">{today}</span>
+      {/* Date (right, flex-1 mirrors logo column) */}
+      <div className="flex-1 flex justify-end">
+        <span className="text-sm text-muted-foreground">{today}</span>
+      </div>
     </nav>
   );
 }
 
 function MobileNav() {
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-nav">
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-nav pb-[env(safe-area-inset-bottom)]">
       <div className="mx-auto flex max-w-lg">
         {NAV_ITEMS.map((item) => (
           <NavLink
@@ -87,7 +89,10 @@ function MobileNav() {
             }
           >
             {({ isActive }) => (
-              <item.icon className={`h-5 w-5 ${isActive ? 'text-primary' : ''}`} />
+              <>
+                <item.icon className={`h-5 w-5 ${isActive ? 'text-primary' : ''}`} />
+                <span>{item.label}</span>
+              </>
             )}
           </NavLink>
         ))}
@@ -99,7 +104,12 @@ function MobileNav() {
             }`
           }
         >
-          {({ isActive }) => <ProfileNavIcon isActive={isActive} />}
+          {({ isActive }) => (
+            <>
+              <ProfileNavIcon isActive={isActive} />
+              <span>Profile</span>
+            </>
+          )}
         </NavLink>
       </div>
     </nav>

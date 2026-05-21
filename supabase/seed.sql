@@ -1,6 +1,6 @@
 -- BigDogs seed data for local development
 -- This file runs on `supabase db reset`
--- Users: alice, bob, carol, dave (password: "password" for all)
+-- Users: alice, bob, carol, dave, eve, frank (password: "password" for all)
 
 -- ============================================================
 -- USERS
@@ -51,6 +51,24 @@ INSERT INTO auth.users (
   '{"provider":"email","providers":["email"]}',
   '{"email":"dave@bigdogs.app","display_name":"Dave","email_verified":true}',
   '', '', '', '', '', NULL, '', '', '', false, false
+), (
+  '00000000-0000-0000-0000-000000000000',
+  'eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee',
+  'authenticated', 'authenticated',
+  'eve@bigdogs.app', crypt('password', gen_salt('bf')),
+  now(), now(), now(),
+  '{"provider":"email","providers":["email"]}',
+  '{"email":"eve@bigdogs.app","display_name":"Eve","email_verified":true}',
+  '', '', '', '', '', NULL, '', '', '', false, false
+), (
+  '00000000-0000-0000-0000-000000000000',
+  'ffffffff-ffff-ffff-ffff-ffffffffffff',
+  'authenticated', 'authenticated',
+  'frank@bigdogs.app', crypt('password', gen_salt('bf')),
+  now(), now(), now(),
+  '{"provider":"email","providers":["email"]}',
+  '{"email":"frank@bigdogs.app","display_name":"Frank","email_verified":true}',
+  '', '', '', '', '', NULL, '', '', '', false, false
 );
 
 INSERT INTO auth.identities (
@@ -67,6 +85,12 @@ INSERT INTO auth.identities (
    'email', now(), now(), now()),
   (gen_random_uuid(), 'dddddddd-dddd-dddd-dddd-dddddddddddd', 'dddddddd-dddd-dddd-dddd-dddddddddddd',
    jsonb_build_object('sub', 'dddddddd-dddd-dddd-dddd-dddddddddddd', 'email', 'dave@bigdogs.app'),
+   'email', now(), now(), now()),
+  (gen_random_uuid(), 'eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', 'eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee',
+   jsonb_build_object('sub', 'eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', 'email', 'eve@bigdogs.app'),
+   'email', now(), now(), now()),
+  (gen_random_uuid(), 'ffffffff-ffff-ffff-ffff-ffffffffffff', 'ffffffff-ffff-ffff-ffff-ffffffffffff',
+   jsonb_build_object('sub', 'ffffffff-ffff-ffff-ffff-ffffffffffff', 'email', 'frank@bigdogs.app'),
    'email', now(), now(), now());
 
 -- ============================================================
@@ -84,6 +108,12 @@ WHERE id = 'cccccccc-cccc-cccc-cccc-cccccccccccc';
 
 UPDATE public.profiles SET height_inches = 72, age = 26, personal_target_weight = 190.0, avatar = 'gold'
 WHERE id = 'dddddddd-dddd-dddd-dddd-dddddddddddd';
+
+UPDATE public.profiles SET height_inches = 67, age = 31, personal_target_weight = 150.0, avatar = 'plum'
+WHERE id = 'eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee';
+
+UPDATE public.profiles SET height_inches = 71, age = 38, personal_target_weight = 195.0, avatar = 'sage'
+WHERE id = 'ffffffff-ffff-ffff-ffff-ffffffffffff';
 
 -- ============================================================
 -- CHALLENGE — "Office BigDogs Q3" (12 weeks, started 4 weeks ago)
@@ -103,7 +133,8 @@ INSERT INTO public.challenges (
 );
 
 -- ============================================================
--- PARTICIPANTS (all 4 users in the challenge)
+-- PARTICIPANTS — Alice, Carol, Dave in the active challenge
+-- (Bob is in a separate upcoming challenge — see below)
 -- ============================================================
 
 INSERT INTO public.participants (
@@ -115,11 +146,6 @@ INSERT INTO public.participants (
    '11111111-1111-1111-1111-111111111111',
    'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa',
    158.0, 140.0, 18.0, 1.5, 'target_weight', 140.0, 'active'),
-  -- Bob: 195 → 175, losing ~1.7/wk
-  ('bbbb1111-bbbb-bbbb-bbbb-bbbbbbbbbbbb',
-   '11111111-1111-1111-1111-111111111111',
-   'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb',
-   195.0, 175.0, 20.0, 1.7, 'target_weight', 175.0, 'active'),
   -- Carol: 170 → 155, losing ~1.25/wk
   ('cccc1111-cccc-cccc-cccc-cccccccccccc',
    '11111111-1111-1111-1111-111111111111',
@@ -288,7 +314,7 @@ INSERT INTO public.weigh_ins (user_id, date, weight, trend_weight) VALUES
   ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date,      205.4, 206.5);
 
 -- ============================================================
--- WEEKLY RESULTS (3 scored weeks)
+-- WEEKLY RESULTS (3 scored weeks, 3 participants — 3/2/1 points)
 -- ============================================================
 
 -- Week 1 (days 21-28 ago)
@@ -298,55 +324,105 @@ INSERT INTO public.weekly_results (
   cumulative_scored_loss, cumulative_progress_pct, difficulty_multiplier,
   weekly_score, placement, placement_points, is_showdown, is_maintenance
 ) VALUES
-  -- Alice: -1.6 lb (target 1.5) → factor 0.94
+  -- Alice: -1.6 lb (target 1.5) → factor 0.94 → 1st
   ('aaaa1111-aaaa-aaaa-aaaa-aaaaaaaaaaaa', '11111111-1111-1111-1111-111111111111',
    1, current_date - 27, current_date - 21, 157.5, 156.3, -1.6, 1.07, 0.94,
-   1.6, 8.9, 1.0, 2.51, 1, 4, false, false),
-  -- Bob: -1.8 lb (target 1.7) → factor 0.95
-  ('bbbb1111-bbbb-bbbb-bbbb-bbbbbbbbbbbb', '11111111-1111-1111-1111-111111111111',
-   1, current_date - 27, current_date - 21, 195.0, 193.2, -1.8, 1.06, 0.95,
-   1.8, 9.0, 1.0, 2.43, 2, 3, false, false),
-  -- Carol: -0.8 lb (target 1.25) → factor 0.56
-  ('cccc1111-cccc-cccc-cccc-cccccccccccc', '11111111-1111-1111-1111-111111111111',
-   1, current_date - 27, current_date - 21, 169.5, 168.5, -0.8, 0.64, 0.56,
-   0.8, 5.3, 1.0, 1.12, 3, 2, false, false),
-  -- Dave: -2.2 lb (target 2.0) → factor 0.90
+   1.6, 8.9, 1.0, 2.51, 1, 3, false, false),
+  -- Dave: -2.2 lb (target 2.0) → factor 0.90 → 2nd
   ('dddd1111-dddd-dddd-dddd-dddddddddddd', '11111111-1111-1111-1111-111111111111',
    1, current_date - 27, current_date - 21, 213.9, 211.8, -2.2, 1.10, 0.90,
-   2.2, 8.8, 1.0, 1.89, 4, 1, false, false),
+   2.2, 8.8, 1.0, 1.89, 2, 2, false, false),
+  -- Carol: -0.8 lb (target 1.25) → factor 0.56 → 3rd
+  ('cccc1111-cccc-cccc-cccc-cccccccccccc', '11111111-1111-1111-1111-111111111111',
+   1, current_date - 27, current_date - 21, 169.5, 168.5, -0.8, 0.64, 0.56,
+   0.8, 5.3, 1.0, 1.12, 3, 1, false, false),
 
 -- Week 2 (days 14-21 ago)
-  -- Alice: -1.4 lb → factor 0.85
-  ('aaaa1111-aaaa-aaaa-aaaa-aaaaaaaaaaaa', '11111111-1111-1111-1111-111111111111',
-   2, current_date - 20, current_date - 14, 156.3, 155.1, -1.4, 0.93, 0.85,
-   3.0, 16.7, 1.0, 2.18, 2, 3, false, false),
-  -- Bob: -1.5 lb → factor 0.82
-  ('bbbb1111-bbbb-bbbb-bbbb-bbbbbbbbbbbb', '11111111-1111-1111-1111-111111111111',
-   2, current_date - 20, current_date - 14, 193.2, 191.7, -1.5, 0.88, 0.82,
-   3.3, 16.5, 1.0, 1.89, 3, 2, false, false),
-  -- Carol: -1.2 lb → factor 0.88
-  ('cccc1111-cccc-cccc-cccc-cccccccccccc', '11111111-1111-1111-1111-111111111111',
-   2, current_date - 20, current_date - 14, 168.5, 167.5, -1.2, 0.96, 0.88,
-   2.0, 13.3, 1.0, 1.65, 4, 1, false, false),
-  -- Dave: -1.8 lb → factor 0.82
+  -- Dave: -1.8 lb → factor 0.82 → 1st
   ('dddd1111-dddd-dddd-dddd-dddddddddddd', '11111111-1111-1111-1111-111111111111',
    2, current_date - 20, current_date - 14, 211.8, 210.1, -1.8, 0.90, 0.82,
-   4.0, 16.0, 1.0, 2.67, 1, 4, false, false),
+   4.0, 16.0, 1.0, 2.67, 1, 3, false, false),
+  -- Alice: -1.4 lb → factor 0.85 → 2nd
+  ('aaaa1111-aaaa-aaaa-aaaa-aaaaaaaaaaaa', '11111111-1111-1111-1111-111111111111',
+   2, current_date - 20, current_date - 14, 156.3, 155.1, -1.4, 0.93, 0.85,
+   3.0, 16.7, 1.0, 2.18, 2, 2, false, false),
+  -- Carol: -1.2 lb → factor 0.88 → 3rd
+  ('cccc1111-cccc-cccc-cccc-cccccccccccc', '11111111-1111-1111-1111-111111111111',
+   2, current_date - 20, current_date - 14, 168.5, 167.5, -1.2, 0.96, 0.88,
+   2.0, 13.3, 1.0, 1.65, 3, 1, false, false),
 
 -- Week 3 (days 7-14 ago)
-  -- Alice: -1.3 lb → factor 0.78
+  -- Alice: -1.3 lb → factor 0.78 → 1st
   ('aaaa1111-aaaa-aaaa-aaaa-aaaaaaaaaaaa', '11111111-1111-1111-1111-111111111111',
    3, current_date - 13, current_date - 7, 155.1, 153.8, -1.3, 0.87, 0.78,
-   4.3, 23.9, 1.0, 2.01, 1, 4, false, false),
-  -- Bob: -1.6 lb → factor 0.87
-  ('bbbb1111-bbbb-bbbb-bbbb-bbbbbbbbbbbb', '11111111-1111-1111-1111-111111111111',
-   3, current_date - 13, current_date - 7, 191.7, 190.1, -1.6, 0.94, 0.87,
-   4.9, 24.5, 1.0, 2.12, 2, 3, false, false),
-  -- Carol: -1.0 lb → factor 0.72
+   4.3, 23.9, 1.0, 2.01, 1, 3, false, false),
+  -- Carol: -1.0 lb → factor 0.72 → 2nd
   ('cccc1111-cccc-cccc-cccc-cccccccccccc', '11111111-1111-1111-1111-111111111111',
    3, current_date - 13, current_date - 7, 167.5, 166.3, -1.0, 0.80, 0.72,
-   3.0, 20.0, 1.0, 1.45, 3, 2, false, false),
-  -- Dave: -1.4 lb → factor 0.62 (off pace this week)
+   3.0, 20.0, 1.0, 1.45, 2, 2, false, false),
+  -- Dave: -1.4 lb → factor 0.62 (off pace) → 3rd
   ('dddd1111-dddd-dddd-dddd-dddddddddddd', '11111111-1111-1111-1111-111111111111',
    3, current_date - 13, current_date - 7, 210.1, 208.3, -1.4, 0.70, 0.62,
-   5.4, 21.6, 1.0, 1.22, 4, 1, false, false);
+   5.4, 21.6, 1.0, 1.22, 3, 1, false, false);
+
+-- ============================================================
+-- BOB'S CHALLENGE — "Spring Throwdown" (starts in 7 days)
+-- Bob in spinup; challenge demonstrates pre-start UI state.
+-- ============================================================
+
+INSERT INTO public.challenges (
+  id, created_by, name, invite_code, duration_weeks, max_participants,
+  showdowns_enabled, is_public, timezone, spinup_start_date, start_date, status
+) VALUES (
+  '22222222-2222-2222-2222-222222222222',
+  'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb',
+  'Spring Throwdown', 'BDOG-S7P3', 10, 8,
+  true, false, 'America/Chicago',
+  current_date::date,
+  (current_date + 7)::date,
+  'spinup'
+);
+
+INSERT INTO public.participants (
+  id, challenge_id, user_id, starting_weight, target_weight, total_loss,
+  weekly_target, goal_method, goal_input, status
+) VALUES
+  -- Bob: 189 → 175, goal set, awaiting start
+  ('bbbb2222-bbbb-bbbb-bbbb-bbbbbbbbbbbb',
+   '22222222-2222-2222-2222-222222222222',
+   'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb',
+   189.0, 175.0, 14.0, 1.5, 'target_weight', 175.0, 'spinup'),
+  -- Eve: 162 → 150, goal set, awaiting start
+  ('eeee2222-eeee-eeee-eeee-eeeeeeeeeeee',
+   '22222222-2222-2222-2222-222222222222',
+   'eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee',
+   162.0, 150.0, 12.0, 1.25, 'target_weight', 150.0, 'spinup'),
+  -- Frank: no goal yet (still onboarding)
+  ('ffff2222-ffff-ffff-ffff-ffffffffffff',
+   '22222222-2222-2222-2222-222222222222',
+   'ffffffff-ffff-ffff-ffff-ffffffffffff',
+   NULL, NULL, NULL, NULL, NULL, NULL, 'onboarding');
+
+-- Weigh-ins for Eve: 14 days of pre-challenge history, holding around 162
+INSERT INTO public.weigh_ins (user_id, date, weight, trend_weight) VALUES
+  ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', current_date - 13, 162.4, 162.4),
+  ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', current_date - 12, 162.0, 162.3),
+  ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', current_date - 11, 162.6, 162.4),
+  ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', current_date - 10, 161.8, 162.2),
+  ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', current_date - 9,  162.2, 162.2),
+  ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', current_date - 8,  161.6, 162.1),
+  ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', current_date - 7,  162.0, 162.1),
+  ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', current_date - 6,  161.4, 161.9),
+  ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', current_date - 5,  161.8, 161.9),
+  ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', current_date - 4,  162.2, 162.0),
+  ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', current_date - 3,  161.6, 161.9),
+  ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', current_date - 2,  161.4, 161.8),
+  ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', current_date - 1,  162.0, 161.8),
+  ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', current_date,      161.8, 161.8);
+
+-- Weigh-ins for Frank: just a few recent entries (still onboarding)
+INSERT INTO public.weigh_ins (user_id, date, weight, trend_weight) VALUES
+  ('ffffffff-ffff-ffff-ffff-ffffffffffff', current_date - 3, 218.4, 218.4),
+  ('ffffffff-ffff-ffff-ffff-ffffffffffff', current_date - 2, 217.8, 218.2),
+  ('ffffffff-ffff-ffff-ffff-ffffffffffff', current_date - 1, 218.2, 218.2),
+  ('ffffffff-ffff-ffff-ffff-ffffffffffff', current_date,     217.6, 218.0);
