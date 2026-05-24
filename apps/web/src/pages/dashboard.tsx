@@ -8,7 +8,7 @@ import { supabase } from '@/lib/supabase';
 import { Scale, ArrowDown, ArrowUp, ChevronRight } from 'lucide-react';
 import { TrendChart } from '@/components/trend-chart';
 
-function getWeekEntries(entries: { date: string; weight: number }[]) {
+function getWeekEntries(entries: { date: string; weight: number; trend_weight: number | null }[]) {
   const now = Date.now();
   return entries.filter((e) => {
     const diff = (now - new Date(e.date).getTime()) / (1000 * 60 * 60 * 24);
@@ -81,6 +81,11 @@ export default function DashboardPage() {
     weekEntries.length >= 2
       ? Math.round((weekEntries[0]!.weight - weekEntries[weekEntries.length - 1]!.weight) * 10) / 10
       : null;
+  const weekTrendChange = (() => {
+    const withTrend = weekEntries.filter((e) => e.trend_weight !== null);
+    if (withTrend.length < 2) return null;
+    return Math.round((withTrend[0]!.trend_weight! - withTrend[withTrend.length - 1]!.trend_weight!) * 10) / 10;
+  })();
 
   const formatDate = () =>
     new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
@@ -186,6 +191,11 @@ export default function DashboardPage() {
               {weekChange <= 0 ? <ArrowDown className="w-4 h-4" /> : <ArrowUp className="w-4 h-4" />}
               {Math.abs(weekChange)} lb
             </p>
+            {weekTrendChange !== null && (
+              <p className="text-[10px] text-muted-foreground mt-0.5">
+                Trend {weekTrendChange > 0 ? '+' : weekTrendChange < 0 ? '−' : ''}{Math.abs(weekTrendChange)} lb
+              </p>
+            )}
           </div>
         )}
         <div className="text-center">
