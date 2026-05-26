@@ -30,6 +30,11 @@ export default function TrendPage() {
   const weekChange = weekFiltered.length >= 2
     ? Math.round((weekFiltered[0]!.weight - weekFiltered[weekFiltered.length - 1]!.weight) * 10) / 10
     : null;
+  const weekTrendChange = (() => {
+    const withTrend = weekFiltered.filter((e) => e.trend_weight !== null);
+    if (withTrend.length < 2) return null;
+    return Math.round((withTrend[0]!.trend_weight! - withTrend[withTrend.length - 1]!.trend_weight!) * 10) / 10;
+  })();
 
   if (isLoading) {
     return (
@@ -90,12 +95,19 @@ export default function TrendPage() {
         <div className="rounded-xl bg-card p-4">
           <p className="text-xs text-muted-foreground uppercase tracking-wide">This Week</p>
           {weekChange !== null ? (
-            <p className={`text-2xl font-extrabold mt-1 flex items-center gap-1 ${
-              weekChange <= 0 ? 'text-success' : 'text-destructive'
-            }`}>
-              {weekChange <= 0 ? <ArrowDown className="w-5 h-5" /> : <ArrowUp className="w-5 h-5" />}
-              {Math.abs(weekChange)} lb
-            </p>
+            <>
+              <p className={`text-2xl font-extrabold mt-1 flex items-center gap-1 ${
+                weekChange <= 0 ? 'text-success' : 'text-destructive'
+              }`}>
+                {weekChange <= 0 ? <ArrowDown className="w-5 h-5" /> : <ArrowUp className="w-5 h-5" />}
+                {Math.abs(weekChange)} lb
+              </p>
+              {weekTrendChange !== null && (
+                <p className="text-xs text-muted-foreground mt-1">
+                  Trend {weekTrendChange > 0 ? '+' : weekTrendChange < 0 ? '−' : ''}{Math.abs(weekTrendChange)} lb
+                </p>
+              )}
+            </>
           ) : (
             <p className="text-2xl font-extrabold mt-1">—</p>
           )}
