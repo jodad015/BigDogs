@@ -68,7 +68,7 @@ export default function WeighInPage() {
     const diff = yesterday ? Math.round((savedWeight - yesterday.weight) * 10) / 10 : null;
 
     return (
-      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-6rem)] px-4">
+      <div className="flex flex-col items-center justify-center min-h-[calc(100dvh-6rem)] px-4">
         <div className="w-16 h-16 rounded-full bg-success/20 flex items-center justify-center mb-6">
           <Check className="w-8 h-8 text-success" />
         </div>
@@ -92,7 +92,7 @@ export default function WeighInPage() {
 
   // Entry / Already logged view
   return (
-    <div className="flex flex-col min-h-[calc(100vh-6rem)] max-w-md mx-auto px-4 pt-2">
+    <div className="flex flex-col min-h-[calc(100dvh-6rem)] max-w-md mx-auto px-4 pt-2">
       {/* Header */}
       <div className="flex items-center justify-between mb-2">
         <button onClick={() => navigate('/')} className="p-2 -ml-2">

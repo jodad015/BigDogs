@@ -17,6 +17,7 @@ const JoinChallengePage = lazy(() => import('@/pages/join-challenge'));
 const OnboardingPage = lazy(() => import('@/pages/onboarding'));
 const LeaderboardPage = lazy(() => import('@/pages/leaderboard'));
 const TrendPage = lazy(() => import('@/pages/trend'));
+const HistoryPage = lazy(() => import('@/pages/history'));
 const WeeklyResultsPage = lazy(() => import('@/pages/weekly-results'));
 const ParticipantPage = lazy(() => import('@/pages/participant'));
 const PublicChallengePage = lazy(() => import('@/pages/public-challenge'));
@@ -40,6 +41,7 @@ function App() {
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/leaderboard" element={<LeaderboardPage />} />
                 <Route path="/trend" element={<TrendPage />} />
+                <Route path="/history" element={<HistoryPage />} />
                 <Route path="/challenge/create" element={<CreateChallengePage />} />
                 <Route path="/join" element={<JoinChallengePage />} />
                 <Route path="/challenge/:id/onboarding" element={<OnboardingPage />} />
