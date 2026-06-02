@@ -7,6 +7,7 @@ import { useTheme } from '@/lib/theme';
 import { supabase } from '@/lib/supabase';
 import { Scale, ArrowDown, ArrowUp, ChevronRight } from 'lucide-react';
 import { TrendChart } from '@/components/trend-chart';
+import { displayChallengeStatus } from '@/lib/challenge-status';
 
 function getWeekEntries(entries: { date: string; weight: number; trend_weight: number | null }[]) {
   const now = Date.now();
@@ -289,10 +290,15 @@ export default function DashboardPage() {
                               </>
                             );
                           }
+                          const derived = displayChallengeStatus(
+                            activeChallenge!.status,
+                            activeChallenge!.challenge.start_date,
+                            activeChallenge!.challenge.duration_weeks,
+                          );
                           return (
                             <>
                               <p className="text-xs text-muted-foreground">Status</p>
-                              <p className="text-lg font-extrabold capitalize">{activeChallenge!.status}</p>
+                              <p className="text-lg font-extrabold capitalize">{derived}</p>
                             </>
                           );
                         })()}

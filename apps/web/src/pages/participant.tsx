@@ -5,6 +5,7 @@ import { avatarSrc } from '@/components/avatar-picker';
 import { TrendChart } from '@/components/trend-chart';
 import type { WeighIn } from '@/hooks/use-weigh-ins';
 import { ChevronLeft } from 'lucide-react';
+import { displayChallengeStatus } from '@/lib/challenge-status';
 
 interface ParticipantData {
   participant_id: string;
@@ -17,6 +18,7 @@ interface ParticipantData {
   total_loss: number | null;
   status: string;
   challenge_start_date: string | null;
+  challenge_duration_weeks: number;
   has_started: boolean;
 }
 
@@ -66,7 +68,7 @@ export default function ParticipantPage() {
 
     const { data } = await supabase
       .from('participants')
-      .select('id, starting_weight, starting_trend_weight, target_weight, weekly_target, total_loss, status, profiles(display_name, avatar), challenges(start_date, status)')
+      .select('id, starting_weight, starting_trend_weight, target_weight, weekly_target, total_loss, status, profiles(display_name, avatar), challenges(start_date, status, duration_weeks)')
       .eq('challenge_id', challengeId)
       .eq('user_id', userId)
       .single();
@@ -74,7 +76,7 @@ export default function ParticipantPage() {
     if (!mounted.current || !data) return;
 
     const profile = data.profiles as unknown as { display_name: string; avatar: string };
-    const challenge = data.challenges as unknown as { start_date: string | null; status: string };
+    const challenge = data.challenges as unknown as { start_date: string | null; status: string; duration_weeks: number };
 
     const todayStr = new Date().toISOString().split('T')[0]!;
     const hasStarted = challenge.start_date !== null && challenge.start_date <= todayStr;
@@ -104,6 +106,7 @@ export default function ParticipantPage() {
       total_loss: data.total_loss,
       status: data.status,
       challenge_start_date: challenge.start_date,
+      challenge_duration_weeks: challenge.duration_weeks,
       has_started: hasStarted,
     });
 
@@ -193,13 +196,20 @@ export default function ParticipantPage() {
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-1">
             <span className="font-bold text-lg">{participant.display_name}</span>
-            {participant.has_started ? (
-              <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full capitalize ${
-                STATUS_STYLES[participant.status] ?? 'bg-muted text-muted-foreground'
-              }`}>
-                {participant.status}
-              </span>
-            ) : (
+            {participant.has_started ? (() => {
+              const derived = displayChallengeStatus(
+                participant.status,
+                participant.challenge_start_date,
+                participant.challenge_duration_weeks,
+              );
+              return (
+                <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full capitalize ${
+                  STATUS_STYLES[derived] ?? 'bg-muted text-muted-foreground'
+                }`}>
+                  {derived}
+                </span>
+              );
+            })() : (
               startsLabel && (
                 <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-muted text-muted-foreground">
                   Starts {startsLabel}

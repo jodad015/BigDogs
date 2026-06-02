@@ -48,8 +48,10 @@ export function useChallenges() {
   const [isLoading, setIsLoading] = useState(true);
   const mounted = useRef(true);
 
-  const fetchActive = useCallback(() => {
+  const fetchActive = useCallback(async () => {
     if (!user) return;
+    // Self-heal stale statuses before reading. Idempotent and cheap.
+    await supabase.rpc('transition_challenge_statuses');
     supabase
       .from('participants')
       .select('challenge_id, status, challenges(*)')
