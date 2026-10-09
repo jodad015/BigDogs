@@ -1,12 +1,20 @@
--- BigDogs seed data for local development
--- This file runs on `supabase db reset`
--- Users: alice, bob, carol, dave, eve, frank (password: "password" for all)
+-- BigDogs seed data for local development. Runs on `supabase db reset`.
+-- Password for every user: "password"
+--
+--   admin@bigdogs.app  platform admin, owner of Acme Office
+--   alice@bigdogs.app  Acme Office admin, also a member of Garage Gym
+--   bob@bigdogs.app    Acme Office member
+--   carol@bigdogs.app  Acme Office member, owner of Garage Gym
+--   dave@bigdogs.app   not in any org yet; claim the unclaimed "Dave" player
+--                      with invite code CLAIMDAVE
+--
+-- TV display: http://localhost:5180/tv/local-display-token
 
 -- ============================================================
 -- USERS
 -- ============================================================
 
-INSERT INTO auth.users (
+insert into auth.users (
   instance_id, id, aud, role, email, encrypted_password,
   email_confirmed_at, created_at, updated_at,
   raw_app_meta_data, raw_user_meta_data,
@@ -14,415 +22,168 @@ INSERT INTO auth.users (
   email_change_token_new, email_change_token_current,
   phone, phone_change, phone_change_token, reauthentication_token,
   is_sso_user, is_anonymous
-) VALUES
-(
-  '00000000-0000-0000-0000-000000000000',
-  'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa',
-  'authenticated', 'authenticated',
-  'alice@bigdogs.app', crypt('password', gen_salt('bf')),
+)
+select
+  '00000000-0000-0000-0000-000000000000', u.id::uuid, 'authenticated', 'authenticated',
+  u.email, crypt('password', gen_salt('bf')),
   now(), now(), now(),
   '{"provider":"email","providers":["email"]}',
-  '{"email":"alice@bigdogs.app","display_name":"Alice","email_verified":true}',
-  '', '', '', '', '', NULL, '', '', '', false, false
-), (
-  '00000000-0000-0000-0000-000000000000',
-  'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb',
-  'authenticated', 'authenticated',
-  'bob@bigdogs.app', crypt('password', gen_salt('bf')),
-  now(), now(), now(),
-  '{"provider":"email","providers":["email"]}',
-  '{"email":"bob@bigdogs.app","display_name":"Bob","email_verified":true}',
-  '', '', '', '', '', NULL, '', '', '', false, false
-), (
-  '00000000-0000-0000-0000-000000000000',
-  'cccccccc-cccc-cccc-cccc-cccccccccccc',
-  'authenticated', 'authenticated',
-  'carol@bigdogs.app', crypt('password', gen_salt('bf')),
-  now(), now(), now(),
-  '{"provider":"email","providers":["email"]}',
-  '{"email":"carol@bigdogs.app","display_name":"Carol","email_verified":true}',
-  '', '', '', '', '', NULL, '', '', '', false, false
-), (
-  '00000000-0000-0000-0000-000000000000',
-  'dddddddd-dddd-dddd-dddd-dddddddddddd',
-  'authenticated', 'authenticated',
-  'dave@bigdogs.app', crypt('password', gen_salt('bf')),
-  now(), now(), now(),
-  '{"provider":"email","providers":["email"]}',
-  '{"email":"dave@bigdogs.app","display_name":"Dave","email_verified":true}',
-  '', '', '', '', '', NULL, '', '', '', false, false
-), (
-  '00000000-0000-0000-0000-000000000000',
-  'eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee',
-  'authenticated', 'authenticated',
-  'eve@bigdogs.app', crypt('password', gen_salt('bf')),
-  now(), now(), now(),
-  '{"provider":"email","providers":["email"]}',
-  '{"email":"eve@bigdogs.app","display_name":"Eve","email_verified":true}',
-  '', '', '', '', '', NULL, '', '', '', false, false
-), (
-  '00000000-0000-0000-0000-000000000000',
-  'ffffffff-ffff-ffff-ffff-ffffffffffff',
-  'authenticated', 'authenticated',
-  'frank@bigdogs.app', crypt('password', gen_salt('bf')),
-  now(), now(), now(),
-  '{"provider":"email","providers":["email"]}',
-  '{"email":"frank@bigdogs.app","display_name":"Frank","email_verified":true}',
-  '', '', '', '', '', NULL, '', '', '', false, false
-);
+  jsonb_build_object('email', u.email, 'display_name', u.name, 'email_verified', true),
+  '', '', '', '', '', null, '', '', '', false, false
+from (values
+  ('00000000-0000-0000-0000-00000000000a', 'admin@bigdogs.app', 'Admin'),
+  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'alice@bigdogs.app', 'Alice'),
+  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 'bob@bigdogs.app', 'Bob'),
+  ('cccccccc-cccc-cccc-cccc-cccccccccccc', 'carol@bigdogs.app', 'Carol'),
+  ('dddddddd-dddd-dddd-dddd-dddddddddddd', 'dave@bigdogs.app', 'Dave')
+) as u(id, email, name);
 
-INSERT INTO auth.identities (
-  id, user_id, provider_id, identity_data, provider, last_sign_in_at, created_at, updated_at
-) VALUES
-  (gen_random_uuid(), 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa',
-   jsonb_build_object('sub', 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'email', 'alice@bigdogs.app'),
-   'email', now(), now(), now()),
-  (gen_random_uuid(), 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb',
-   jsonb_build_object('sub', 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 'email', 'bob@bigdogs.app'),
-   'email', now(), now(), now()),
-  (gen_random_uuid(), 'cccccccc-cccc-cccc-cccc-cccccccccccc', 'cccccccc-cccc-cccc-cccc-cccccccccccc',
-   jsonb_build_object('sub', 'cccccccc-cccc-cccc-cccc-cccccccccccc', 'email', 'carol@bigdogs.app'),
-   'email', now(), now(), now()),
-  (gen_random_uuid(), 'dddddddd-dddd-dddd-dddd-dddddddddddd', 'dddddddd-dddd-dddd-dddd-dddddddddddd',
-   jsonb_build_object('sub', 'dddddddd-dddd-dddd-dddd-dddddddddddd', 'email', 'dave@bigdogs.app'),
-   'email', now(), now(), now()),
-  (gen_random_uuid(), 'eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', 'eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee',
-   jsonb_build_object('sub', 'eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', 'email', 'eve@bigdogs.app'),
-   'email', now(), now(), now()),
-  (gen_random_uuid(), 'ffffffff-ffff-ffff-ffff-ffffffffffff', 'ffffffff-ffff-ffff-ffff-ffffffffffff',
-   jsonb_build_object('sub', 'ffffffff-ffff-ffff-ffff-ffffffffffff', 'email', 'frank@bigdogs.app'),
-   'email', now(), now(), now());
+insert into auth.identities (id, user_id, provider_id, identity_data, provider, last_sign_in_at, created_at, updated_at)
+select gen_random_uuid(), id, id::text, jsonb_build_object('sub', id::text, 'email', email), 'email', now(), now(), now()
+from auth.users;
+
+update public.profiles set avatar = 'sky'   where id = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa';
+update public.profiles set avatar = 'gold'  where id = 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb';
+update public.profiles set avatar = 'mint'  where id = 'cccccccc-cccc-cccc-cccc-cccccccccccc';
+update public.profiles set avatar = 'plum'  where id = 'dddddddd-dddd-dddd-dddd-dddddddddddd';
+
+insert into public.platform_admins (user_id) values ('00000000-0000-0000-0000-00000000000a');
 
 -- ============================================================
--- PROFILES
+-- ORGANIZATIONS
 -- ============================================================
 
-UPDATE public.profiles SET height_inches = 65, age = 29, personal_target_weight = 140.0, avatar = 'sky'
-WHERE id = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa';
+insert into public.organizations (id, name, slug, created_by) values
+  ('10000000-0000-0000-0000-000000000001', 'Acme Office', 'acme-office', '00000000-0000-0000-0000-00000000000a'),
+  ('10000000-0000-0000-0000-000000000002', 'Garage Gym', 'garage-gym', 'cccccccc-cccc-cccc-cccc-cccccccccccc');
 
-UPDATE public.profiles SET height_inches = 70, age = 34, personal_target_weight = 175.0, avatar = 'crimson'
-WHERE id = 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb';
-
-UPDATE public.profiles SET height_inches = 63, age = 42, personal_target_weight = 155.0, avatar = 'mint'
-WHERE id = 'cccccccc-cccc-cccc-cccc-cccccccccccc';
-
-UPDATE public.profiles SET height_inches = 72, age = 26, personal_target_weight = 190.0, avatar = 'gold'
-WHERE id = 'dddddddd-dddd-dddd-dddd-dddddddddddd';
-
-UPDATE public.profiles SET height_inches = 67, age = 31, personal_target_weight = 150.0, avatar = 'plum'
-WHERE id = 'eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee';
-
-UPDATE public.profiles SET height_inches = 71, age = 38, personal_target_weight = 195.0, avatar = 'sage'
-WHERE id = 'ffffffff-ffff-ffff-ffff-ffffffffffff';
+insert into public.org_members (org_id, user_id, role) values
+  ('10000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-00000000000a', 'owner'),
+  ('10000000-0000-0000-0000-000000000001', 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'admin'),
+  ('10000000-0000-0000-0000-000000000001', 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 'member'),
+  ('10000000-0000-0000-0000-000000000001', 'cccccccc-cccc-cccc-cccc-cccccccccccc', 'member'),
+  ('10000000-0000-0000-0000-000000000002', 'cccccccc-cccc-cccc-cccc-cccccccccccc', 'owner'),
+  ('10000000-0000-0000-0000-000000000002', 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'member');
 
 -- ============================================================
--- CHALLENGE — "Office BigDogs Q3" (12 weeks, started 4 weeks ago)
+-- PLAYERS
 -- ============================================================
 
-INSERT INTO public.challenges (
-  id, created_by, name, invite_code, duration_weeks, max_participants,
-  showdowns_enabled, is_public, timezone, spinup_start_date, start_date, status
-) VALUES (
-  '11111111-1111-1111-1111-111111111111',
-  'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa',
-  'Office BigDogs Q3', 'BDOG-X7K9', 12, 8,
-  true, true, 'America/Chicago',
-  (current_date - 35)::date,
-  (current_date - 28)::date,
-  'active'
-);
+insert into public.players (id, org_id, display_name, avatar, user_id, created_by) values
+  -- Acme Office
+  ('20000000-0000-0000-0000-000000000001', '10000000-0000-0000-0000-000000000001', 'Alice', 'sky',     'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa'),
+  ('20000000-0000-0000-0000-000000000002', '10000000-0000-0000-0000-000000000001', 'Bob',   'gold',    'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb'),
+  ('20000000-0000-0000-0000-000000000003', '10000000-0000-0000-0000-000000000001', 'Carol', 'mint',    'cccccccc-cccc-cccc-cccc-cccccccccccc', 'cccccccc-cccc-cccc-cccc-cccccccccccc'),
+  ('20000000-0000-0000-0000-000000000004', '10000000-0000-0000-0000-000000000001', 'Dave',  'plum',    null,                                   'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa'),
+  ('20000000-0000-0000-0000-000000000005', '10000000-0000-0000-0000-000000000001', 'Erin',  'crimson', null,                                   'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb'),
+  -- Garage Gym
+  ('20000000-0000-0000-0000-000000000011', '10000000-0000-0000-0000-000000000002', 'Carol', 'mint',    'cccccccc-cccc-cccc-cccc-cccccccccccc', 'cccccccc-cccc-cccc-cccc-cccccccccccc'),
+  ('20000000-0000-0000-0000-000000000012', '10000000-0000-0000-0000-000000000002', 'Alice', 'sky',     'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa');
 
 -- ============================================================
--- PARTICIPANTS — Alice, Carol, Dave in the active challenge
--- (Bob is in a separate upcoming challenge — see below)
+-- TEAMS (Acme Office)
 -- ============================================================
 
-INSERT INTO public.participants (
-  id, challenge_id, user_id, starting_weight, target_weight, total_loss,
-  weekly_target, goal_method, goal_input, status
-) VALUES
-  -- Alice: 158 → 140, losing ~1.5/wk
-  ('aaaa1111-aaaa-aaaa-aaaa-aaaaaaaaaaaa',
-   '11111111-1111-1111-1111-111111111111',
-   'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa',
-   158.0, 140.0, 18.0, 1.5, 'target_weight', 140.0, 'active'),
-  -- Carol: 170 → 155, losing ~1.25/wk
-  ('cccc1111-cccc-cccc-cccc-cccccccccccc',
-   '11111111-1111-1111-1111-111111111111',
-   'cccccccc-cccc-cccc-cccc-cccccccccccc',
-   170.0, 155.0, 15.0, 1.25, 'target_weight', 155.0, 'active'),
-  -- Dave: 215 → 190, losing ~2.0/wk
-  ('dddd1111-dddd-dddd-dddd-dddddddddddd',
-   '11111111-1111-1111-1111-111111111111',
-   'dddddddd-dddd-dddd-dddd-dddddddddddd',
-   215.0, 190.0, 25.0, 2.0, 'target_weight', 190.0, 'active');
+insert into public.teams (id, org_id, name, created_by) values
+  ('30000000-0000-0000-0000-000000000001', '10000000-0000-0000-0000-000000000001', 'Bag Daddies', 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa'),
+  ('30000000-0000-0000-0000-000000000002', '10000000-0000-0000-0000-000000000001', null,          'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb'),
+  ('30000000-0000-0000-0000-000000000003', '10000000-0000-0000-0000-000000000001', null,          'cccccccc-cccc-cccc-cccc-cccccccccccc');
+
+insert into public.team_members (team_id, player_id, org_id) values
+  -- Alice & Bob
+  ('30000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000001', '10000000-0000-0000-0000-000000000001'),
+  ('30000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000002', '10000000-0000-0000-0000-000000000001'),
+  -- Carol & Dave
+  ('30000000-0000-0000-0000-000000000002', '20000000-0000-0000-0000-000000000003', '10000000-0000-0000-0000-000000000001'),
+  ('30000000-0000-0000-0000-000000000002', '20000000-0000-0000-0000-000000000004', '10000000-0000-0000-0000-000000000001'),
+  -- Alice & Erin (Alice is on two teams)
+  ('30000000-0000-0000-0000-000000000003', '20000000-0000-0000-0000-000000000001', '10000000-0000-0000-0000-000000000001'),
+  ('30000000-0000-0000-0000-000000000003', '20000000-0000-0000-0000-000000000005', '10000000-0000-0000-0000-000000000001');
 
 -- ============================================================
--- WEIGH-INS (28 days for all 4 participants — spinup + 3 scored weeks)
+-- LEADERBOARDS
 -- ============================================================
 
--- Alice: 158 → ~152, steady loser
-INSERT INTO public.weigh_ins (user_id, date, weight, trend_weight) VALUES
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 34, 158.0, 158.0),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 33, 157.6, 157.9),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 32, 158.2, 157.9),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 31, 157.4, 157.8),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 30, 157.0, 157.6),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 29, 157.8, 157.6),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 28, 157.2, 157.5),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 27, 156.8, 157.3),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 26, 157.0, 157.2),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 25, 156.4, 157.0),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 24, 156.0, 156.8),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 23, 156.6, 156.7),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 22, 155.8, 156.5),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 21, 155.4, 156.3),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 20, 155.8, 156.2),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 19, 155.2, 156.0),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 18, 154.8, 155.7),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 17, 155.4, 155.7),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 16, 154.6, 155.4),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 15, 154.2, 155.2),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 14, 154.8, 155.1),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 13, 154.0, 154.9),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 12, 153.6, 154.6),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 11, 154.2, 154.6),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 10, 153.4, 154.3),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 9,  153.0, 154.1),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 8,  153.6, 154.0),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 7,  152.8, 153.8),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 6,  152.4, 153.5),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 5,  153.0, 153.4),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 4,  152.2, 153.2),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 3,  151.8, 152.9),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 2,  152.4, 152.8),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date - 1,  151.6, 152.6),
-  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', current_date,      151.2, 152.4);
-
--- Bob: 195 → ~189, solid progress
-INSERT INTO public.weigh_ins (user_id, date, weight, trend_weight) VALUES
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 34, 195.8, 195.8),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 33, 195.2, 195.6),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 32, 196.0, 195.7),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 31, 194.8, 195.5),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 30, 194.4, 195.2),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 29, 195.0, 195.2),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 28, 194.2, 195.0),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 27, 193.6, 194.7),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 26, 194.0, 194.5),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 25, 193.2, 194.2),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 24, 192.8, 193.9),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 23, 193.4, 193.8),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 22, 192.6, 193.5),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 21, 192.2, 193.2),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 20, 192.8, 193.2),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 19, 191.6, 192.8),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 18, 191.2, 192.5),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 17, 192.0, 192.4),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 16, 191.0, 192.1),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 15, 190.6, 191.8),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 14, 191.2, 191.7),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 13, 190.4, 191.4),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 12, 190.0, 191.1),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 11, 190.8, 191.1),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 10, 189.8, 190.8),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 9,  189.4, 190.5),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 8,  190.0, 190.4),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 7,  189.2, 190.1),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 6,  188.8, 189.8),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 5,  189.4, 189.7),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 4,  188.6, 189.5),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 3,  188.2, 189.2),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 2,  188.8, 189.1),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date - 1,  188.0, 188.9),
-  ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', current_date,      187.6, 188.6);
-
--- Carol: 170 → ~166, slower but consistent
-INSERT INTO public.weigh_ins (user_id, date, weight, trend_weight) VALUES
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 34, 170.0, 170.0),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 33, 169.8, 169.9),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 32, 170.2, 170.0),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 31, 169.4, 169.8),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 30, 169.6, 169.8),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 29, 169.2, 169.6),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 28, 169.0, 169.5),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 27, 168.8, 169.3),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 26, 169.2, 169.3),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 25, 168.6, 169.1),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 24, 168.2, 168.9),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 23, 168.8, 168.9),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 22, 168.0, 168.7),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 21, 167.8, 168.5),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 20, 168.2, 168.4),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 19, 167.6, 168.2),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 18, 167.2, 168.0),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 17, 167.8, 167.9),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 16, 167.0, 167.7),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 15, 166.8, 167.5),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 14, 167.2, 167.5),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 13, 166.6, 167.3),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 12, 166.2, 167.0),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 11, 166.8, 167.0),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 10, 166.0, 166.8),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 9,  165.8, 166.6),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 8,  166.4, 166.5),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 7,  165.6, 166.3),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 6,  165.4, 166.1),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 5,  166.0, 166.1),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 4,  165.2, 165.9),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 3,  165.0, 165.7),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 2,  165.6, 165.7),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date - 1,  164.8, 165.5),
-  ('cccccccc-cccc-cccc-cccc-cccccccccccc', current_date,      164.6, 165.3);
-
--- Dave: 215 → ~208, aggressive but some bumps
-INSERT INTO public.weigh_ins (user_id, date, weight, trend_weight) VALUES
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 34, 215.0, 215.0),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 33, 214.2, 214.8),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 32, 215.4, 214.9),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 31, 213.8, 214.6),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 30, 213.2, 214.3),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 29, 214.0, 214.2),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 28, 213.0, 213.9),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 27, 212.4, 213.6),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 26, 213.0, 213.4),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 25, 211.8, 213.0),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 24, 211.2, 212.6),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 23, 212.0, 212.5),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 22, 211.0, 212.1),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 21, 210.6, 211.8),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 20, 211.4, 211.7),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 19, 210.2, 211.3),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 18, 209.8, 211.0),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 17, 210.6, 210.9),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 16, 209.4, 210.5),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 15, 209.0, 210.2),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 14, 210.0, 210.1),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 13, 208.8, 209.8),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 12, 208.4, 209.4),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 11, 209.2, 209.4),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 10, 208.0, 209.0),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 9,  207.6, 208.7),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 8,  208.4, 208.6),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 7,  207.2, 208.3),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 6,  206.8, 207.9),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 5,  207.6, 207.9),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 4,  206.4, 207.5),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 3,  206.0, 207.2),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 2,  206.8, 207.1),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date - 1,  205.8, 206.8),
-  ('dddddddd-dddd-dddd-dddd-dddddddddddd', current_date,      205.4, 206.5);
+insert into public.leaderboards (
+  id, org_id, name, description, icon, metric_type, unit, decimals, default_attempts,
+  direction, aggregation, default_window, entrant_type, team_size, created_by
+) values
+  ('40000000-0000-0000-0000-000000000001', '10000000-0000-0000-0000-000000000001',
+   'Dead Hang', 'Longest hang from the bar by the kitchen. No straps.', '🧗',
+   'duration', 'sec', 1, null, 'higher_better', 'best', 'all_time', 'player', null,
+   'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa'),
+  ('40000000-0000-0000-0000-000000000002', '10000000-0000-0000-0000-000000000001',
+   'Pull-ups', 'Max strict pull-ups in one set.', '💪',
+   'count', 'reps', 0, null, 'higher_better', 'best', 'month', 'player', null,
+   'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb'),
+  ('40000000-0000-0000-0000-000000000003', '10000000-0000-0000-0000-000000000001',
+   'Hallway Putting', '10 putts from the copier. Best make rate this month.', '⛳',
+   'made_of_attempts', 'putts', 0, 10, 'higher_better', 'sum', 'month', 'player', null,
+   'cccccccc-cccc-cccc-cccc-cccccccccccc'),
+  ('40000000-0000-0000-0000-000000000004', '10000000-0000-0000-0000-000000000001',
+   'Paper Plane Distance', 'Throw from the break room door.', '✈️',
+   'distance', 'ft', 1, null, 'higher_better', 'best', 'all_time', 'player', null,
+   'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa'),
+  ('40000000-0000-0000-0000-000000000005', '10000000-0000-0000-0000-000000000001',
+   'Cornhole Doubles', 'Points per game, partners required.', '🌽',
+   'points', 'pts', 0, null, 'higher_better', 'average', 'quarter', 'team', 2,
+   'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa'),
+  ('40000000-0000-0000-0000-000000000006', '10000000-0000-0000-0000-000000000001',
+   'Rubik''s Cube', 'Fastest solve.', '🧊',
+   'duration', 'sec', 2, null, 'lower_better', 'best', 'all_time', 'player', null,
+   'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb'),
+  ('40000000-0000-0000-0000-000000000011', '10000000-0000-0000-0000-000000000002',
+   'Plank', 'Longest forearm plank.', '🪵',
+   'duration', 'sec', 0, null, 'higher_better', 'best', 'all_time', 'player', null,
+   'cccccccc-cccc-cccc-cccc-cccccccccccc');
 
 -- ============================================================
--- WEEKLY RESULTS (3 scored weeks, 3 participants — 3/2/1 points)
+-- ENTRIES (spread over the last ~5 weeks)
 -- ============================================================
 
--- Week 1 (days 21-28 ago)
-INSERT INTO public.weekly_results (
-  participant_id, challenge_id, week_number, week_start_date, week_end_date,
-  start_trend, end_trend, weekly_loss, performance_ratio, performance_factor,
-  cumulative_scored_loss, cumulative_progress_pct, difficulty_multiplier,
-  weekly_score, placement, placement_points, is_showdown, is_maintenance
-) VALUES
-  -- Alice: -1.6 lb (target 1.5) → factor 0.94 → 1st
-  ('aaaa1111-aaaa-aaaa-aaaa-aaaaaaaaaaaa', '11111111-1111-1111-1111-111111111111',
-   1, current_date - 27, current_date - 21, 157.5, 156.3, -1.6, 1.07, 0.94,
-   1.6, 8.9, 1.0, 2.51, 1, 3, false, false),
-  -- Dave: -2.2 lb (target 2.0) → factor 0.90 → 2nd
-  ('dddd1111-dddd-dddd-dddd-dddddddddddd', '11111111-1111-1111-1111-111111111111',
-   1, current_date - 27, current_date - 21, 213.9, 211.8, -2.2, 1.10, 0.90,
-   2.2, 8.8, 1.0, 1.89, 2, 2, false, false),
-  -- Carol: -0.8 lb (target 1.25) → factor 0.56 → 3rd
-  ('cccc1111-cccc-cccc-cccc-cccccccccccc', '11111111-1111-1111-1111-111111111111',
-   1, current_date - 27, current_date - 21, 169.5, 168.5, -0.8, 0.64, 0.56,
-   0.8, 5.3, 1.0, 1.12, 3, 1, false, false),
-
--- Week 2 (days 14-21 ago)
-  -- Dave: -1.8 lb → factor 0.82 → 1st
-  ('dddd1111-dddd-dddd-dddd-dddddddddddd', '11111111-1111-1111-1111-111111111111',
-   2, current_date - 20, current_date - 14, 211.8, 210.1, -1.8, 0.90, 0.82,
-   4.0, 16.0, 1.0, 2.67, 1, 3, false, false),
-  -- Alice: -1.4 lb → factor 0.85 → 2nd
-  ('aaaa1111-aaaa-aaaa-aaaa-aaaaaaaaaaaa', '11111111-1111-1111-1111-111111111111',
-   2, current_date - 20, current_date - 14, 156.3, 155.1, -1.4, 0.93, 0.85,
-   3.0, 16.7, 1.0, 2.18, 2, 2, false, false),
-  -- Carol: -1.2 lb → factor 0.88 → 3rd
-  ('cccc1111-cccc-cccc-cccc-cccccccccccc', '11111111-1111-1111-1111-111111111111',
-   2, current_date - 20, current_date - 14, 168.5, 167.5, -1.2, 0.96, 0.88,
-   2.0, 13.3, 1.0, 1.65, 3, 1, false, false),
-
--- Week 3 (days 7-14 ago)
-  -- Alice: -1.3 lb → factor 0.78 → 1st
-  ('aaaa1111-aaaa-aaaa-aaaa-aaaaaaaaaaaa', '11111111-1111-1111-1111-111111111111',
-   3, current_date - 13, current_date - 7, 155.1, 153.8, -1.3, 0.87, 0.78,
-   4.3, 23.9, 1.0, 2.01, 1, 3, false, false),
-  -- Carol: -1.0 lb → factor 0.72 → 2nd
-  ('cccc1111-cccc-cccc-cccc-cccccccccccc', '11111111-1111-1111-1111-111111111111',
-   3, current_date - 13, current_date - 7, 167.5, 166.3, -1.0, 0.80, 0.72,
-   3.0, 20.0, 1.0, 1.45, 2, 2, false, false),
-  -- Dave: -1.4 lb → factor 0.62 (off pace) → 3rd
-  ('dddd1111-dddd-dddd-dddd-dddddddddddd', '11111111-1111-1111-1111-111111111111',
-   3, current_date - 13, current_date - 7, 210.1, 208.3, -1.4, 0.70, 0.62,
-   5.4, 21.6, 1.0, 1.22, 3, 1, false, false);
+insert into public.entries (leaderboard_id, org_id, player_id, team_id, value, attempts, achieved_at, recorded_by) values
+  -- Dead Hang (ms)
+  ('40000000-0000-0000-0000-000000000001', '10000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000001', null,  72400, null, now() - interval '30 days', 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa'),
+  ('40000000-0000-0000-0000-000000000001', '10000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000001', null,  81200, null, now() - interval '9 days',  'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa'),
+  ('40000000-0000-0000-0000-000000000001', '10000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000002', null,  95700, null, now() - interval '20 days', 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb'),
+  ('40000000-0000-0000-0000-000000000001', '10000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000003', null,  64000, null, now() - interval '3 days',  'cccccccc-cccc-cccc-cccc-cccccccccccc'),
+  ('40000000-0000-0000-0000-000000000001', '10000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000004', null, 102300, null, now() - interval '1 day',   'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa'),
+  ('40000000-0000-0000-0000-000000000001', '10000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000005', null,  58900, null, now() - interval '12 days', 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb'),
+  -- Pull-ups
+  ('40000000-0000-0000-0000-000000000002', '10000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000001', null, 12, null, now() - interval '2 days',  'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa'),
+  ('40000000-0000-0000-0000-000000000002', '10000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000002', null, 18, null, now() - interval '4 days',  'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb'),
+  ('40000000-0000-0000-0000-000000000002', '10000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000002', null, 15, null, now() - interval '40 days', 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb'),
+  ('40000000-0000-0000-0000-000000000002', '10000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000003', null, 12, null, now() - interval '1 day',   'cccccccc-cccc-cccc-cccc-cccccccccccc'),
+  ('40000000-0000-0000-0000-000000000002', '10000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000004', null,  9, null, now() - interval '6 hours', 'cccccccc-cccc-cccc-cccc-cccccccccccc'),
+  -- Hallway Putting (made of attempts)
+  ('40000000-0000-0000-0000-000000000003', '10000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000001', null, 6, 10, now() - interval '3 days',  'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa'),
+  ('40000000-0000-0000-0000-000000000003', '10000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000001', null, 8, 10, now() - interval '1 day',   'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa'),
+  ('40000000-0000-0000-0000-000000000003', '10000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000002', null, 7, 10, now() - interval '2 days',  'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb'),
+  ('40000000-0000-0000-0000-000000000003', '10000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000003', null, 9, 10, now() - interval '5 hours', 'cccccccc-cccc-cccc-cccc-cccccccccccc'),
+  ('40000000-0000-0000-0000-000000000003', '10000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000005', null, 5, 10, now() - interval '4 days',  'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb'),
+  -- Paper Plane Distance (ft)
+  ('40000000-0000-0000-0000-000000000004', '10000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000002', null, 41.5, null, now() - interval '15 days', 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb'),
+  ('40000000-0000-0000-0000-000000000004', '10000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000003', null, 47.0, null, now() - interval '8 days',  'cccccccc-cccc-cccc-cccc-cccccccccccc'),
+  ('40000000-0000-0000-0000-000000000004', '10000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000005', null, 47.0, null, now() - interval '2 days',  'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb'),
+  -- Cornhole Doubles (teams)
+  ('40000000-0000-0000-0000-000000000005', '10000000-0000-0000-0000-000000000001', null, '30000000-0000-0000-0000-000000000001', 21, null, now() - interval '6 days', 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa'),
+  ('40000000-0000-0000-0000-000000000005', '10000000-0000-0000-0000-000000000001', null, '30000000-0000-0000-0000-000000000001', 15, null, now() - interval '2 days', 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa'),
+  ('40000000-0000-0000-0000-000000000005', '10000000-0000-0000-0000-000000000001', null, '30000000-0000-0000-0000-000000000002', 21, null, now() - interval '6 days', 'cccccccc-cccc-cccc-cccc-cccccccccccc'),
+  ('40000000-0000-0000-0000-000000000005', '10000000-0000-0000-0000-000000000001', null, '30000000-0000-0000-0000-000000000003', 11, null, now() - interval '1 day',  'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa'),
+  -- Rubik's Cube (ms, lower is better)
+  ('40000000-0000-0000-0000-000000000006', '10000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000002', null, 48230, null, now() - interval '10 days', 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb'),
+  ('40000000-0000-0000-0000-000000000006', '10000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000003', null, 95110, null, now() - interval '3 days',  'cccccccc-cccc-cccc-cccc-cccccccccccc'),
+  -- Garage Gym plank
+  ('40000000-0000-0000-0000-000000000011', '10000000-0000-0000-0000-000000000002', '20000000-0000-0000-0000-000000000011', null, 185000, null, now() - interval '5 days', 'cccccccc-cccc-cccc-cccc-cccccccccccc'),
+  ('40000000-0000-0000-0000-000000000011', '10000000-0000-0000-0000-000000000002', '20000000-0000-0000-0000-000000000012', null, 140000, null, now() - interval '2 days', 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa');
 
 -- ============================================================
--- BOB'S CHALLENGE — "Spring Throwdown" (starts in 7 days)
--- Bob in spinup; challenge demonstrates pre-start UI state.
+-- INVITES & DISPLAY LINKS
 -- ============================================================
 
-INSERT INTO public.challenges (
-  id, created_by, name, invite_code, duration_weeks, max_participants,
-  showdowns_enabled, is_public, timezone, spinup_start_date, start_date, status
-) VALUES (
-  '22222222-2222-2222-2222-222222222222',
-  'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb',
-  'Spring Throwdown', 'BDOG-S7P3', 10, 8,
-  true, false, 'America/Chicago',
-  current_date::date,
-  (current_date + 7)::date,
-  'spinup'
-);
+insert into public.org_invites (org_id, code, role, player_id, created_by) values
+  ('10000000-0000-0000-0000-000000000001', 'ACMEJOIN',  'member', null,                                   '00000000-0000-0000-0000-00000000000a'),
+  ('10000000-0000-0000-0000-000000000001', 'CLAIMDAVE', 'member', '20000000-0000-0000-0000-000000000004', 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa');
 
-INSERT INTO public.participants (
-  id, challenge_id, user_id, starting_weight, target_weight, total_loss,
-  weekly_target, goal_method, goal_input, status
-) VALUES
-  -- Bob: 189 → 175, goal set, awaiting start
-  ('bbbb2222-bbbb-bbbb-bbbb-bbbbbbbbbbbb',
-   '22222222-2222-2222-2222-222222222222',
-   'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb',
-   189.0, 175.0, 14.0, 1.5, 'target_weight', 175.0, 'spinup'),
-  -- Eve: 162 → 150, goal set, awaiting start
-  ('eeee2222-eeee-eeee-eeee-eeeeeeeeeeee',
-   '22222222-2222-2222-2222-222222222222',
-   'eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee',
-   162.0, 150.0, 12.0, 1.25, 'target_weight', 150.0, 'spinup'),
-  -- Frank: no goal yet (still onboarding)
-  ('ffff2222-ffff-ffff-ffff-ffffffffffff',
-   '22222222-2222-2222-2222-222222222222',
-   'ffffffff-ffff-ffff-ffff-ffffffffffff',
-   NULL, NULL, NULL, NULL, NULL, NULL, 'onboarding');
-
--- Weigh-ins for Eve: 14 days of pre-challenge history, holding around 162
-INSERT INTO public.weigh_ins (user_id, date, weight, trend_weight) VALUES
-  ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', current_date - 13, 162.4, 162.4),
-  ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', current_date - 12, 162.0, 162.3),
-  ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', current_date - 11, 162.6, 162.4),
-  ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', current_date - 10, 161.8, 162.2),
-  ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', current_date - 9,  162.2, 162.2),
-  ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', current_date - 8,  161.6, 162.1),
-  ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', current_date - 7,  162.0, 162.1),
-  ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', current_date - 6,  161.4, 161.9),
-  ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', current_date - 5,  161.8, 161.9),
-  ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', current_date - 4,  162.2, 162.0),
-  ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', current_date - 3,  161.6, 161.9),
-  ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', current_date - 2,  161.4, 161.8),
-  ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', current_date - 1,  162.0, 161.8),
-  ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', current_date,      161.8, 161.8);
-
--- Weigh-ins for Frank: just a few recent entries (still onboarding)
-INSERT INTO public.weigh_ins (user_id, date, weight, trend_weight) VALUES
-  ('ffffffff-ffff-ffff-ffff-ffffffffffff', current_date - 3, 218.4, 218.4),
-  ('ffffffff-ffff-ffff-ffff-ffffffffffff', current_date - 2, 217.8, 218.2),
-  ('ffffffff-ffff-ffff-ffff-ffffffffffff', current_date - 1, 218.2, 218.2),
-  ('ffffffff-ffff-ffff-ffff-ffffffffffff', current_date,     217.6, 218.0);
+insert into public.display_links (org_id, name, token, created_by) values
+  ('10000000-0000-0000-0000-000000000001', 'Kitchen tablet', 'local-display-token', '00000000-0000-0000-0000-00000000000a');

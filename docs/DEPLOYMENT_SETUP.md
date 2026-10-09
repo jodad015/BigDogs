@@ -4,7 +4,7 @@
 
 | Environment | Branch    | Supabase         | Web Hosting | Trigger               |
 |-------------|-----------|------------------|-------------|-----------------------|
-| **Local**   | any       | Docker (546xx)   | Vite (5173) | Manual (`pnpm dev`)   |
+| **Local**   | any       | Docker (546xx)   | Vite (5180) | Manual (`pnpm dev`)   |
 | **Production** | `main` | Supabase Cloud   | Cloudflare Pages | Merge to `main`  |
 
 ## Branch Strategy
@@ -123,17 +123,6 @@ Merge to main: supabase db push → applied to production
 
 ---
 
-## Edge Functions
-
-All 10 edge functions are deployed together on merge to main via
-`supabase functions deploy`. Individual function deployment is also possible:
-
-```bash
-supabase functions deploy entity-load --import-map supabase/functions/import_map.json
-```
-
----
-
 ## Marketing Site
 
 The marketing site (`apps/marketing/`) is a static HTML/CSS page deployed
@@ -157,10 +146,10 @@ separately from the web app.
 
 ```bash
 pnpm dev:marketing    # Serves on localhost:3001
-pnpm dev              # Web app on localhost:5173
+pnpm dev              # Web app on localhost:5180
 ```
 
-Marketing "Get Started" links point to `http://localhost:5173` in dev mode.
+Marketing "Get Started" links point to `http://localhost:5180` in dev mode.
 
 ---
 
