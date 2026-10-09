@@ -1,14 +1,25 @@
-import { useCallback, useEffect, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from 'react';
 import type { OrgRole, Organization } from '@bigdogs/shared';
-import { supabase } from '@/lib/supabase';
-import { useAuth } from '@/lib/auth';
+import { supabase } from './supabase';
+import { useAuth } from './auth';
 
 export interface MyOrg extends Organization {
   role: OrgRole;
 }
 
-/** The signed-in user's organizations, plus whether they are a platform admin. */
-export function useOrgs() {
+interface OrgsContextValue {
+  orgs: MyOrg[];
+  isPlatformAdmin: boolean;
+  isLoading: boolean;
+  error: string | null;
+  refetch: () => Promise<void>;
+  createOrg: (name: string, slug: string) => Promise<{ error: string | null }>;
+}
+
+const OrgsContext = createContext<OrgsContextValue | null>(null);
+
+/** The signed-in user's organizations, shared by the nav and every org page. */
+export function OrgsProvider({ children }: { children: ReactNode }) {
   const { user } = useAuth();
   const [orgs, setOrgs] = useState<MyOrg[]>([]);
   const [isPlatformAdmin, setIsPlatformAdmin] = useState(false);
@@ -56,12 +67,15 @@ export function useOrgs() {
     return { error: null };
   };
 
-  const acceptInvite = async (code: string) => {
-    const { error: err } = await supabase.rpc('accept_invite', { p_code: code });
-    if (err) return { error: err.message };
-    await refetch();
-    return { error: null };
-  };
+  return (
+    <OrgsContext.Provider value={{ orgs, isPlatformAdmin, isLoading, error, refetch, createOrg }}>
+      {children}
+    </OrgsContext.Provider>
+  );
+}
 
-  return { orgs, isPlatformAdmin, isLoading, error, createOrg, acceptInvite, refetch };
+export function useOrgs() {
+  const context = useContext(OrgsContext);
+  if (!context) throw new Error('useOrgs must be used within an OrgsProvider');
+  return context;
 }

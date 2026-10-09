@@ -74,6 +74,7 @@ pnpm db:status            # copy the anon key
 cat > .env.local <<'EOF'
 VITE_SUPABASE_URL=http://127.0.0.1:54621
 VITE_SUPABASE_ANON_KEY=<paste-anon-key-here>
+VITE_ENABLE_EMAIL_AUTH=true   # email/password login locally; prod uses Google
 EOF
 
 # 4. Start the web app
@@ -112,7 +113,8 @@ pnpm build                # Build shared + web
 pnpm typecheck
 pnpm lint
 pnpm test                 # Shared package unit tests (Vitest)
-pnpm test:e2e             # Playwright
+pnpm test:e2e             # Playwright; needs the local stack + dev server,
+                          # and `pnpm db:reset` first (tests change seed data)
 ```
 
 ## Local ports

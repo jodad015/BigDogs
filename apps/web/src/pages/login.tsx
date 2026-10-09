@@ -1,16 +1,20 @@
 import { useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useSearchParams } from 'react-router';
 import { useAuth } from '@/lib/auth';
+import { rememberNextPath, withNext } from '@/lib/next-path';
 
 const enableEmailAuth = import.meta.env.VITE_ENABLE_EMAIL_AUTH === 'true';
 
 const DEMO_ACCOUNTS = [
+  { email: 'admin@bigdogs.app', password: 'password', label: 'Admin' },
   { email: 'alice@bigdogs.app', password: 'password', label: 'Alice' },
   { email: 'bob@bigdogs.app', password: 'password', label: 'Bob' },
 ];
 
 export default function LoginPage() {
   const { signIn, signInWithGoogle } = useAuth();
+  const [params] = useSearchParams();
+  const next = params.get('next');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -30,6 +34,7 @@ export default function LoginPage() {
 
   const handleGoogleSignIn = async () => {
     setError('');
+    rememberNextPath(next);
     const { error } = await signInWithGoogle();
     if (error) {
       setError(error.message);
@@ -48,7 +53,7 @@ export default function LoginPage() {
 
       <div className="relative z-10 w-full max-w-sm">
         <h1 className="mb-8 text-center text-3xl font-black tracking-[0.15em] uppercase text-foreground">BIGDOGS</h1>
-        <p className="text-center text-muted-foreground mb-8 -mt-4">Prove it on the scale.</p>
+        <p className="text-center text-muted-foreground mb-8 -mt-4">Settle it on the leaderboard.</p>
 
         {!enableEmailAuth && (
           <button
@@ -142,7 +147,7 @@ export default function LoginPage() {
 
         <p className="mt-6 text-center text-sm text-muted-foreground">
           Don't have an account?{' '}
-          <Link to="/signup" className="text-primary font-medium hover:underline">
+          <Link to={withNext('/signup', next)} className="text-primary font-medium hover:underline">
             Sign up
           </Link>
         </p>
