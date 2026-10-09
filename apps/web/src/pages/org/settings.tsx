@@ -7,6 +7,7 @@ import { useOrgs } from '@/lib/orgs';
 import { useCurrentOrg } from '@/lib/current-org';
 import { lastOrgSlug } from '@/lib/storage';
 import { friendlyError } from '@/hooks/use-supabase-query';
+import { DisplayLinks } from '@/components/display-links';
 import {
   Card,
   dangerButtonClass,
@@ -153,9 +154,11 @@ function LeaveOrg() {
 }
 
 export default function OrgSettingsPage() {
+  const { isAdmin } = useCurrentOrg();
   return (
     <Page title="Settings">
       <OrgDetailsForm />
+      {isAdmin && <DisplayLinks />}
       <LeaveOrg />
     </Page>
   );

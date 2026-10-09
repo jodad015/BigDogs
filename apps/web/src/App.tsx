@@ -22,6 +22,7 @@ const NewBoardPage = lazy(() => import('@/pages/org/new-board'));
 const BoardPage = lazy(() => import('@/pages/org/board'));
 const EditBoardPage = lazy(() => import('@/pages/org/edit-board'));
 const LogEntryPage = lazy(() => import('@/pages/org/log-entry'));
+const TvPage = lazy(() => import('@/pages/tv'));
 
 function App() {
   return (
@@ -53,6 +54,9 @@ function App() {
                   </Route>
                 </Route>
               </Route>
+
+              {/* Read-only office display; the token is the credential */}
+              <Route path="/tv/:token" element={<TvPage />} />
 
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
