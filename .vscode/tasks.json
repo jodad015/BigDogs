@@ -12,18 +12,6 @@
       }
     },
     {
-      "label": "Supabase Functions",
-      "type": "shell",
-      "command": "supabase functions serve --import-map supabase/functions/import_map.json",
-      "dependsOn": ["Supabase"],
-      "isBackground": true,
-      "problemMatcher": [],
-      "presentation": {
-        "group": "dev",
-        "reveal": "always"
-      }
-    },
-    {
       "label": "Web App",
       "type": "shell",
       "command": "pnpm dev:web",
@@ -36,12 +24,17 @@
     },
     {
       "label": "Start Backend",
-      "dependsOn": ["Supabase Functions"],
+      "dependsOn": [
+        "Supabase"
+      ],
       "problemMatcher": []
     },
     {
       "label": "Start Web",
-      "dependsOn": ["Supabase Functions", "Web App"],
+      "dependsOn": [
+        "Supabase",
+        "Web App"
+      ],
       "problemMatcher": []
     },
     {
@@ -57,7 +50,11 @@
     },
     {
       "label": "Start All",
-      "dependsOn": ["Supabase Functions", "Web App", "Marketing Site"],
+      "dependsOn": [
+        "Supabase",
+        "Web App",
+        "Marketing Site"
+      ],
       "problemMatcher": []
     },
     {

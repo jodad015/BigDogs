@@ -1,22 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/lib/auth';
+import type { Profile } from '@bigdogs/shared';
 
-export interface Profile {
-  id: string;
-  email: string;
-  display_name: string;
-  avatar: string;
-  height_inches: number | null;
-  age: number | null;
-  personal_target_weight: number | null;
-  created_at: string;
-  updated_at: string;
-}
+export type { Profile };
 
-export type ProfileUpdate = Partial<
-  Pick<Profile, 'display_name' | 'height_inches' | 'age' | 'personal_target_weight' | 'avatar'>
->;
+export type ProfileUpdate = Partial<Pick<Profile, 'display_name' | 'avatar'>>;
 
 // Shared event so all useProfile instances stay in sync
 const listeners = new Set<() => void>();
@@ -77,7 +66,7 @@ export function useProfile() {
     if (!user) return { error: 'Not authenticated' };
     const { error: err } = await supabase
       .from('profiles')
-      .update({ ...updates, updated_at: new Date().toISOString() })
+      .update(updates)
       .eq('id', user.id);
 
     if (err) return { error: err.message };
