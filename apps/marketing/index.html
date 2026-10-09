@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BigDogs — Prove it on the scale.</title>
-  <meta name="description" content="A competitive weight loss challenge app. Challenge your friends, track your progress, and win with consistency — not crash diets.">
+  <title>BigDogs — Settle it on the leaderboard.</title>
+  <meta name="description" content="Leaderboards for the games your office plays. Dead hangs, putting, pull-ups, paper planes: log the scores and settle the argument.">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/lucide@0.468.0"></script>
 </head>
 <body>
 
@@ -18,17 +18,17 @@
   <section class="hero">
     <img src="/logo.svg" alt="" class="hero-bg" aria-hidden="true">
     <h1>BIGDOGS</h1>
-    <p class="tagline">Prove it on the scale.</p>
-    <p class="hero-sub">The weight loss competition that rewards consistency over crash diets.</p>
+    <p class="tagline">Settle it on the leaderboard.</p>
+    <p class="hero-sub">Leaderboards for the dumb games your office plays.</p>
     <a href="__APP_URL__/signup" class="btn">Get Started Free</a>
   </section>
 
   <!-- What is BigDogs? -->
   <section class="alt">
     <div class="container what-content">
-      <h2 class="section-title">This Isn't a Diet App</h2>
-      <p>BigDogs is a <strong>competitive weight loss challenge</strong> you run with friends, coworkers, or anyone brave enough to step on the scale. Set a personal goal, weigh in daily, and let the scoreboard do the talking.</p>
-      <p class="mt">The secret? You're not scored on how much you lose &mdash; you're scored on <strong>hitting your own pace</strong>. Someone losing 1 lb/week at their target beats someone crashing 3 lbs unsustainably. Consistency wins.</p>
+      <h2 class="section-title">Every Office Has Its Games</h2>
+      <p>The pull-up bar by the kitchen. The putting green in the hallway. The cube timer on somebody's desk. Everyone says they hold the record, and the proof is a whiteboard that got erased.</p>
+      <p class="mt">BigDogs gives your crew <strong>shared leaderboards for any game you play</strong>. Log a score in a few taps, see who's on top, and put the board on the office TV so nobody forgets.</p>
     </div>
   </section>
 
@@ -40,62 +40,51 @@
         <div class="step">
           <div class="step-num">1</div>
           <div class="step-text">
-            <h3>Create or Join</h3>
-            <p>Start a challenge and share your invite code. Friends join in seconds.</p>
+            <h3>Join Your Org</h3>
+            <p>Grab an invite code from a coworker and you're in. Belong to as many groups as you like.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">2</div>
           <div class="step-text">
-            <h3>Set Your Goal</h3>
-            <p>Pick a target weight, weekly pace, or let us suggest one. The app builds your plan with safety rails built in.</p>
+            <h3>Make a Board</h3>
+            <p>Pick what counts: time, reps, points, distance, or made out of attempts. Choose whether higher or lower wins.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">3</div>
           <div class="step-text">
-            <h3>Weigh In Daily</h3>
-            <p>Step on the scale each morning. A 7-day rolling average smooths the noise so one bad day doesn't tank you.</p>
+            <h3>Log Scores</h3>
+            <p>Record your own, or log one for the coworker who swears they'll sign up later.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">4</div>
           <div class="step-text">
-            <h3>Compete Weekly</h3>
-            <p>Each week, everyone gets scored on how close they hit their target. Placements earn points. Most points at the end wins.</p>
+            <h3>Claim the Top Spot</h3>
+            <p>Standings update instantly. Look at all time, or reset the race every week or month.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Scoring -->
+  <!-- Sample board -->
   <section class="alt">
     <div class="container what-content">
-      <h2 class="section-title">Scoring That Keeps It Fair</h2>
-      <p>Everyone sets their own pace. Your <strong>performance factor</strong> measures how well you hit your weekly target &mdash; not how much you lost in absolute terms. That means someone with 10 lbs to lose competes on equal footing with someone with 50.</p>
-      <div class="scoring-grid">
-        <div class="scoring-item">
-          <div class="scoring-icon on-pace"></div>
-          <div>
-            <strong>On Pace</strong>
-            <p>Hit your weekly target and score high</p>
-          </div>
+      <h2 class="section-title">Track Anything</h2>
+      <p>Longest dead hang. Fastest Rubik's solve. Putts made out of 10. Cornhole doubles. If you can count it or time it, it gets a board.</p>
+      <div class="board-demo" aria-label="Example leaderboard">
+        <div class="board-demo-head">
+          <span>🧗 Dead Hang</span>
+          <span class="board-demo-window">This month</span>
         </div>
-        <div class="scoring-item">
-          <div class="scoring-icon under-pace"></div>
-          <div>
-            <strong>Under Pace</strong>
-            <p>Fell short this week &mdash; lower score, but still earning points</p>
-          </div>
-        </div>
-        <div class="scoring-item">
-          <div class="scoring-icon showdown"></div>
-          <div>
-            <strong>Showdown Weeks</strong>
-            <p>End of each month + final week. Double points. High stakes.</p>
-          </div>
-        </div>
+        <ol>
+          <li><span class="rank gold">1</span><span class="who">Dave</span><span class="score">1:42.3</span></li>
+          <li><span class="rank silver">2</span><span class="who">Bob</span><span class="score">1:35.7</span></li>
+          <li><span class="rank bronze">3</span><span class="who">Alice</span><span class="score">1:21.2</span></li>
+          <li><span class="rank">4</span><span class="who">Carol</span><span class="score">1:04.0</span></li>
+        </ol>
       </div>
     </div>
   </section>
@@ -103,48 +92,48 @@
   <!-- Features -->
   <section>
     <div class="container">
-      <h2 class="section-title">Built for Competition</h2>
+      <h2 class="section-title">Built for Bragging Rights</h2>
       <div class="features-grid">
         <div class="feature-card">
-          <i data-lucide="trending-down" class="feature-icon"></i>
+          <i data-lucide="sliders-horizontal" class="feature-icon"></i>
           <div>
-            <h3>Trend Tracking</h3>
-            <p>7-day rolling average so daily fluctuations don't mess with your head</p>
+            <h3>Any Scoring</h3>
+            <p>Best attempt, running total, average, or most entries. Every board is configured, not hard-coded.</p>
           </div>
         </div>
         <div class="feature-card">
-          <i data-lucide="zap" class="feature-icon"></i>
+          <i data-lucide="calendar-range" class="feature-icon"></i>
           <div>
-            <h3>Showdown Weeks</h3>
-            <p>End-of-month and final week showdowns with 2x points</p>
+            <h3>Time Windows</h3>
+            <p>All-time records plus weekly, monthly, and quarterly races so new people have a shot.</p>
           </div>
         </div>
         <div class="feature-card">
-          <i data-lucide="target" class="feature-icon"></i>
+          <i data-lucide="users" class="feature-icon"></i>
           <div>
-            <h3>Smart Goal Setting</h3>
-            <p>Target weight, % loss, BMI, or weekly pace &mdash; pick your method</p>
+            <h3>Teams</h3>
+            <p>Partner games get team boards. Play with different partners and each team gets its own spot.</p>
           </div>
         </div>
         <div class="feature-card">
-          <i data-lucide="trophy" class="feature-icon"></i>
+          <i data-lucide="user-plus" class="feature-icon"></i>
           <div>
-            <h3>Live Leaderboard</h3>
-            <p>Track standings, placements, and points in real time</p>
+            <h3>Add Anyone</h3>
+            <p>Add a coworker by name and log their scores. They claim their spot when they join.</p>
           </div>
         </div>
         <div class="feature-card">
-          <i data-lucide="shield-check" class="feature-icon"></i>
+          <i data-lucide="tv" class="feature-icon"></i>
           <div>
-            <h3>Safety Rails</h3>
-            <p>Pace limits and healthy floor checks keep goals sustainable</p>
+            <h3>TV Mode</h3>
+            <p>Put your boards on the break room screen with a read-only link. No login on the tablet.</p>
           </div>
         </div>
         <div class="feature-card">
-          <i data-lucide="link" class="feature-icon"></i>
+          <i data-lucide="building-2" class="feature-icon"></i>
           <div>
-            <h3>Invite Codes</h3>
-            <p>Share a code, friends join instantly. No weight numbers shared publicly.</p>
+            <h3>Multiple Groups</h3>
+            <p>Office, gym, family game night. Each group keeps its own players and boards.</p>
           </div>
         </div>
       </div>
@@ -153,8 +142,8 @@
 
   <!-- Footer CTA -->
   <section class="footer-cta">
-    <h2>Ready to step up?</h2>
-    <p class="footer-sub">Start a challenge with your crew. It takes 30 seconds.</p>
+    <h2>Think you're the top dog?</h2>
+    <p class="footer-sub">Make the board and prove it.</p>
     <a href="__APP_URL__/signup" class="btn">Get Started Free</a>
     <p class="sub">Free to use. No ads. No nonsense.</p>
   </section>
