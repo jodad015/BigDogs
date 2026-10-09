@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { useAuth } from '@/lib/auth';
 import { useTheme } from '@/lib/theme';
 import { useProfile } from '@/hooks/use-profile';
-import { AvatarPicker, avatarSrc } from '@/components/avatar-picker';
+import { AvatarPicker } from '@/components/avatar-picker';
+import { avatarSrc } from '@/lib/avatars';
 import { User, Pencil } from 'lucide-react';
 
 export default function ProfilePage() {

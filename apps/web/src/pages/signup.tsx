@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router';
+import { Link, useNavigate, useSearchParams } from 'react-router';
 import { useAuth } from '@/lib/auth';
 import { supabase } from '@/lib/supabase';
 import { createAuthService } from '@bigdogs/shared';
+import { rememberNextPath, safeNextPath, withNext } from '@/lib/next-path';
 
 const authService = createAuthService(supabase);
 const enableEmailAuth = import.meta.env.VITE_ENABLE_EMAIL_AUTH === 'true';
@@ -22,6 +23,8 @@ function getStrength(pw: string): { level: number; label: string; color: string 
 export default function SignupPage() {
   const navigate = useNavigate();
   const { signInWithGoogle } = useAuth();
+  const [params] = useSearchParams();
+  const next = params.get('next');
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -46,12 +49,13 @@ export default function SignupPage() {
       setError(err.message);
       setIsLoading(false);
     } else {
-      navigate('/');
+      navigate(safeNextPath(next) ?? '/');
     }
   };
 
   const handleGoogleSignUp = async () => {
     setError('');
+    rememberNextPath(next);
     const { error: err } = await signInWithGoogle();
     if (err) {
       setError(err.message);
@@ -72,7 +76,7 @@ export default function SignupPage() {
         {/* Brand Header */}
         <div className="text-center mb-10">
           <h1 className="text-3xl font-black tracking-[0.15em] uppercase">BIGDOGS</h1>
-          <p className="text-muted-foreground mt-1">Prove it on the scale.</p>
+          <p className="text-muted-foreground mt-1">Settle it on the leaderboard.</p>
         </div>
 
         {!enableEmailAuth && (
@@ -152,7 +156,7 @@ export default function SignupPage() {
 
         <p className="mt-6 text-center text-sm text-muted-foreground">
           Already have an account?{' '}
-          <Link to="/login" className="text-primary font-medium hover:underline">
+          <Link to={withNext('/login', next)} className="text-primary font-medium hover:underline">
             Log in
           </Link>
         </p>
