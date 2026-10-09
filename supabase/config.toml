@@ -68,8 +68,8 @@ max_indexes = 5
 
 [auth]
 enabled = true
-site_url = "http://localhost:5173"
-additional_redirect_urls = ["http://127.0.0.1:5173", "http://localhost:5173"]
+site_url = "http://localhost:5180"
+additional_redirect_urls = ["http://127.0.0.1:5180", "http://localhost:5180"]
 jwt_expiry = 3600
 enable_refresh_token_rotation = true
 refresh_token_reuse_interval = 10

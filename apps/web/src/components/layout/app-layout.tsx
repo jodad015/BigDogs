@@ -1,14 +1,11 @@
 import { NavLink, Outlet } from 'react-router';
-import { Home, Scale, Trophy, CalendarDays } from 'lucide-react';
+import { Home } from 'lucide-react';
 import { useProfile } from '@/hooks/use-profile';
 import { useTheme } from '@/lib/theme';
 import { avatarSrc } from '@/components/avatar-picker';
 
 const NAV_ITEMS = [
   { to: '/', label: 'Home', icon: Home },
-  { to: '/weigh-in', label: 'Weigh In', icon: Scale },
-  { to: '/history', label: 'History', icon: CalendarDays },
-  { to: '/leaderboard', label: 'Challenge', icon: Trophy },
 ];
 
 function ProfileNavIcon({ isActive }: { isActive: boolean }) {
