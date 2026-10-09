@@ -122,3 +122,10 @@ on RLS-protected tables.
 
 Signed-in clients can subscribe to `entries` through Supabase Realtime for
 live updates.
+
+The web page lives at `/tv/:token` (no sign-in). It polls every 15 seconds,
+rotates boards every 12 seconds, and shows a "took #1" banner (jumping to that
+board) when a board's leader changes between polls. It requests a screen wake
+lock so tablets stay on. Query options: `?board=<id>` pins one board,
+`?interval=<seconds>` changes rotation speed. Admins create and revoke links
+under Settings → TV displays.

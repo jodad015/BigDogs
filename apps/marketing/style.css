@@ -143,40 +143,54 @@ section.alt { background: var(--bg-alt); }
   margin-top: 16px;
 }
 
-/* Scoring */
-.scoring-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-top: 32px;
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.scoring-item {
-  display: flex;
-  gap: 14px;
-  align-items: center;
+/* Sample leaderboard */
+.board-demo {
+  margin: 32px auto 0;
+  max-width: 420px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
   text-align: left;
 }
-.scoring-item strong {
-  display: block;
-  color: var(--foreground);
-  font-size: 0.9375rem;
+.board-demo-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  font-weight: 700;
+  border-bottom: 1px solid var(--border);
 }
-.scoring-item p {
-  font-size: 0.8125rem !important;
-  margin-top: 2px;
+.board-demo-window {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--muted);
 }
-.scoring-icon {
+.board-demo ol { list-style: none; }
+.board-demo li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+}
+.board-demo li + li { border-top: 1px solid var(--border); }
+.board-demo .rank {
   flex-shrink: 0;
-  width: 12px;
-  height: 12px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+  background: var(--border);
+  color: var(--foreground);
 }
-.scoring-icon.on-pace { background: #22c55e; }
-.scoring-icon.under-pace { background: #f59e0b; }
-.scoring-icon.showdown { background: #7c3aed; }
+.board-demo .rank.gold { background: #fbbf24; color: #1a1a2e; }
+.board-demo .rank.silver { background: #9ca3af; color: #1a1a2e; }
+.board-demo .rank.bronze { background: #d97706; color: #1a1a2e; }
+.board-demo .who { flex: 1; font-weight: 600; }
+.board-demo .score { font-variant-numeric: tabular-nums; font-weight: 700; }
 
 /* Steps */
 .steps {
