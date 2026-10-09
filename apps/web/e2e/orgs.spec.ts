@@ -50,7 +50,9 @@ test('a new user joins with a code and adds themself as a player', async ({ page
   await page.getByRole('button', { name: 'Join Acme Office' }).click();
 
   await expect(page.getByText('Which player are you?')).toBeVisible();
-  await expect(page.getByRole('button', { name: "That's me" })).toHaveCount(1); // Erin
+  await expect(
+    page.getByRole('listitem').filter({ hasText: 'Erin' }).getByRole('button', { name: "That's me" }),
+  ).toBeVisible();
   await shot(page, 'claim-step');
   await page.getByRole('button', { name: "I'm not on the list, add me" }).click();
 
