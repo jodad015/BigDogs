@@ -17,6 +17,7 @@ import { AVATARS } from '@/lib/avatars';
 import { useLeaderboard } from '@/hooks/use-leaderboards';
 import { saveEntry, useEntry } from '@/hooks/use-entries';
 import { useCompetitors } from '@/hooks/use-competitors';
+import { findTeamByRoster, teamName } from '@/hooks/use-teams';
 import {
   Avatar,
   ErrorText,
@@ -215,6 +216,7 @@ function LogForm({
     existing ? toDateTimeLocal(new Date(existing.achieved_at)) : null,
   );
   const [note, setNote] = useState(existing?.note ?? '');
+  const [newTeamName, setNewTeamName] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
@@ -237,6 +239,8 @@ function LogForm({
   };
 
   const parsed = parseEntryValue(board, value, attempts);
+  const rosterComplete = teamSize > 1 && selected.length === teamSize;
+  const matchedTeam = rosterComplete ? findTeamByRoster(teams.teams, selected) : undefined;
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -248,7 +252,7 @@ function LogForm({
     setBusy(true);
     let teamId: string | null = null;
     if (teamSize > 1) {
-      const res = await teams.findOrCreateTeam(selected);
+      const res = await teams.findOrCreateTeam(selected, matchedTeam ? null : newTeamName);
       if (res.error || !res.teamId) {
         setBusy(false);
         return setError(res.error ?? 'Could not create the team');
@@ -287,6 +291,24 @@ function LogForm({
           onToggle={toggle}
           onAdd={addPlayer}
         />
+        {rosterComplete &&
+          (matchedTeam ? (
+            <p className="text-sm text-muted-foreground">
+              Team:{' '}
+              <span className="font-semibold text-foreground">
+                {teamName(matchedTeam, players.players)}
+              </span>
+            </p>
+          ) : (
+            <input
+              value={newTeamName}
+              onChange={(e) => setNewTeamName(e.target.value)}
+              maxLength={50}
+              placeholder="New team! Give it a name (optional)"
+              aria-label="Team name"
+              className={inputClass}
+            />
+          ))}
       </section>
 
       <section className="space-y-2">
