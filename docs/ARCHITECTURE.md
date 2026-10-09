@@ -5,8 +5,14 @@ and writes Postgres through supabase-js. Row level security (RLS) decides what
 each user can see and change, and a few SQL functions handle the operations
 that need more than one table or must bypass RLS in a controlled way.
 
-The whole schema lives in
-[`supabase/migrations/20261009_baseline.sql`](../supabase/migrations/20261009_baseline.sql).
+The schema starts from
+[`supabase/migrations/20261009_baseline.sql`](../supabase/migrations/20261009_baseline.sql);
+later migrations in the same folder change it in place:
+
+| Migration                            | Change                                                        |
+|--------------------------------------|---------------------------------------------------------------|
+| `20261010_fix_last_owner_guard.sql`  | Last-owner guard runs as security definer so RLS can't hide the org from it |
+| `20261011_display_team_avatars.sql`  | `get_display` returns an `id` and `avatars` array per standing |
 
 ## Data model
 
@@ -129,3 +135,47 @@ board) when a board's leader changes between polls. It requests a screen wake
 lock so tablets stay on. Query options: `?board=<id>` pins one board,
 `?interval=<seconds>` changes rotation speed. Admins create and revoke links
 under Settings → TV displays.
+
+## Web app
+
+React 19 + React Router. Pages read and write through supabase-js hooks in
+`apps/web/src/hooks/`; there is no API layer in between.
+
+| Route                         | Page                     | Notes                                           |
+|-------------------------------|--------------------------|-------------------------------------------------|
+| `/login`, `/signup`           | `pages/login`, `signup`  | Carry `?next=` so invite links survive sign-in  |
+| `/`                           | `pages/org-index`        | Redirects to a saved `next`, last org, or `/orgs` |
+| `/orgs`                       | `pages/orgs`             | Your orgs, join by code, create (platform admin) |
+| `/join/:code`                 | `pages/join`             | Invite preview, accept, then claim a player     |
+| `/o/:slug`                    | `pages/org/boards`       | Board cards with top 3                          |
+| `/o/:slug/new`                | `pages/org/new-board`    | Templates, then `LeaderboardForm`               |
+| `/o/:slug/b/:id`              | `pages/org/board`        | Standings, time windows, recent scores, realtime |
+| `/o/:slug/b/:id/log`          | `pages/org/log-entry`    | Log a score; `?entry=` edits one                |
+| `/o/:slug/b/:id/edit`         | `pages/org/edit-board`   | Creator or admin; archive/delete                |
+| `/o/:slug/people`             | `pages/org/people`       | Players, Teams, Members tabs (`?tab=`)          |
+| `/o/:slug/invites`            | `pages/org/invites`      | Create/revoke invite links                      |
+| `/o/:slug/settings`           | `pages/org/settings`     | Org details, TV displays (admins), leave        |
+| `/tv/:token`                  | `pages/tv`               | Public, no auth                                 |
+
+Supporting pieces:
+
+- `lib/orgs.tsx` loads the user's orgs once (`OrgsProvider`); `OrgLayout`
+  resolves `:slug` and provides `useCurrentOrg()` (role, `isAdmin`).
+- `hooks/use-supabase-query.ts` is the small fetch helper every data hook uses.
+- `hooks/use-competitors.ts` turns a player or team id into a name and avatars.
+- `components/ui.tsx` holds the shared button/input classes and small
+  components; pages use Tailwind directly otherwise.
+- Formatting and parsing of scores (stopwatch input, X of Y, rules text) live
+  in `packages/shared/src/leaderboard/` with unit tests.
+
+## Testing
+
+- `pnpm test`: Vitest unit tests for the shared package (formatting, parsing).
+- `pnpm test:e2e`: Playwright against the local stack and dev server. Specs in
+  `apps/web/e2e/` cover orgs/invites, boards, teams and TV mode. They change
+  seed data, so run `pnpm db:reset` first; files run one at a time because they
+  share the database. Not yet wired into CI.
+- RLS changes: impersonate a seed user in SQL to check them, e.g.
+  `set local role authenticated; select set_config('request.jwt.claims', '{"sub":"<user id>"}', true);`
+  inside a transaction.
+
