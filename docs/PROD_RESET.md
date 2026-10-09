@@ -1,5 +1,9 @@
 # One-time production reset (leaderboard pivot)
 
+> **Done on 2026-10-09.** Production now runs the leaderboard schema, and new
+> migrations deploy normally on merge to `main`. Kept for the record; don't run
+> it again unless you mean to wipe production.
+
 The pivot replaced every migration with a single baseline, so production has to
 be wiped once. **Do this before merging the pivot into `main`.** Otherwise the
 deploy's `supabase db push` fails because production's migration history lists

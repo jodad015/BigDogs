@@ -139,6 +139,18 @@ insert into public.platform_admins (user_id)
 select id from public.profiles where email = '<email>';
 ```
 
+## What's next
+
+Built so far: orgs and invites, players and claiming, teams, config-driven
+leaderboards with time windows and live standings, and TV mode. Ideas queued
+up, roughly by value to an office:
+
+1. **QR code per board**: print it by the pull-up bar; scanning opens the log screen.
+2. **Personal bests and new-#1 notifications**: in-app first, then Slack/Teams posts.
+3. **Seasons**: reset boards on a schedule and keep a hall of fame.
+4. **Witnesses**: tag someone to confirm a score.
+5. **E2E in CI**: run the Playwright suite against a CI Supabase stack.
+
 ## Branching & PRs
 
 - Feature branches off `develop`; PR back into `develop`. Merging to `main`
