@@ -32,11 +32,15 @@ export function usePlayers(orgId: string) {
     error,
     isLoading,
     refetch,
-    addPlayer: (displayName: string, avatar: string) =>
-      run(
-        supabase.from('players').insert({ org_id: orgId, display_name: displayName, avatar }),
-        DUPLICATE_NAME,
-      ),
+    addPlayer: async (displayName: string, avatar: string) => {
+      const { data: player, error: err } = await supabase
+        .from('players')
+        .insert({ org_id: orgId, display_name: displayName, avatar })
+        .select()
+        .single();
+      if (!err) await refetch();
+      return { player, error: friendlyError(err, DUPLICATE_NAME) };
+    },
     updatePlayer: (id: string, updates: { display_name?: string; avatar?: string }) =>
       run(supabase.from('players').update(updates).eq('id', id), DUPLICATE_NAME),
     deletePlayer: (id: string) => run(supabase.from('players').delete().eq('id', id)),

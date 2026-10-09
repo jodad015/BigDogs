@@ -1,4 +1,4 @@
-import type { Aggregation, MetricType } from './config';
+import { AGGREGATION_LABELS, type Aggregation, type MetricType } from './config';
 
 /** The leaderboard fields needed to display or parse a value. */
 export interface ValueFormat {
@@ -36,6 +36,11 @@ export function formatDuration(ms: number, decimals = 1): string {
     return `${minutes}:${String(seconds).padStart(2, '0')}${fractionStr}`;
   }
   return `${seconds}${fractionStr}s`;
+}
+
+/** Milliseconds back to editable stopwatch text: 72400 → "1:12.4", 58900 → "58.9". */
+export function durationToInput(ms: number, decimals = 1): string {
+  return formatDuration(ms, decimals).replace(/s$/, '');
 }
 
 /**
@@ -151,4 +156,48 @@ export function parseEntryValue(
   }
 
   return { ok: true, value, attempts: null };
+}
+
+/** A stored value back into the text a person would type to log it. */
+export function entryValueToInput(format: ValueFormat, value: number): string {
+  if (format.metric_type === 'duration') return durationToInput(value, format.decimals);
+  return String(value);
+}
+
+/** One line describing how a board ranks, e.g. "Best time · lower wins". */
+export function describeRules(board: {
+  metric_type: MetricType | string;
+  aggregation: Aggregation | string;
+  direction: string;
+  unit?: string;
+}): string {
+  const noun: Record<string, string> = {
+    duration: 'time',
+    count: 'score',
+    points: 'score',
+    distance: 'distance',
+    weight: 'weight',
+  };
+  const total: Record<string, string> = {
+    duration: 'Total time',
+    count: `Total ${board.unit ?? 'count'}`,
+    points: 'Total points',
+    distance: 'Total distance',
+    weight: 'Total weight',
+    made_of_attempts: 'Total made',
+  };
+
+  if (board.aggregation === 'entry_count') return AGGREGATION_LABELS.entry_count.label;
+  if (board.metric_type === 'made_of_attempts') {
+    if (board.aggregation === 'sum') return 'Total made';
+    if (board.aggregation === 'average') return 'Average make rate';
+    return board.aggregation === 'latest' ? 'Latest make rate' : 'Best make rate';
+  }
+
+  const n = noun[board.metric_type] ?? 'score';
+  const first =
+    board.aggregation === 'sum'
+      ? (total[board.metric_type] ?? 'Total')
+      : `${{ best: 'Best', average: 'Average', latest: 'Latest' }[board.aggregation] ?? 'Best'} ${n}`;
+  return `${first} · ${board.direction === 'lower_better' ? 'lower' : 'higher'} wins`;
 }

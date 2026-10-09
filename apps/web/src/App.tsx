@@ -18,6 +18,10 @@ const BoardsPage = lazy(() => import('@/pages/org/boards'));
 const PeoplePage = lazy(() => import('@/pages/org/people'));
 const InvitesPage = lazy(() => import('@/pages/org/invites'));
 const OrgSettingsPage = lazy(() => import('@/pages/org/settings'));
+const NewBoardPage = lazy(() => import('@/pages/org/new-board'));
+const BoardPage = lazy(() => import('@/pages/org/board'));
+const EditBoardPage = lazy(() => import('@/pages/org/edit-board'));
+const LogEntryPage = lazy(() => import('@/pages/org/log-entry'));
 
 function App() {
   return (
@@ -42,6 +46,10 @@ function App() {
                     <Route path="people" element={<PeoplePage />} />
                     <Route path="invites" element={<InvitesPage />} />
                     <Route path="settings" element={<OrgSettingsPage />} />
+                    <Route path="new" element={<NewBoardPage />} />
+                    <Route path="b/:boardId" element={<BoardPage />} />
+                    <Route path="b/:boardId/edit" element={<EditBoardPage />} />
+                    <Route path="b/:boardId/log" element={<LogEntryPage />} />
                   </Route>
                 </Route>
               </Route>

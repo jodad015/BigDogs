@@ -1,5 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import {
+  describeRules,
+  durationToInput,
+  entryValueToInput,
   formatDuration,
   formatEntryValue,
   formatScore,
@@ -94,5 +97,55 @@ describe('formatEntryValue', () => {
   it('formats single entries', () => {
     expect(formatEntryValue(putts, 7, 10)).toBe('7/10 putts');
     expect(formatEntryValue(duration, 65_000)).toBe('1:05.0');
+  });
+});
+
+describe('durationToInput', () => {
+  it('round-trips with parseDuration', () => {
+    expect(durationToInput(72_400, 1)).toBe('1:12.4');
+    expect(durationToInput(58_900, 1)).toBe('58.9');
+    expect(parseDuration(durationToInput(3_723_500, 1))).toBe(3_723_500);
+    expect(entryValueToInput(duration, 65_000)).toBe('1:05.0');
+    expect(entryValueToInput(reps, 12)).toBe('12');
+  });
+});
+
+describe('describeRules', () => {
+  it('summarizes how a board ranks', () => {
+    expect(
+      describeRules({ metric_type: 'duration', aggregation: 'best', direction: 'lower_better' }),
+    ).toBe('Best time · lower wins');
+    expect(
+      describeRules({
+        metric_type: 'count',
+        aggregation: 'sum',
+        direction: 'higher_better',
+        unit: 'reps',
+      }),
+    ).toBe('Total reps · higher wins');
+    expect(
+      describeRules({ metric_type: 'count', aggregation: 'best', direction: 'higher_better' }),
+    ).toBe('Best score · higher wins');
+    expect(
+      describeRules({
+        metric_type: 'made_of_attempts',
+        aggregation: 'best',
+        direction: 'higher_better',
+      }),
+    ).toBe('Best make rate');
+    expect(
+      describeRules({
+        metric_type: 'made_of_attempts',
+        aggregation: 'sum',
+        direction: 'higher_better',
+      }),
+    ).toBe('Total made');
+    expect(
+      describeRules({
+        metric_type: 'points',
+        aggregation: 'entry_count',
+        direction: 'higher_better',
+      }),
+    ).toBe('Most entries');
   });
 });
